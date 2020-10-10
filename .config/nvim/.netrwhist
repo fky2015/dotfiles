@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/fky/code'
+let g:netrw_dirhist_5='/home/fky/code/v'
+let g:netrw_dirhist_4='/home/fky/code'
+let g:netrw_dirhist_3='/home/fky/code/sml'
+let g:netrw_dirhist_2='/home/fky/code'
+let g:netrw_dirhist_1='/home/fky/code/git/others/RS-232'
