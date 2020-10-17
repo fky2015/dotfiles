@@ -64,13 +64,23 @@ Plug 'vimwiki/vimwiki'
 " https://wakatime.com
 Plug 'wakatime/vim-wakatime'
 
-" Goyo
+" Goyo + limelight + vim-colors-pencil = iawriter
+"Plug 'junegunn/goyo.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'reedes/vim-colors-pencil'
+Plug 'subnut/vim-iawriter'
 
 " vimtex
 Plug 'lervag/vimtex'
 
 Plug 'ap/vim-css-color'
+
+" grammar check
+Plug 'rhysd/vim-grammarous'
+
+" helpful.vim
+Plug 'tweekmonster/helpful.vim'
 
 " my test plug
 
@@ -79,6 +89,8 @@ Plug 'ap/vim-css-color'
 
 call plug#end()
 " }}}
+
+
 " Basic configuration ----------------------------- {{{
 
 :hi CocFloating ctermfg=231 ctermbg=23 guifg=#ffffff guibg=#1f7ad8
