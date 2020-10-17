@@ -1,3 +1,6 @@
+# ZSH Profiling
+#zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -9,10 +12,10 @@ fi
 source "$HOME/.exports.zsh"
 
 # evaluate pipenv completion
-eval "$(pipenv --completion)"
+# eval "$(pipenv --completion)"
 
 # init nvm
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 # for tilix terminal eluminator
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
@@ -26,10 +29,13 @@ source "$HOME/.zinit.zsh"
 source "$HOME/.functions.zsh"
 
 # SDKMan 
-[[ -s "/home/fky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fky/.sdkman/bin/sdkman-init.sh"
+#[[ -s "/home/fky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fky/.sdkman/bin/sdkman-init.sh"
 
 # All self-defined aliases.
 source "$HOME/.aliases.zsh"
 
 # p10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ZSH Profiling
+#zprof
