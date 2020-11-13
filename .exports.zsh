@@ -1,18 +1,21 @@
-LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
+export LS_COLORS=$LS_COLORS:'di=0;35:'
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+export GPG_TTY=$(tty)
 
 
 # for rust ./cargo/bin
 export PATH="${HOME}/.cargo/bin:$PATH"
 
-export PATH="/home/fky/.local/bin:$PATH"
+export PATH="~/.local/bin:$PATH"
 
 # gopath
-export GOPATH=/home/fky/.go:/home/fky/code/go
-#export GOROOT="/home/fky/.go"
+export GOPATH=~/.go:~/code/go
+#export GOROOT="~/.go"
 export PATH="$PATH:$GOPATH/bin"
+export GO111MODULE=ON
 
 
 #export JAVA_HOME
@@ -27,7 +30,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 # install npm package in User dir
 export PATH="$HOME/.node_modules/bin:$PATH"
 
-# /home/fky/.node_modules/bin
+# ~/.node_modules/bin
 export npm_config_prefix=~/.node_modules
 
 # NEVER CHANGE IT UNLESS YOU NOW THE DANGER
@@ -37,7 +40,7 @@ export XDG_CONFIG_HOME=${HOME}/.config
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 export RUSTC_WRAPPER=sccache
 
-export PATH="$PATH:/home/fky/Xilinx/Vivado/2019.2/bin"
+export PATH="$PATH:~/Xilinx/Vivado/2019.2/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

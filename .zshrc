@@ -11,16 +11,12 @@ fi
 # All export's.
 source "$HOME/.exports.zsh"
 
-# evaluate pipenv completion
-# eval "$(pipenv --completion)"
-
-# init nvm
-# source /usr/share/nvm/init-nvm.sh
-
 # for tilix terminal eluminator
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+source "$HOME/.local.zsh"
 
 # Zinit comfig.
 source "$HOME/.zinit.zsh"
@@ -29,7 +25,7 @@ source "$HOME/.zinit.zsh"
 source "$HOME/.functions.zsh"
 
 # SDKMan 
-#[[ -s "/home/fky/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fky/.sdkman/bin/sdkman-init.sh"
+#[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
 
 # All self-defined aliases.
 source "$HOME/.aliases.zsh"

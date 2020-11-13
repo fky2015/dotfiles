@@ -42,7 +42,6 @@ alias tmux="tmux -2" # fix the problem with vim
 alias y="yay"
 alias tmuxrc="vim ~/.tmux.conf"
 alias destory="/bin/rm"
-alias installrc="vim /home/fky/code/git/mine/dotfile/reinstall-OS"
 alias pwq='pwd | tr -d "\n" |xclip -selection c && pwd '
 alias asd='code .'
 alias cdt='cd /tmp'
@@ -51,17 +50,6 @@ alias tb='taskbook'
 alias hex='hexyl'
 alias rl="rlwrap"
 alias paxel="pc axel -n 10"
-
-# vps
-alias vps2="ssh -p '27955' 'root@138.128.217.229'"
-alias vps-ali="ssh fky@59.110.233.235"
-alias vps-hw="ssh fky@119.3.227.198"
-alias vps-hw-root="ssh root@119.3.227.198"
-alias vps3="ssh fky@172.96.201.10 -p 31234"
-alias vps4="ssh root@118.25.113.189"
-alias vps-np1="ssh root@10.1.139.231"
-alias vps-np2="ssh root@10.1.139.232"
-alias vps-np3="ssh root@10.1.139.233"
 
 alias sml="rl sml"
 alias cdc="cd ~/code"
