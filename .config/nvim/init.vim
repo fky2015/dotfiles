@@ -7,6 +7,9 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'itchyny/calendar.vim'
 
+" <leader><leader>w
+Plug 'easymotion/vim-easymotion'
+
 " adds various text objects to give you more targets to operate on
 Plug 'wellle/targets.vim'
 
@@ -153,11 +156,16 @@ let maplocalleader="-"
 nnoremap ; :
 xnoremap ; :
 
+" For motion: `f`
+nnoremap ' ;
+
 " Quicker way to open command window
 nnoremap q; q:
 
 " Quicker <Esc> in insert mode
 inoremap <silent> jk <Esc>
+
+tnoremap nm <c-\><c-n>
 
 " zoom
 function! Zoom ()
@@ -183,12 +191,13 @@ nnoremap <leader>z :call Zoom()<CR>
 
 " fzf.vim ----------------------------------- {{{
 set rtp+=/usr/bin/fzf
-
 nmap <leader>f :Files<CR>
-nmap <leader>t :Rg<CR>
+let spec = {'options': '--delimiter : --nth 4..'}
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(spec) , <bang>0)
+nnoremap <leader>t :Rg<CR>
 
 " Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
+nnoremap <leader><tab> <plug>(fzf-maps-n)
 
 
 " }}} ---------------------------------------
@@ -346,6 +355,9 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " let g:coc_snippet_next = '<tab>'
 " }}} -------------------------------------------
 
+" Language Specific ------------------------------------- {{{
+autocmd FileType go setlocal nosmarttab shiftwidth=0 softtabstop=0 noexpandtab tabstop=8
+" ------------------------------------------------------- }}}
 
 " NerdTree ------------------------------------ {{{
 map <F2> :NERDTreeToggle<CR>
@@ -390,22 +402,9 @@ let g:tex_flavor = 'latex'
 
 " echo 'welcome back! >^.^<'
 
-" noremap <leader>w <esc>viw
-" edit config
-nnoremap <leader>ec :vs $MYVIMRC<cr>:setlocal wrap<cr>
-" source config
-nnoremap <leader>sc :so $MYVIMRC<cr>
-
-iabbrev ccopy Copyright 2020 Feng Kaiyu, all rights reserved.
-iabbrev @@ loveress01@outlook.com
 
 " force to learn new key binding
 inoremap <esc> <nop>
-
-augroup filetype_html
-    autocmd!
-    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
-augroup END
 
 augroup filetype_dot
     autocmd!
@@ -418,17 +417,9 @@ augroup filetype_markdown
     autocmd FileType markdown onoremap ah :<c-u>execute "normal! ?^\\(==\\+\\\\|--\\+\\)$\r:nohlsearch\rg_vk0"<cr>
 augroup END
 
-"augroup filetype_zot
-    "autocmd!
-    "autocmd FileType rst setlocal foldmethod=expr
-    "autocmd FileType rst setlocal foldexpr=RstFold#GetRstFold()
-    "autocmd FileType rst setlocal foldtext=RstFold#GetRstFoldText()
-"augroup END
-
 augroup RstFold
   autocmd TextChanged,InsertLeave <buffer> unlet! b:RstFoldCache
 augroup END
-
 
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
@@ -446,10 +437,6 @@ nnoremap <leader>ca ggvG"+Y<c-o>
 
 noremap <leader>tw :setlocal wrap!<cr>
 
-noremap <leader>w :match Error /\v\s+$/<cr>
-noremap <leader>W :match none<cr>
-
-" nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 
 " Vimscript file settings ------------------------{{{

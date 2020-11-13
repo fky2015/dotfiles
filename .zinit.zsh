@@ -4,10 +4,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zplugin installer's chunk
 
-#zinit light "ajeetdsouza/zoxide"
-
-#zinit ice lucid wait='1'
-#zinit light Aloxaf/fzf-tab
+zinit light zinit-zsh/z-a-readurl
 
 # 快速目录跳转
 zinit ice lucid wait='1'
@@ -38,6 +35,26 @@ zinit snippet OMZ::plugins/extract
 
 zinit ice lucid wait='1'
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+# z-a-bin-gem-node
+zinit light zinit-zsh/z-a-bin-gem-node
+
+# Git extension
+
+zinit as"null" wait"1" lucid for \
+    sbin    Fakerr/git-recall \
+    sbin    cloneopts paulirish/git-open \
+    sbin    paulirish/git-recent \
+    sbin    davidosomething/git-my \
+    sbin atload"export _MENU_THEME=legacy" \
+            arzzen/git-quick-stats \
+    sbin    iwata/git-now \
+    make"PREFIX=$ZPFX install" \
+            tj/git-extras \
+    sbin"bin/git-dsf;bin/diff-so-fancy" \
+            zdharma/zsh-diff-so-fancy \
+   sbin"git-url;git-guclone" make"GITURL_NO_CGITURL=1" \
+            zdharma/git-url
 
 # 加载 pure 主题
 zplugin ice depth=1; zinit light romkatv/powerlevel10k
