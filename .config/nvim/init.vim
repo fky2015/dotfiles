@@ -5,7 +5,27 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'markonm/traces.vim'
+
+Plug 'ThePrimeagen/vim-apm'
+
+Plug 'rafcamlet/nvim-luapad'
+
+" color scheme
+Plug 'sainnhe/edge'
+Plug 'morhetz/gruvbox'
+Plug 'Iron-E/nvim-highlite'
+Plug 'kyazdani42/blue-moon'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
+" ----- end -----
+
+Plug 'jdhao/better-escape.vim'
+
+Plug 'psliwka/vim-smoothie'
+
 Plug 'itchyny/calendar.vim'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " <leader><leader>w
 Plug 'easymotion/vim-easymotion'
@@ -16,6 +36,7 @@ Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdcommenter'
 " Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -35,7 +56,11 @@ Plug 'marshallward/vim-restructuredtext'
 
 Plug 'tpope/vim-surround'
 
+Plug 'solarnz/thrift.vim'
+Plug 'liuchengxu/vista.vim' 
+
 Plug 'tomlion/vim-solidity'
+Plug 'tpope/vim-repeat'
 
 Plug 'liuchengxu/graphviz.vim'
 
@@ -46,6 +71,8 @@ Plug 'mhinz/vim-startify'
 
 " Emmet Support
 Plug 'mattn/emmet-vim'
+
+Plug 'easymotion/vim-easymotion'
 
 " Git support
 Plug 'tpope/vim-fugitive'
@@ -93,6 +120,26 @@ Plug 'tweekmonster/helpful.vim'
 call plug#end()
 " }}}
 
+" Tree Sitter ------------------------------------- {{{
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = { enable = true },
+  incremental_selection = { enable = true,
+      keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },    
+  },
+  textobjects = { enable = true },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+" ------------------------------------------------- }}}
+
 
 " Basic configuration ----------------------------- {{{
 
@@ -111,6 +158,10 @@ set softtabstop=2
 set expandtab
 " copy indent from previous line
 set autoindent
+
+
+autocmd FileType go setlocal nosmarttab shiftwidth=0 softtabstop=0 noexpandtab tabstop=8
+
 " Don't wrap long lines
 " set nowrap
 " Show cursor line and column in status
@@ -130,8 +181,14 @@ set cmdheight=2
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" always show signcolumns
-set signcolumn=yes
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 " relative line number
 set number
@@ -165,7 +222,7 @@ nnoremap q; q:
 " Quicker <Esc> in insert mode
 inoremap <silent> jk <Esc>
 
-tnoremap nm <c-\><c-n>
+tnoremap jk <c-\><c-n>
 
 " zoom
 function! Zoom ()
@@ -186,8 +243,16 @@ endfunction
 
 nnoremap <leader>z :call Zoom()<CR>
 
+set background=dark
+colorscheme edge
 
 " }}} ------------------------------
+
+" vim-plug ---- {{{
+nnoremap <leader><S-P><s-i> :PlugInstall<CR>
+nnoremap <leader><S-P><s-u> :PlugUpdate<CR>
+" }}}
+
 
 " fzf.vim ----------------------------------- {{{
 set rtp+=/usr/bin/fzf
@@ -198,7 +263,6 @@ nnoremap <leader>t :Rg<CR>
 
 " Mapping selecting mappings
 nnoremap <leader><tab> <plug>(fzf-maps-n)
-
 
 " }}} ---------------------------------------
 
@@ -221,13 +285,17 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -245,27 +313,19 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
-  elseif &filetype ==# 'tex'
-    " need vimtex to be setup properly
-    VimtexDocPackage
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" navigate through float window
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
-
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -275,7 +335,8 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
@@ -289,10 +350,25 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-" nmap <silent> <C-d> <Plug>(coc-range-select)
-" xmap <silent> <C-d> <Plug>(coc-range-select)
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -355,10 +431,6 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " let g:coc_snippet_next = '<tab>'
 " }}} -------------------------------------------
 
-" Language Specific ------------------------------------- {{{
-autocmd FileType go setlocal nosmarttab shiftwidth=0 softtabstop=0 noexpandtab tabstop=8
-" ------------------------------------------------------- }}}
-
 " NerdTree ------------------------------------ {{{
 map <F2> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -420,18 +492,6 @@ augroup END
 augroup RstFold
   autocmd TextChanged,InsertLeave <buffer> unlet! b:RstFoldCache
 augroup END
-
-onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! F)vi(<cr>
-
-onoremap an( :<c-u>normal! f(v%<cr>
-onoremap al( :<c-u>normal! F)v%<cr>
-
-onoremap in{ :<c-u>normal! f{vi{<cr>
-onoremap il{ :<c-u>normal! F}vi{<cr>
-
-onoremap an{ :<c-u>normal! f{v%<cr>
-onoremap al{ :<c-u>normal! F}v%<cr>
 
 nnoremap <leader>ca ggvG"+Y<c-o>
 
