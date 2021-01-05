@@ -11,6 +11,11 @@ Plug 'ThePrimeagen/vim-apm'
 
 Plug 'rafcamlet/nvim-luapad'
 
+Plug 'camspiers/animate.vim'
+
+" highlighting word under cursor and all of its occurrences.
+Plug 'dominikduda/vim_current_word'
+
 " color scheme
 Plug 'sainnhe/edge'
 Plug 'morhetz/gruvbox'
@@ -41,6 +46,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'vim-scripts/fcitx.vim'
+
+" `gS` and `gJ` to switching between a single-line statement and a multi-line one.
+Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'junegunn/vim-easy-align'
 
@@ -76,6 +84,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Git support
 Plug 'tpope/vim-fugitive'
+Plug 'ttys3/nvim-blamer.lua'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -466,6 +475,13 @@ let g:tex_flavor = 'latex'
 
 
 " }}} ----------------------------------------------
+
+" animate.vim -------------------------------------------- {{{
+nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
+" }}}
 
 
 " ===============================================================
