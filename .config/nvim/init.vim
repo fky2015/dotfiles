@@ -5,6 +5,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 
+" Yank from remote server via ANSI OCS52.
+Plug 'ojroques/vim-oscyank'
+
 Plug 'markonm/traces.vim'
 
 Plug 'ThePrimeagen/vim-apm'
@@ -40,7 +43,9 @@ Plug 'wellle/targets.vim'
 
 Plug 'scrooloose/nerdcommenter'
 " Plug 'sbdchd/neoformat'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'terryma/vim-multiple-cursors'
@@ -441,8 +446,8 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}} -------------------------------------------
 
 " NerdTree ------------------------------------ {{{
-map <F2> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"map <F2> :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}} -----------------------------------------
 
 
