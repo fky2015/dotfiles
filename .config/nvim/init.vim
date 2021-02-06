@@ -93,6 +93,7 @@ Plug 'ttys3/nvim-blamer.lua'
 
 " Snippets
 Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
@@ -265,6 +266,10 @@ colorscheme edge
 " vim-plug ---- {{{
 nnoremap <leader><S-P><s-i> :PlugInstall<CR>
 nnoremap <leader><S-P><s-u> :PlugUpdate<CR>
+" }}}
+
+" Ultisnips ---------- {{{
+let g:UltiSnipsExpandTrigger="<CR>"
 " }}}
 
 
@@ -450,6 +455,12 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}} -----------------------------------------
 
+" ChadTree -------------------------- {{{
+map <F2> :CHADopen<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+" }}}
 
 " vim-which-key ----------------------------------- {{{
 
