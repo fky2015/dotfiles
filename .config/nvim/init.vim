@@ -269,7 +269,7 @@ nnoremap <leader><S-P><s-u> :PlugUpdate<CR>
 " }}}
 
 " Ultisnips ---------- {{{
-let g:UltiSnipsExpandTrigger="<CR>"
+let g:UltiSnipsExpandTrigger="<c-m>"
 " }}}
 
 
