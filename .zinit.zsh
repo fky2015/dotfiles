@@ -35,6 +35,8 @@ zinit snippet OMZ::plugins/extract
 
 zinit ice lucid wait='1'
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+#zinit snippet OMZ::plugins/docker/_docker
+zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
 # z-a-bin-gem-node
 zinit light zinit-zsh/z-a-bin-gem-node
