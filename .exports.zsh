@@ -12,11 +12,11 @@ export PATH="${HOME}/.cargo/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 
 # gopath
-export GOPATH=~/.go:~/code/go
+export GOPATH=~/code/go
 #export GOROOT="~/.go"
 export PATH="$PATH:$GOPATH/bin"
-export GO111MODULE=ON
-
+# hyperledger fabric
+export PATH="$PATH:$HOME/code/git/others/fabric/.build/bin/"
 
 #export JAVA_HOME
 export JAVA_HOME="/usr/lib/jvm/default"
@@ -26,6 +26,9 @@ export R2PM_DBDIR="$HOME/.local/lib/r2db"
 # FZF
 export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500'"
 export FZF_DEFAULT_COMMAND='rg --files'
+
+# miniconda
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 # install npm package in User dir
 export PATH="$HOME/.node_modules/bin:$PATH"

@@ -16,10 +16,10 @@ Plug 'rafcamlet/nvim-luapad'
 
 Plug 'camspiers/animate.vim'
 
-" highlighting word under cursor and all of its occurrences.
+" Highlighting word under cursor and all of its occurrences.
 Plug 'dominikduda/vim_current_word'
 
-" color scheme
+" Color scheme
 Plug 'sainnhe/edge'
 Plug 'morhetz/gruvbox'
 Plug 'Iron-E/nvim-highlite'
@@ -38,12 +38,14 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 " <leader><leader>w
 Plug 'easymotion/vim-easymotion'
 
-" adds various text objects to give you more targets to operate on
+" Adds various text objects to give you more targets to operate on
 Plug 'wellle/targets.vim'
+
+Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 
 Plug 'scrooloose/nerdcommenter'
 " Plug 'sbdchd/neoformat'
-"Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 Plug 'ryanoasis/vim-devicons'
@@ -52,7 +54,7 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'vim-scripts/fcitx.vim'
 
-" `gS` and `gJ` to switching between a single-line statement and a multi-line one.
+" `gs` and `gJ` to switching between a single-line statement and a multi-line one.
 Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'junegunn/vim-easy-align'
@@ -62,7 +64,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Use release branch (Recommend)
+" use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'marshallward/vim-restructuredtext'
@@ -82,18 +84,18 @@ Plug 'liuchengxu/vim-which-key'
 " the fancy start screen for vim
 Plug 'mhinz/vim-startify'
 
-" Emmet Support
+" emmet Support
 Plug 'mattn/emmet-vim'
 
 Plug 'easymotion/vim-easymotion'
 
-" Git support
+" git support
 Plug 'tpope/vim-fugitive'
 Plug 'ttys3/nvim-blamer.lua'
 
-" Snippets
-Plug 'honza/vim-snippets'
+" snippets
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
@@ -109,8 +111,8 @@ Plug 'vimwiki/vimwiki'
 " https://wakatime.com
 Plug 'wakatime/vim-wakatime'
 
-" Goyo + limelight + vim-colors-pencil = iawriter
-"Plug 'junegunn/goyo.vim'
+" goyo + limelight + vim-colors-pencil = iawriter
+" Plug 'junegunn/goyo.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-colors-pencil'
@@ -127,10 +129,10 @@ Plug 'rhysd/vim-grammarous'
 " helpful.vim
 Plug 'tweekmonster/helpful.vim'
 
-" my test plug
+" My test plug.
 
 " Plug '~/playground/potion'
-"Plug '~/code/git/mine/cloud-ladder.vim'
+" Plug '~/code/git/mine/cloud-ladder.vim'
 
 call plug#end()
 " }}}
@@ -165,13 +167,13 @@ filetype plugin on
 syntax on
 " Load indent settings based on file type
 filetype indent on 
-" number of spaces to use for indenting
+" Number of spaces to use for indenting
 set shiftwidth=2
-" number of spaces to use when inserting a tab
+" Number of spaces to use when inserting a tab
 set softtabstop=2
-" convert tabs to spaces
+" Convert tabs to spaces
 set expandtab
-" copy indent from previous line
+" Copy indent from previous line
 set autoindent
 
 
@@ -269,7 +271,7 @@ nnoremap <leader><S-P><s-u> :PlugUpdate<CR>
 " }}}
 
 " Ultisnips ---------- {{{
-let g:UltiSnipsExpandTrigger="<c-m>"
+let g:UltiSnipsExpandTrigger="<C-R>"
 " }}}
 
 
@@ -391,7 +393,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
-noremap <C-S-I> :call CocAction('format')<cr>
+noremap <C-L> :call CocAction('format')<cr>
 
 
 " Use `:Fold` to fold current buffer
@@ -459,7 +461,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 map <F2> :CHADopen<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+    \ execute 'CHADopen' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 " }}}
 
 " vim-which-key ----------------------------------- {{{
@@ -506,6 +508,9 @@ nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 
 " echo 'welcome back! >^.^<'
 
+" self defined
+nnoremap <leader>ec :vs<cr>:e $MYVIMRC<cr> 
+nnoremap <leader>sc :source $MYVIMRC<cr>
 
 " force to learn new key binding
 inoremap <esc> <nop>

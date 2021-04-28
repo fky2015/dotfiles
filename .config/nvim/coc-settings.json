@@ -4,17 +4,8 @@
   "languageserver": {
     "ccls": {
       "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "cuda",
-        "objc",
-        "objcpp"
-      ],
-      "rootPatterns": [
-        ".ccls-root",
-        "compile_commands.json"
-      ],
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
       "initializationOptions": {
         "cache": {
           "directory": ".ccls-cache"
@@ -23,19 +14,9 @@
     },
     "haskell": {
       "command": "hie-wrapper",
-      "args": [
-        "--lsp"
-      ],
-      "rootPatterns": [
-        "stack.yaml",
-        "cabal.config",
-        "package.yaml"
-      ],
-      "filetypes": [
-        "hs",
-        "lhs",
-        "haskell"
-      ],
+      "args": ["--lsp"],
+      "rootPatterns": ["stack.yaml", "cabal.config", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
       "initializationOptions": {
         "languageServerHaskell": {}
       }
@@ -46,5 +27,8 @@
     "staticcheck": true
   },
   "eslint.autoFixOnSave": true,
-  "vetur.format.defaultFormatter.js": "prettier-eslint"
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/docker/compose/master/compose/config/config_schema_v2.0.json": "**/docker-compose*.yml"
+  }
 }

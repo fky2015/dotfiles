@@ -20,6 +20,7 @@ alias ct='ccat'
 alias pc='proxychains4 -q'
 alias dry='TERM=xterm dry'
 alias dose='docker-compose'
+alias kose='kompose'
 alias dm='docker-machine'
 alias or='optirun'
 alias zshrc="$VISUAL ~/.zshrc"
