@@ -4,11 +4,16 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zplugin installer's chunk
 
-zinit light zinit-zsh/z-a-readurl
+zinit ice depth='1'
+zinit load zinit-zsh/z-a-readurl
 
 # 快速目录跳转
-zinit ice lucid wait='1'
+zinit ice lucid wait='1' depth='1'
 zinit light skywind3000/z.lua
+
+# Plugin history-search-multi-word loaded with investigating.
+zinit ice depth='1'
+zinit load zdharma/history-search-multi-word
 
 # 语法高亮
 zinit ice lucid wait='0' atinit='zpcompinit'
@@ -40,6 +45,12 @@ zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
 # z-a-bin-gem-node
 zinit light zinit-zsh/z-a-bin-gem-node
+
+
+# nnn cd on quit
+# see: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
+zinit ice pick"misc/quitcd/quitcd.bash_zsh"
+zinit load jarun/nnn
 
 # Git extension
 
