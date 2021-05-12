@@ -8,6 +8,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# More history,
+# See: https://github.com/bamos/zsh-history-analysis/blob/master/README.md#increasing-the-history-file-size
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
+
 # All export's.
 source "$HOME/.exports.zsh"
 
