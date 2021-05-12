@@ -52,6 +52,11 @@ zinit light zinit-zsh/z-a-bin-gem-node
 zinit ice pick"misc/quitcd/quitcd.bash_zsh"
 zinit load jarun/nnn
 
+# fzf shell extension
+# see: https://github.com/junegunn/fzf/blob/master/shell/
+zinit ice multisrc'shell/{completion,key-bindings}.zsh'
+zinit load junegunn/fzf
+
 # Git extension
 
 zinit as"null" wait"1" lucid for \

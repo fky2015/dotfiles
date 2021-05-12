@@ -59,7 +59,6 @@ alias yd=ydcv
 alias ub="proxychains4 -q zdict --dict urban"
 alias nau='nautilus .'
 alias pm='python manage.py'
-alias n='nnn'
 
 # ctf usage
 alias xb64d='xsel -ob 2>/dev/null | base64 -d'
