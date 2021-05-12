@@ -13,6 +13,9 @@ fi
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
+# Preventing command with leading space being store in history,
+# used for sensitive command.
+setopt HIST_IGNORE_SPACE
 
 # All export's.
 source "$HOME/.exports.zsh"
