@@ -25,6 +25,7 @@ Plug 'morhetz/gruvbox'
 Plug 'Iron-E/nvim-highlite'
 Plug 'kyazdani42/blue-moon'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'folke/tokyonight.nvim'
 " ----- end -----
 
 Plug 'jdhao/better-escape.vim'
@@ -120,6 +121,8 @@ Plug 'subnut/vim-iawriter'
 
 " vimtex
 Plug 'lervag/vimtex'
+
+Plug 'elixir-editors/vim-elixir'
 
 Plug 'ap/vim-css-color'
 
@@ -261,7 +264,8 @@ endfunction
 nnoremap <leader>z :call Zoom()<CR>
 
 set background=dark
-colorscheme edge
+let g:tokyonight_style="night"
+colorscheme tokyonight
 
 " }}} ------------------------------
 

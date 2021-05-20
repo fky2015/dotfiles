@@ -30,6 +30,10 @@ export FZF_DEFAULT_COMMAND='rg --files'
 # miniconda
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
+# elixir
+export HEX_MIRROR="https://hexpm.upyun.com"
+export HEX_CDN="https://hexpm.upyun.com"
+
 # install npm package in User dir
 export PATH="$HOME/.node_modules/bin:$PATH"
 

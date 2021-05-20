@@ -3,6 +3,10 @@
 # Baisc
 alias aliases="$VISUAL ~/.aliases.zsh"
 
+# fix alias in command `watch`
+# see, https://unix.stackexchange.com/a/25329
+alias watch="/usr/bin/watch "
+
 # GDB
 alias gdb-peda="gdb -ex init-peda"
 alias gdb-pwndbg="gdb -ex init-pwndbg"
