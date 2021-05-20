@@ -17,6 +17,9 @@ setopt EXTENDED_HISTORY
 # used for sensitive command.
 setopt HIST_IGNORE_SPACE
 
+# Vim emulation.
+bindkey -v
+
 # All export's.
 source "$HOME/.exports.zsh"
 
