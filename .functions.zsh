@@ -59,14 +59,28 @@ pb_core() {
   (( $# == 0 )) && rm $file
 }
 
+# ghq-fzf zsh
+function ghq-fzf() {
+  local selected_dir=$(ghq list | fzf --query="$LBUFFER")
+
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd $(ghq root)/${selected_dir}"
+    zle accept-line
+  fi
+
+  zle reset-prompt
+}
+
+zle -N ghq-fzf
+bindkey "^]" ghq-fzf
 
 # Shell
 b64() { echo -n $1 | base64 }
 b64d() { echo -n $1 | base64 -d}
 
 set_proxy() {
-    export http_proxy=socks5://localhost:1080
-    export https_proxy=socks5://localhost:1080
+    export http_proxy=http://localhost:8888
+    export https_proxy=http://localhost:8888
 }
 
 unset_proxy(){
