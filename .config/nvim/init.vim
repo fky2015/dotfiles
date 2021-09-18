@@ -16,6 +16,14 @@ Plug 'rafcamlet/nvim-luapad'
 
 Plug 'camspiers/animate.vim'
 
+Plug 'tpope/vim-unimpaired'
+
+" debug
+"Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'Pocco81/DAPInstall.nvim'
+
 " Highlighting word under cursor and all of its occurrences.
 Plug 'dominikduda/vim_current_word'
 
@@ -37,12 +45,13 @@ Plug 'itchyny/calendar.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " <leader><leader>w
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
+Plug 'ggandor/lightspeed.nvim'
 
 " Adds various text objects to give you more targets to operate on
 Plug 'wellle/targets.vim'
 
-Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'scrooloose/nerdcommenter'
 " Plug 'sbdchd/neoformat'
@@ -53,8 +62,8 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'terryma/vim-multiple-cursors'
 
-Plug 'vim-scripts/fcitx.vim'
 
+Plug 'lilydjwg/fcitx.vim'
 " `gs` and `gJ` to switching between a single-line statement and a multi-line one.
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -72,13 +81,9 @@ Plug 'marshallward/vim-restructuredtext'
 
 Plug 'tpope/vim-surround'
 
-Plug 'solarnz/thrift.vim'
 Plug 'liuchengxu/vista.vim' 
 
-Plug 'tomlion/vim-solidity'
 Plug 'tpope/vim-repeat'
-
-Plug 'liuchengxu/graphviz.vim'
 
 Plug 'liuchengxu/vim-which-key'
 
@@ -88,7 +93,7 @@ Plug 'mhinz/vim-startify'
 " emmet Support
 Plug 'mattn/emmet-vim'
 
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
 
 " git support
 Plug 'tpope/vim-fugitive'
@@ -114,10 +119,11 @@ Plug 'wakatime/vim-wakatime'
 
 " goyo + limelight + vim-colors-pencil = iawriter
 " Plug 'junegunn/goyo.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'reedes/vim-colors-pencil'
-Plug 'subnut/vim-iawriter'
+"Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/limelight.vim'
+"Plug 'reedes/vim-colors-pencil'
+"Plug 'subnut/vim-iawriter'
+Plug 'Pocco81/TrueZen.nvim'
 
 " vimtex
 Plug 'lervag/vimtex'
@@ -180,7 +186,7 @@ set expandtab
 set autoindent
 
 
-autocmd FileType go setlocal nosmarttab shiftwidth=0 softtabstop=0 noexpandtab tabstop=8
+autocmd FileType go setlocal nosmarttab shiftwidth=0 softtabstop=0 noexpandtab tabstop=2
 
 " Don't wrap long lines
 " set nowrap
@@ -234,7 +240,8 @@ nnoremap ; :
 xnoremap ; :
 
 " For motion: `f`
-nnoremap ' ;
+nnoremap : ;
+xnoremap : ;
 
 " Quicker way to open command window
 nnoremap q; q:
@@ -243,6 +250,13 @@ nnoremap q; q:
 inoremap <silent> jk <Esc>
 
 tnoremap jk <c-\><c-n>
+
+" Quick Copy
+vnoremap <C-C> "+y
+
+" Map alt-v in command-line mode to replace the commandline
+" with the Ex command-line beneath the cursor in the buffer
+cnoremap <M-v> <C-\>esubstitute(getline('.'), '^\s*\(' . escape(substitute(&commentstring, '%s.*$', '', ''), '*') . '\)*\s*:*' , '', '')<CR>
 
 " zoom
 function! Zoom ()
@@ -281,7 +295,7 @@ let g:UltiSnipsExpandTrigger="<C-R>"
 
 " fzf.vim ----------------------------------- {{{
 set rtp+=/usr/bin/fzf
-nmap <leader>f :Files<CR>
+nnoremap <leader>f :Files<CR>
 let spec = {'options': '--delimiter : --nth 4..'}
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(spec) , <bang>0)
 nnoremap <leader>t :Rg<CR>
@@ -462,7 +476,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}} -----------------------------------------
 
 " ChadTree -------------------------- {{{
-map <F2> :CHADopen<CR>
+noremap <F2> :CHADopen<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'CHADopen' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
@@ -475,11 +489,14 @@ nnoremap <silent> <localleader> :WhichKey '-' <CR>
 
 " }}} ---------------------------------------------
 
+" vimspector ----------------------------------- {{{
+let g:vimspector_enable_mappings = 'HUMAN'
+" }}}
 
 " vim-wiki -------------------------------------------{{{
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+"let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      "\ 'syntax': 'markdown', 'ext': '.md'}]
 
 " }}}
 
