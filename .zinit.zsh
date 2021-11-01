@@ -52,6 +52,11 @@ zinit light zinit-zsh/z-a-bin-gem-node
 zinit ice pick"misc/quitcd/quitcd.bash_zsh"
 zinit load jarun/nnn
 
+# kubectl-aliasis
+# see: https://github.com/ahmetb/kubectl-aliases
+zinit ice pick".kubectl_aliases"
+zinit load ahmetb/kubectl-aliases
+
 # fzf shell extension
 # see: https://github.com/junegunn/fzf/blob/master/shell/
 zinit ice multisrc'shell/{completion,key-bindings}.zsh'
