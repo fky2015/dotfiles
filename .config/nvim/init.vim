@@ -28,11 +28,11 @@ Plug 'Pocco81/DAPInstall.nvim'
 Plug 'dominikduda/vim_current_word'
 
 " Color scheme
-Plug 'sainnhe/edge'
-Plug 'morhetz/gruvbox'
+"Plug 'sainnhe/edge'
+"Plug 'morhetz/gruvbox'
 Plug 'Iron-E/nvim-highlite'
-Plug 'kyazdani42/blue-moon'
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
+"Plug 'kyazdani42/blue-moon'
+"Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'folke/tokyonight.nvim'
 " ----- end -----
 
@@ -71,8 +71,13 @@ Plug 'junegunn/vim-easy-align'
 
 " Plug 'yianwillis/vimcdoc'
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf'
+"Plug 'junegunn/fzf.vim'
+
+" Telescope: alternative for fzf in nvim.
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 
 " use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -104,9 +109,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
-" antlr syntax highlight
-Plug 'dylon/vim-antlr'
 
 " .tsx syntax highlight
 Plug 'leafgarland/typescript-vim'
@@ -294,16 +296,25 @@ let g:UltiSnipsExpandTrigger="<C-R>"
 
 
 " fzf.vim ----------------------------------- {{{
-set rtp+=/usr/bin/fzf
-nnoremap <leader>f :Files<CR>
-let spec = {'options': '--delimiter : --nth 4..'}
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(spec) , <bang>0)
-nnoremap <leader>t :Rg<CR>
+"set rtp+=/usr/bin/fzf
+"nnoremap <leader>f :Files<CR>
+"let spec = {'options': '--delimiter : --nth 4..'}
+"command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview(spec) , <bang>0)
+"nnoremap <leader>t :Rg<CR>
 
-" Mapping selecting mappings
-nnoremap <leader><tab> <plug>(fzf-maps-n)
+"" Mapping selecting mappings
+"nnoremap <leader><tab> <plug>(fzf-maps-n)
 
 " }}} ---------------------------------------
+
+" telescope.nvim ----------------------------- {{{
+" Find files using Telescope command-line sugar.
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <leader>t <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>h <cmd>Telescope help_tags<cr>
+" }}}
+
 
 " airline.vim ------------------------------- {{{
 let g:airline_theme='cobalt2'
