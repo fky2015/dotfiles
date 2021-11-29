@@ -20,7 +20,7 @@ filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
 set nu
-colorscheme solarized
+colorscheme default
 set background=dark
 
 set autoindent             " Indent according to previous line.
