@@ -5,7 +5,7 @@ autoload -Uz _zinit
 ### End of Zplugin installer's chunk
 
 zinit ice depth='1'
-zinit load zinit-zsh/z-a-readurl
+zinit load zdharma-continuum/zinit-annex-readurl
 
 # 快速目录跳转
 zinit ice lucid wait='1' depth='1'
@@ -13,11 +13,11 @@ zinit light skywind3000/z.lua
 
 # Plugin history-search-multi-word loaded with investigating.
 zinit ice depth='1'
-zinit load zdharma/history-search-multi-word
+zinit load zdharma-continuum/history-search-multi-word
 
 # 语法高亮
 zinit ice lucid wait='0' atinit='zpcompinit'
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # 自动建议
 zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
@@ -44,7 +44,7 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
 # z-a-bin-gem-node
-zinit light zinit-zsh/z-a-bin-gem-node
+zinit light zdharma-continuum/zinit-annex-bin-gem-node
 
 
 # nnn cd on quit
@@ -75,9 +75,9 @@ zinit as"null" wait"1" lucid for \
     make"PREFIX=$ZPFX install" \
             tj/git-extras \
     sbin"bin/git-dsf;bin/diff-so-fancy" \
-            zdharma/zsh-diff-so-fancy \
+            zdharma-continuum/zsh-diff-so-fancy \
    sbin"git-url;git-guclone" make"GITURL_NO_CGITURL=1" \
-            zdharma/git-url
+            zdharma-continuum/git-url
 
 # 加载 pure 主题
 zplugin ice depth=1; zinit light romkatv/powerlevel10k
