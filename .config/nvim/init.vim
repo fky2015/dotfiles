@@ -153,6 +153,9 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = { enable = true },
+  indent = {
+    enable = true
+  },
   incremental_selection = { enable = true,
       keymaps = {
       init_selection = "gnn",
@@ -233,6 +236,14 @@ let mapleader=" "
 
 " our <localleader> will be the '-' key
 let maplocalleader="-"
+
+""" handling backup swap undo and vimiinfo files
+set backup
+set backupdir =$HOME/.cache/nvim/files/backup/
+set backupext =-nvimbackup
+set backupskip =
+set undofile
+set undodir =$HOME/.cache/nvim/files/undo/
 
 " Custom key mappings
 " Save key strokes (now we do not need to press shift to enter command mode).
