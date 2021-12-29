@@ -57,6 +57,7 @@ export GRADLE_USER_HOME="$HOME/.gradle"
 export PATH="/opt/gcc-4.3-ls232/bin:$PATH"
 
 # nnn
+export NNN_OPTS='Ta'
 export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview;p:preview-tui'
 export NNN_FIFO=/tmp/nnn.fifo
 BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"

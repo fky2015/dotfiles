@@ -34,6 +34,9 @@ alias ipad="ip addr | grep inet && hostname -i"
 alias cdp="cd ~/playground" # change to the playground
 alias cdd="cd ~/Downloads" # change to the Downloads
 alias cdo="cd ~/Documents/onedrive"
+alias h="htop"
+alias nv="nvim"
+alias v="vim"
 
 # Onedrive
 alias one="onedrive --synchronize"
@@ -74,3 +77,7 @@ alias qemu="qemu-system-x86_64"
 alias mine="cd ~/code/git/mine"
 alias ssr="electron-ssr"
 alias ls="exa"
+
+# LaTeX
+# https://wiki.archlinux.org/title/TeX_Live
+alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
