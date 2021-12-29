@@ -10,7 +10,7 @@ Plug 'ojroques/vim-oscyank'
 
 Plug 'markonm/traces.vim'
 
-Plug 'ThePrimeagen/vim-apm'
+"Plug 'ThePrimeagen/vim-apm'
 
 Plug 'rafcamlet/nvim-luapad'
 
@@ -20,9 +20,9 @@ Plug 'tpope/vim-unimpaired'
 
 " debug
 "Plug 'puremourning/vimspector'
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'Pocco81/DAPInstall.nvim'
+"Plug 'mfussenegger/nvim-dap'
+"Plug 'rcarriga/nvim-dap-ui'
+"Plug 'Pocco81/DAPInstall.nvim'
 
 " Highlighting word under cursor and all of its occurrences.
 Plug 'dominikduda/vim_current_word'
@@ -111,10 +111,10 @@ Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " .tsx syntax highlight
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'peitalin/vim-jsx-typescript'
 
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 
 " https://wakatime.com
 Plug 'wakatime/vim-wakatime'
@@ -130,7 +130,7 @@ Plug 'Pocco81/TrueZen.nvim'
 " vimtex
 Plug 'lervag/vimtex'
 
-Plug 'elixir-editors/vim-elixir'
+"Plug 'elixir-editors/vim-elixir'
 
 Plug 'ap/vim-css-color'
 
@@ -295,6 +295,10 @@ let g:tokyonight_style="night"
 colorscheme tokyonight
 
 " }}} ------------------------------
+
+" blamer.nvim ------------------------- {{{
+let g:blamer_enabled = 1
+" }}}
 
 " vim-plug ---- {{{
 nnoremap <leader><S-P><s-i> :PlugInstall<CR>
@@ -528,6 +532,7 @@ let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimtex_compiler_latexmk_engines = 'xelatex'
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
+"let g:vimtex_quickfix_enabled = 0
 " let g:vimtex_latexmk_progname = 'nvr'
 let g:tex_flavor = 'latex'
 " }}} -----------------------------------------

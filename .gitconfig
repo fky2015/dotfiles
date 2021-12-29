@@ -1,0 +1,30 @@
+[user]
+	name = FKYnJYQ
+	email = loveress01@gmail.com
+	signingkey = loveress01@gmail.com
+[alias]
+	st = status
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
+[pull]
+	rebase = false
+[ghq]
+        root = "~/code/ghq"
+[init]
+	defaultBranch = main
+[core]
+        pager = delta
+
+[interactive]
+        diffFilter = delta --color-only
+
+[delta]
+        navigate = true
+
+[merge]
+        conflictstyle = diff3
+
+[diff]
+        colorMoved = default
