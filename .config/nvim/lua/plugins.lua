@@ -1,169 +1,171 @@
 -- https://github.com/wbthomason/packer.nvim#bootstrapping
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 local github_format_url = vim.env.DC_CN and "https://hub.fastgit.org/%s" or "https://github.com/%s"
 
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', packer_github_url, install_path})
+	packer_bootstrap = fn.system({ "git", "clone", "--depth", "1", packer_github_url, install_path })
 end
 
-return require("packer").startup({function(use)
-  use 'wbthomason/packer.nvim'
+return require("packer").startup({
+	function(use)
+		use("wbthomason/packer.nvim")
 
+		use({ "akinsho/toggleterm.nvim" })
 
-  use {"akinsho/toggleterm.nvim"}
+		use({ "jdhao/better-escape.vim", event = "InsertEnter" })
+		use("karb94/neoscroll.nvim")
+		use("ggandor/lightspeed.nvim")
 
-  use {'jdhao/better-escape.vim', event = 'InsertEnter'}
-  use 'karb94/neoscroll.nvim'
-  use 'ggandor/lightspeed.nvim'
+		use("lukas-reineke/indent-blankline.nvim")
 
-  use "lukas-reineke/indent-blankline.nvim"
+		use("lilydjwg/fcitx.vim")
 
-  use 'lilydjwg/fcitx.vim'
+		use({
+			"blackCauldron7/surround.nvim",
+			config = function()
+				require("surround").setup({ mappings_style = "surround" })
+			end,
+		})
 
-  use {
-  "blackCauldron7/surround.nvim",
-  config = function()
-    require"surround".setup {mappings_style = "surround"}
-  end
-  }
+		-- lualine
+		use("nvim-lua/lsp-status.nvim")
+		use({
+			"nvim-lualine/lualine.nvim",
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		})
+		use("ckipp01/stylua-nvim")
 
-  -- lualine
-  use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
+		use("andymass/vim-matchup")
 
-  use 'andymass/vim-matchup'
+		-- Theme
+		use("folke/tokyonight.nvim")
+		use("Iron-E/nvim-highlite")
 
-  -- Theme
-  use 'folke/tokyonight.nvim'
-  use 'Iron-E/nvim-highlite'
+		-- Rust
+		use("simrat39/rust-tools.nvim")
 
-  -- Rust
-  use 'simrat39/rust-tools.nvim'
+		-- LSP
+		use({
+			"neovim/nvim-lspconfig",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/nvim-cmp",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			-- Automatically Install LSP for built-in LSP.
+			"williamboman/nvim-lsp-installer",
+			-- pictograms to lsp, VSCode-like.
+			"onsails/lspkind-nvim",
+		})
 
+		-- For LuaSnip
+		use({
+			"rafamadriz/friendly-snippets",
+		})
 
-  -- LSP
-  use {
-    'neovim/nvim-lspconfig',
-     'hrsh7th/cmp-nvim-lsp',
-     'hrsh7th/cmp-buffer',
-     'hrsh7th/cmp-path',
-     'hrsh7th/cmp-cmdline',
-     'hrsh7th/nvim-cmp',
-     'L3MON4D3/LuaSnip',
-     'saadparwaiz1/cmp_luasnip',
-     -- Automatically Install LSP for built-in LSP.
-     'williamboman/nvim-lsp-installer',
-     -- pictograms to lsp, VSCode-like.
-     'onsails/lspkind-nvim'
-  }
+		use({
 
-  -- For LuaSnip
-  use {
-        "rafamadriz/friendly-snippets",
-    }
+			"nvim-lua/plenary.nvim",
+			requires = { "nvim-telescope/telescope.nvim" },
+		})
 
-  use {
+		use("windwp/nvim-autopairs")
 
-  'nvim-lua/plenary.nvim',
-  requires = {'nvim-telescope/telescope.nvim'}
-}
+		use("nvim-treesitter/nvim-treesitter")
+		use("nvim-treesitter/nvim-treesitter-refactor")
+		use("nvim-treesitter/nvim-treesitter-textobjects")
+		use("p00f/nvim-ts-rainbow")
+		use("romgrk/nvim-treesitter-context")
+		use({
+			"SmiteshP/nvim-gps",
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
 
-  use 'windwp/nvim-autopairs'
+		use("simrat39/symbols-outline.nvim")
 
-  use "nvim-treesitter/nvim-treesitter"
-  use 'nvim-treesitter/nvim-treesitter-refactor'
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'p00f/nvim-ts-rainbow'
-  use 'romgrk/nvim-treesitter-context'
-  use {
-	"SmiteshP/nvim-gps",
-	requires = "nvim-treesitter/nvim-treesitter"
-  }
+		use({
+			"kyazdani42/nvim-tree.lua",
+			requires = {
+				"kyazdani42/nvim-web-devicons", -- optional, for file icon
+			},
+			config = function()
+				require("nvim-tree").setup({})
+			end,
+		})
 
-  use 'simrat39/symbols-outline.nvim'
+		use("camspiers/animate.vim")
 
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-    config = function() require'nvim-tree'.setup {} end
-  }
+		use({
+			"numToStr/Comment.nvim",
+			config = function()
+				require("Comment").setup()
+			end,
+		})
 
-  use 'camspiers/animate.vim'
+		use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 
-  use {
-      'numToStr/Comment.nvim',
-      config = function()
-          require('Comment').setup()
-      end
-  }
+		use("wakatime/vim-wakatime")
+		use("Pocco81/TrueZen.nvim")
 
-  use { 'iamcco/markdown-preview.nvim',  run = 'cd app && yarn install'  }
+		use("lervag/vimtex")
 
-  use 'wakatime/vim-wakatime'
-  use 'Pocco81/TrueZen.nvim'
+		use("rhysd/vim-grammarous")
 
-  use 'lervag/vimtex'
+		use("tweekmonster/helpful.vim")
 
-  use 'rhysd/vim-grammarous'
+		use({
+			"folke/trouble.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function()
+				require("trouble").setup({
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
+				})
+			end,
+		})
 
-  use 'tweekmonster/helpful.vim'
+		use({
+			"startup-nvim/startup.nvim",
+			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			config = function()
+				require("startup").setup()
+			end,
+		})
+		-- use {
+		--   "nvim-telescope/telescope-frecency.nvim",
+		--   config = function()
+		--     require"telescope".load_extension("frecency")
+		--   end,
+		--   requires = {"tami5/sqlite.lua"}
+		-- }
 
-  use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+		use("tpope/vim-unimpaired")
+		use("tpope/vim-repeat")
+		use("tpope/vim-fugitive")
+		use({
+			"lewis6991/gitsigns.nvim",
+			requires = {
+				"nvim-lua/plenary.nvim",
+			},
+			-- tag = 'release' -- To use the latest release
+		})
 
-  use {
-    "startup-nvim/startup.nvim",
-    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
-    config = function()
-      require"startup".setup()
-    end
-  }
--- use {
---   "nvim-telescope/telescope-frecency.nvim",
---   config = function()
---     require"telescope".load_extension("frecency")
---   end,
---   requires = {"tami5/sqlite.lua"}
--- }
+		use("RRethy/vim-illuminate")
 
-  use 'tpope/vim-unimpaired'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-fugitive'
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    },
-    -- tag = 'release' -- To use the latest release
-  }
+		use("petertriho/nvim-scrollbar")
+		-- TODO: which-key
 
-  use 'RRethy/vim-illuminate'
-
-  use("petertriho/nvim-scrollbar")
-  -- TODO: which-key
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end,
-  config = { git = { default_url_format = github_format_url }}
+		-- Automatically set up your configuration after cloning packer.nvim
+		-- Put this at the end after all plugins
+		if packer_bootstrap then
+			require("packer").sync()
+		end
+	end,
+	config = { git = { default_url_format = github_format_url } },
 })
-
