@@ -1,7 +1,11 @@
+local opts = { noremap = true, silent = true }
 -- nvim-tree
-vim.api.nvim_set_keymap("", "<F2>", ":NvimTreeToggle<CR>", { noremap = true })
+vim.api.nvim_set_keymap("", "<F2>", ":NvimTreeToggle<CR>", opts)
 -- nnoremap <leader>r :NvimTreeRefresh<CR>
 -- nnoremap <leader>n :NvimTreeFindFile<CR>
+--
+-- SymbolsOutline
+vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
 
 -- require'nvim-tree'.setup {
 --   view = {
