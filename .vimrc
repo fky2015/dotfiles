@@ -112,3 +112,5 @@ endfunction
 
 nnoremap <leader>z :call Zoom()<CR>
 
+" File Explore
+noremap <F2> :Sexplore<CR>
