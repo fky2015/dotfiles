@@ -125,6 +125,27 @@ lsp_installer.on_server_ready(function(server)
   -- if server.name == "tsserver" then
   --     opts.root_dir = function() ... end
   -- end
+  if server.name == "rust_analyzer" then
+    local rustopts = {
+            server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+                settings = {
+                    ["rust-analyzer"] = {
+                        -- completion = {
+                        --     postfix = {
+                        --         enable = false
+                        --     }
+                        -- },
+                        -- checkOnSave = {
+                        --     command = "clippy"
+                        -- },
+                    }
+                }
+            }),
+        }
+        require("rust-tools").setup(rustopts)
+        server:attach_buffers()
+    return
+  end
 
   -- This setup() function is exactly the same as lspconfig's setup function.
   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
