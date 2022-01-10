@@ -3,13 +3,13 @@ vim.api.nvim_set_keymap('', '<F2>', ':NvimTreeToggle<CR>', { noremap = true })
 -- nnoremap <leader>r :NvimTreeRefresh<CR>
 -- nnoremap <leader>n :NvimTreeFindFile<CR>
 
-require'nvim-tree'.setup {
-  view = {
-    width = 30,
-    auto_resize = true,
-  }
--- open_on_setup = true,
-}
+-- require'nvim-tree'.setup {
+--   view = {
+--     width = 30,
+--     auto_resize = true,
+--   }
+-- -- open_on_setup = true,
+-- }
 
 -- animate.vim
 vim.api.nvim_set_keymap('n', '<Up>', ':call animate#window_delta_height(10)<CR>', { noremap = true, silent = true })

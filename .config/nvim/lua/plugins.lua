@@ -42,6 +42,9 @@ return require("packer").startup({function(use)
   use 'folke/tokyonight.nvim'
   use 'Iron-E/nvim-highlite'
 
+  -- Rust
+  use 'simrat39/rust-tools.nvim'
+
 
   -- LSP
   use {
