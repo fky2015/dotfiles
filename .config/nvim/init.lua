@@ -1,0 +1,8 @@
+require("options")
+require("plugins")
+require("lsp")
+require("statusline")
+require("theme")
+require("telescope")
+require("treesitter")
+require("other-plugins")

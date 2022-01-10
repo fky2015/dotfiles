@@ -28,6 +28,12 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
+if [ ! -f "$HOME/.local.zsh" ]; then
+  cat >> "$HOME/.local.zsh" << EOF
+export DC_CN=TRUE
+EOF
+fi
+
 source "$HOME/.local.zsh"
 
 # Zinit comfig.

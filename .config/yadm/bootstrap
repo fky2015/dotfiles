@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -n "$DC" ]; then
+  GHPROXY=https://ghproxy.com/
+  echo use DC=CN proxy
+  echo $GHPROXY
+fi
+
+if [ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim" ]; then
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs ${GHPROXY}https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+else
+  echo vim-plug already installed
+fi 
