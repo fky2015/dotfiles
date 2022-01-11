@@ -58,7 +58,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- For luasnip users.
 	}, {
-		{ name = "buffer", name = "path" },
+		{ name = "buffer", name = "path", name = "spell" },
 	}),
 	formatting = {
 		format = lspkind.cmp_format({
@@ -98,8 +98,8 @@ end
 local on_attach = function(client)
 	illuminate.on_attach(client)
 
-  lsp_status.on_attach(client)
-  lsp_status.register_progress()
+	lsp_status.on_attach(client)
+	lsp_status.register_progress()
 
 	-- Mappings.
 	m("n", "ga", "lua vim.lsp.buf.code_action()")

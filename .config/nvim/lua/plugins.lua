@@ -14,6 +14,7 @@ return require("packer").startup({
 		use("wbthomason/packer.nvim")
 
 		use({ "akinsho/toggleterm.nvim" })
+		use("numToStr/FTerm.nvim")
 
 		use({ "jdhao/better-escape.vim", event = "InsertEnter" })
 		use("karb94/neoscroll.nvim")
@@ -40,9 +41,10 @@ return require("packer").startup({
 
 		use("andymass/vim-matchup")
 
-		-- Theme
+		-- Colorscheme
 		use("folke/tokyonight.nvim")
 		use("Iron-E/nvim-highlite")
+		use("rmehri01/onenord.nvim")
 
 		-- Rust
 		use("simrat39/rust-tools.nvim")
@@ -54,6 +56,7 @@ return require("packer").startup({
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"f3fora/cmp-spell",
 			"hrsh7th/nvim-cmp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",

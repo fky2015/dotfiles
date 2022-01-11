@@ -7,6 +7,9 @@ vim.api.nvim_set_keymap("", "<F2>", ":NvimTreeToggle<CR>", opts)
 -- SymbolsOutline
 vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
 
+vim.api.nvim_set_keymap("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
+vim.api.nvim_set_keymap("t", "<F4>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+
 -- require'nvim-tree'.setup {
 --   view = {
 --     width = 30,
