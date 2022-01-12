@@ -12,9 +12,9 @@ require("lualine").setup({
 		lualine_x = { lsp_progress, "encoding", "fileformat", "filetype" },
 		lualine_y = { "%3p%%/%L" },
 	},
-  options = {
-    theme = 'onenord'
-  }
+	options = {
+		theme = "github",
+	},
 })
 
 lsp_status.config({

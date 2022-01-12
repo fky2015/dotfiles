@@ -51,6 +51,7 @@ return require("packer").startup({
 		use("folke/tokyonight.nvim")
 		use("Iron-E/nvim-highlite")
 		use("rmehri01/onenord.nvim")
+		use("projekt0n/github-nvim-theme")
 
 		-- Rust
 		use("simrat39/rust-tools.nvim")
