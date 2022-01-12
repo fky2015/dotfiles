@@ -54,3 +54,8 @@ vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
 
 -- Force to learn new key binding
 vim.api.nvim_set_keymap("i", "<ESC>", "<nop>", { noremap = true })
+
+
+vim.api.nvim_set_keymap("n", "<leader>pi", ":PackerInstall<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ps", ":PackerSync<CR>", { noremap = true })
+

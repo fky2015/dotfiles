@@ -127,8 +127,19 @@ lsp_installer.on_server_ready(function(server)
 	--     opts.root_dir = function() ... end
 	-- end
 	if server.name == "rust_analyzer" then
+		local extension_path = string.format(
+			"%s/.vscode-oss/extensions/vadimcn.vscode-lldb-%s/",
+			vim.env.HOME,
+			"1.6.10"
+		)
+		local codelldb_path = extension_path .. "adapter/codelldb"
+		local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 		local rustopts = {
 			server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+				dap = {
+					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+				},
+
 				settings = {
 					["rust-analyzer"] = {
 						-- completion = {

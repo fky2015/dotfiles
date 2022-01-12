@@ -55,6 +55,7 @@ return require("packer").startup({
 
 		-- Rust
 		use("simrat39/rust-tools.nvim")
+     use {'stevearc/dressing.nvim'}
 
 		-- LSP
 		use({
@@ -173,6 +174,17 @@ return require("packer").startup({
 		use("RRethy/vim-illuminate")
 
 		use("petertriho/nvim-scrollbar")
+
+    -- Debug
+    use {'mfussenegger/nvim-dap' ,requires = {
+      "nvim-lua/plenary.nvim"
+    }}
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"},
+			config = function()
+				require("dapui").setup()
+			end,
+    }
+    use "Pocco81/DAPInstall.nvim"
 		-- TODO: which-key
 
 		-- Automatically set up your configuration after cloning packer.nvim
