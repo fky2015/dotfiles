@@ -53,4 +53,4 @@ vim.api.nvim_set_keymap("n", "<leader>sc", ":source $MYVIMRC<cr>", { noremap = t
 vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
 
 -- Force to learn new key binding
-vim.api.nvim_set_keymap("v", "<ESC>", "<nop>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<ESC>", "<nop>", { noremap = true })

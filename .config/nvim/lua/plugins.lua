@@ -31,6 +31,12 @@ return require("packer").startup({
 			end,
 		})
 
+		-- Tabbar
+		use({
+			"romgrk/barbar.nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
+		})
+
 		-- lualine
 		use("nvim-lua/lsp-status.nvim")
 		use({
@@ -99,6 +105,10 @@ return require("packer").startup({
 			config = function()
 				require("nvim-tree").setup({})
 			end,
+		})
+
+		use({
+			"nyngwang/NeoZoom.lua",
 		})
 
 		use("camspiers/animate.vim")
