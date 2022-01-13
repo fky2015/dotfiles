@@ -92,6 +92,18 @@ return require("packer").startup({
 			requires = { "nvim-telescope/telescope.nvim" },
 		})
 
+		-- telescope
+
+		use("nvim-telescope/telescope.nvim")
+		use("nvim-telescope/telescope-fzy-native.nvim")
+		-- use({
+		-- 	"nvim-telescope/telescope-frecency.nvim",
+		-- 	config = function()
+		-- 		require("telescope").load_extension("frecency")
+		-- 	end,
+		-- 	requires = { "tami5/sqlite.lua" },
+		-- })
+
 		use("windwp/nvim-autopairs")
 
 		use("nvim-treesitter/nvim-treesitter")

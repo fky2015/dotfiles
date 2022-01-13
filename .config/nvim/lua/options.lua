@@ -46,8 +46,9 @@ vim.api.nvim_set_keymap("t", "jk", "<C-\\><C-n>", { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-C>", '"+y', { noremap = true })
 
 -- Edit config
-vim.api.nvim_set_keymap("n", "<leader>ec", ":vs<cr>:e $MYVIMRC<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>sc", ":source $MYVIMRC<cr>", { noremap = true })
+local config_path = vim.fn.stdpath("config")
+vim.api.nvim_set_keymap("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>sc", ":source " .. config_path .. "<cr>", { noremap = true })
 
 -- Copy all
 vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
@@ -55,7 +56,5 @@ vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
 -- Force to learn new key binding
 vim.api.nvim_set_keymap("i", "<ESC>", "<nop>", { noremap = true })
 
-
 vim.api.nvim_set_keymap("n", "<leader>pi", ":PackerInstall<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ps", ":PackerSync<CR>", { noremap = true })
-
