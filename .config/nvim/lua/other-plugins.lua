@@ -47,7 +47,9 @@ vim.g.tex_flavor = "latex"
 
 require("neoscroll").setup()
 
-require("startup").setup({ theme = "startify" })
+vim.g.indent_blankline_filetype_exclude = "['help', 'startup']"
+
+require("startup").setup({ theme = "dashboard" })
 
 local colors = require("tokyonight.colors").setup()
 

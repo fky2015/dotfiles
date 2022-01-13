@@ -58,7 +58,9 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- For luasnip users.
 	}, {
-		{ name = "buffer", name = "path", name = "spell" },
+		{ name = "buffer" },
+		{ name = "path" },
+		{ name = "spell" },
 	}),
 	formatting = {
 		format = lspkind.cmp_format({
@@ -165,6 +167,13 @@ lsp_installer.on_server_ready(function(server)
 				end,
 			},
 		}
+    opts.settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.
@@ -189,4 +198,4 @@ local sources = {
 
 null_ls.setup({ sources = sources })
 
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
