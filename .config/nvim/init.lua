@@ -1,6 +1,7 @@
 require("options")
 require("plugins")
 require("lsp")
+require("nvim-dap")
 require("statusline")
 require("theme")
 require("telescope")

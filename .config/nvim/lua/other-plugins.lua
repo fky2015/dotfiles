@@ -10,12 +10,12 @@ vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
 vim.api.nvim_set_keymap("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
 vim.api.nvim_set_keymap("t", "<F4>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 
-require("nvim-tree").setup({
+-- require("nvim-tree").setup({
 	-- view = {
 	-- auto_resize = true,
-	-- }
+	-- -- }
 	-- open_on_setup = true,
-})
+-- })
 
 -- animate.vim
 vim.api.nvim_set_keymap("n", "<Up>", ":call animate#window_delta_height(10)<CR>", { noremap = true, silent = true })
@@ -47,7 +47,7 @@ vim.g.tex_flavor = "latex"
 
 require("neoscroll").setup()
 
-require("startup").setup({ theme = "evil" })
+require("startup").setup({ theme = "startify" })
 
 local colors = require("tokyonight.colors").setup()
 

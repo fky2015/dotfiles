@@ -176,3 +176,17 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+
+-- null-ls.nvim
+
+local null_ls = require("null-ls")
+
+-- register any number of sources simultaneously
+local sources = {
+	null_ls.builtins.code_actions.gitsigns,
+	null_ls.builtins.formatting.stylua,
+}
+
+null_ls.setup({ sources = sources })
+
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]

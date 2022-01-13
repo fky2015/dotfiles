@@ -55,7 +55,7 @@ return require("packer").startup({
 
 		-- Rust
 		use("simrat39/rust-tools.nvim")
-     use {'stevearc/dressing.nvim'}
+		use({ "stevearc/dressing.nvim" })
 
 		-- LSP
 		use({
@@ -78,6 +78,13 @@ return require("packer").startup({
 		use({
 			"rafamadriz/friendly-snippets",
 		})
+
+		use({
+			"weilbith/nvim-code-action-menu",
+			cmd = "CodeActionMenu",
+		})
+
+		use("kosayoda/nvim-lightbulb")
 
 		use({
 
@@ -105,7 +112,15 @@ return require("packer").startup({
 				"kyazdani42/nvim-web-devicons", -- optional, for file icon
 			},
 			config = function()
-				require("nvim-tree").setup({})
+				require("nvim-tree").setup({
+					auto_resize = true,
+					auto_close = true,
+					open_on_tab = true,
+					view = {
+						width = 30,
+						auto_resize = true,
+					},
+				})
 			end,
 		})
 
@@ -145,6 +160,8 @@ return require("packer").startup({
 			end,
 		})
 
+		use("jose-elias-alvarez/null-ls.nvim")
+
 		use({
 			"startup-nvim/startup.nvim",
 			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -175,16 +192,18 @@ return require("packer").startup({
 
 		use("petertriho/nvim-scrollbar")
 
-    -- Debug
-    use {'mfussenegger/nvim-dap' ,requires = {
-      "nvim-lua/plenary.nvim"
-    }}
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"},
+		-- Debug
+		use({ "mfussenegger/nvim-dap", requires = {
+			"nvim-lua/plenary.nvim",
+		} })
+		use({
+			"rcarriga/nvim-dap-ui",
+			requires = { "mfussenegger/nvim-dap" },
 			config = function()
 				require("dapui").setup()
 			end,
-    }
-    use "Pocco81/DAPInstall.nvim"
+		})
+		use("Pocco81/DAPInstall.nvim")
 		-- TODO: which-key
 
 		-- Automatically set up your configuration after cloning packer.nvim
