@@ -129,7 +129,7 @@ return require("packer").startup({
 					auto_close = true,
 					open_on_tab = true,
 					view = {
-						width = 30,
+						-- width = 30,
 						auto_resize = true,
 					},
 				})
@@ -203,6 +203,13 @@ return require("packer").startup({
 		use("RRethy/vim-illuminate")
 
 		use("petertriho/nvim-scrollbar")
+		use({
+			"kevinhwang91/nvim-hlslens",
+			config = function()
+				require("hlslens").setup()
+				require("scrollbar.handlers.search").setup()
+			end,
+		})
 
 		-- Debug
 		use({ "mfussenegger/nvim-dap", requires = {
@@ -216,6 +223,19 @@ return require("packer").startup({
 			end,
 		})
 		use("Pocco81/DAPInstall.nvim")
+
+		-- ATTENTION: require github-cli.
+		use({
+			"pwntester/octo.nvim",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"nvim-telescope/telescope.nvim",
+				"kyazdani42/nvim-web-devicons",
+			},
+			config = function()
+				require("octo").setup()
+			end,
+		})
 		-- TODO: which-key
 
 		-- Automatically set up your configuration after cloning packer.nvim
