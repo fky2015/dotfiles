@@ -2,7 +2,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-local github_format_url = vim.env.DC_CN and "https://hub.fastgit.org/%s" or "https://github.com/%s"
+-- local github_format_url = vim.env.DC_CN and "https://hub.fastgit.org/%s" or "https://github.com/%s"
+local github_format_url = vim.env.DC_CN and "https://ghproxy.com/https://github.com/%s" or "https://github.com/%s"
 
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -16,6 +17,8 @@ return require("packer").startup({
 		use({ "akinsho/toggleterm.nvim" })
 		use("numToStr/FTerm.nvim")
 
+		use("mg979/vim-visual-multi")
+
 		use({ "jdhao/better-escape.vim", event = "InsertEnter" })
 		use("karb94/neoscroll.nvim")
 		use("ggandor/lightspeed.nvim")
@@ -27,6 +30,8 @@ return require("packer").startup({
 		use({
 			"blackCauldron7/surround.nvim",
 			config = function()
+				-- In order to avoid the conflict to `lightspeed.nvim`,
+				-- use surround mode.
 				require("surround").setup({ mappings_style = "surround" })
 			end,
 		})
@@ -96,13 +101,27 @@ return require("packer").startup({
 
 		use("nvim-telescope/telescope.nvim")
 		use("nvim-telescope/telescope-fzy-native.nvim")
-		-- use({
-		-- 	"nvim-telescope/telescope-frecency.nvim",
-		-- 	config = function()
-		-- 		require("telescope").load_extension("frecency")
-		-- 	end,
-		-- 	requires = { "tami5/sqlite.lua" },
-		-- })
+		use("xiyaowong/telescope-emoji.nvim")
+		use({
+			"nvim-telescope/telescope-frecency.nvim",
+			config = function()
+				require("telescope").load_extension("frecency")
+			end,
+			requires = { "tami5/sqlite.lua" },
+		})
+		--
+		-- Lua
+		use({
+			"folke/todo-comments.nvim",
+			requires = "nvim-lua/plenary.nvim",
+			config = function()
+				require("todo-comments").setup({
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
+				})
+			end,
+		})
 
 		use("windwp/nvim-autopairs")
 
@@ -175,12 +194,19 @@ return require("packer").startup({
 		use("jose-elias-alvarez/null-ls.nvim")
 
 		use({
-			"startup-nvim/startup.nvim",
-			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			"goolord/alpha-nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
 			config = function()
-				require("startup").setup()
+				require("alpha").setup(require("alpha.themes.startify").opts)
 			end,
 		})
+		-- use({
+		-- 	"startup-nvim/startup.nvim",
+		-- 	requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		-- 	config = function()
+		-- 		require("startup").setup()
+		-- 	end,
+		-- })
 		-- use {
 		--   "nvim-telescope/telescope-frecency.nvim",
 		--   config = function()
@@ -236,7 +262,17 @@ return require("packer").startup({
 				require("octo").setup()
 			end,
 		})
-		-- TODO: which-key
+
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				require("which-key").setup({
+					-- your configuration comes here
+					-- or leave it empty to use the default settings
+					-- refer to the configuration section below
+				})
+			end,
+		})
 
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins

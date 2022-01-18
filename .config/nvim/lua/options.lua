@@ -31,9 +31,7 @@ vim.opt.sidescrolloff = 4
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 vim.api.nvim_set_keymap("x", ";", ":", { noremap = true })
 
--- For motion: `f`
-vim.api.nvim_set_keymap("n", ":", ";", { noremap = true })
-vim.api.nvim_set_keymap("x", ":", ";", { noremap = true })
+vim.api.nvim_set_keymap("n", ":", '<Plug>Lightspeed_;_ft' , { noremap = false })
 
 -- Quicker way to open command window
 vim.api.nvim_set_keymap("n", "q;", "q:", { noremap = true })

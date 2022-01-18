@@ -35,7 +35,7 @@ require("nvim-autopairs").setup({
 -- gitsigns.nvim
 require("gitsigns").setup()
 
-vim.g.indent_blankline_filetype_exclude = { "startup" }
+vim.g.indent_blankline_filetype_exclude = { "alpha" }
 
 require("indent_blankline").setup({
 	-- for example, context is off by default, use this to turn it on
@@ -49,7 +49,7 @@ vim.g.tex_flavor = "latex"
 
 require("neoscroll").setup()
 
-require("startup").setup({ theme = "dashboard" })
+-- require("startup").setup({ theme = "dashboard" })
 
 require("toggleterm").setup({
 	open_mapping = [[<c-\>]],
