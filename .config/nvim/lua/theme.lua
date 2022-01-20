@@ -21,4 +21,10 @@ require("scrollbar").setup({
 		Hint = { color = colors.hint },
 		Misc = { color = colors.purple },
 	},
+	excluded_filetypes = {
+		"prompt",
+		"TelescopePrompt",
+		"qf",
+    "alpha"
+	},
 })

@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.localmapleader = "-"
+vim.g.maplocalleader = "-"
 
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
