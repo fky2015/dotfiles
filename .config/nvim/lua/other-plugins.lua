@@ -53,6 +53,7 @@ require("neoscroll").setup()
 
 require("toggleterm").setup({
 	open_mapping = [[<c-\>]],
+	shade_terminals = false,
 })
 
 -- if you use `<CR>` as toggle, then you should handle when to fallback yourself so it won't intercept the plain-old `<CR>`.
