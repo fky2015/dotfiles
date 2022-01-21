@@ -280,5 +280,10 @@ return require("packer").startup({
 			require("packer").sync()
 		end
 	end,
-	config = { git = { default_url_format = github_format_url } },
+	config = {
+		git = { default_url_format = github_format_url },
+		display = {
+			open_fn = require("packer.util").float,
+		},
+	},
 })
