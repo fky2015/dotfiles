@@ -19,6 +19,13 @@ return require("packer").startup({
 
 		use("mg979/vim-visual-multi")
 
+		use({
+			"norcalli/nvim-colorizer.lua",
+			config = function()
+				require("colorizer").setup()
+			end,
+		})
+
 		use({ "jdhao/better-escape.vim", event = "InsertEnter" })
 		use("karb94/neoscroll.nvim")
 		use("ggandor/lightspeed.nvim")
@@ -61,6 +68,14 @@ return require("packer").startup({
 		-- Rust
 		use("simrat39/rust-tools.nvim")
 		use({ "stevearc/dressing.nvim" })
+		use({
+			"saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			requires = { { "nvim-lua/plenary.nvim" } },
+			config = function()
+				require("crates").setup()
+			end,
+		})
 
 		-- LSP
 		use({
@@ -78,6 +93,9 @@ return require("packer").startup({
 			-- pictograms to lsp, VSCode-like.
 			"onsails/lspkind-nvim",
 		})
+
+		-- Copilot
+		use("github/copilot.vim")
 
 		-- For LuaSnip
 		use({

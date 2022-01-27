@@ -1,6 +1,6 @@
 -- vim.g.tokyonight_style = "storm"
 
-local github_theme_style = "light"
+local github_theme_style = "light_colorblind"
 require("github-theme").setup({
 	theme_style = github_theme_style,
 })

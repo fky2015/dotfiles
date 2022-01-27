@@ -61,6 +61,7 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "spell" },
+		{ name = "crates" },
 	}),
 	formatting = {
 		format = lspkind.cmp_format({
@@ -167,13 +168,13 @@ lsp_installer.on_server_ready(function(server)
 				end,
 			},
 		}
-    opts.settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+		opts.settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+			},
+		}
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.

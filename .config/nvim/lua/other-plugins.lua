@@ -94,3 +94,9 @@ map("n", "<C-p>", ":BufferPick<CR>", opts)
 map("n", "<Space>bb", ":BufferOrderByBufferNumber<CR>", opts)
 map("n", "<Space>bd", ":BufferOrderByDirectory<CR>", opts)
 map("n", "<Space>bl", ":BufferOrderByLanguage<CR>", opts)
+
+-- Copilot
+
+map("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, unpack(opts) })
+-- imap <silent><script><expr>
+vim.g.copilot_no_tab_map = true
