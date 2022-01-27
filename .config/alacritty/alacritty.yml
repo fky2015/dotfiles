@@ -67,7 +67,9 @@ window:
 
   # Window class (Linux only):
   #class: Alacritty
-
+  opacity: 0.92
+#
+#  
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
@@ -172,19 +174,19 @@ draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
 colors:
-  primary:
-    background: '#2e3440'
-    foreground: '#d8dee9'
-    dim_foreground: '#a5abb6'
-  cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  vi_mode_cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  selection:
-    text: CellForeground
-    background: '#4c566a'
+  # primary:
+  #   background: '#2e3440'
+  #   foreground: '#d8dee9'
+  #   dim_foreground: '#a5abb6'
+  # cursor:
+  #   text: '#2e3440'
+  #   cursor: '#d8dee9'
+  # vi_mode_cursor:
+  #   text: '#2e3440'
+  #   cursor: '#d8dee9'
+  # selection:
+  #   text: CellForeground
+  #   background: '#4c566a'
   search:
     matches:
       foreground: CellBackground
@@ -219,12 +221,6 @@ colors:
     magenta: '#8c738c'
     cyan: '#6d96a5'
     white: '#aeb3bb'
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.92
 
 bell:
   animation: EaseOutExpo
