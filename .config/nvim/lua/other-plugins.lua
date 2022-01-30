@@ -1,21 +1,13 @@
 local opts = { noremap = true, silent = true }
 -- nvim-tree
 vim.api.nvim_set_keymap("", "<F2>", ":NvimTreeToggle<CR>", opts)
--- nnoremap <leader>r :NvimTreeRefresh<CR>
--- nnoremap <leader>n :NvimTreeFindFile<CR>
---
+vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFindFile<CR>", opts)
+
 -- SymbolsOutline
 vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
 
 vim.api.nvim_set_keymap("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
 vim.api.nvim_set_keymap("t", "<F4>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
-
--- require("nvim-tree").setup({
--- view = {
--- auto_resize = true,
--- -- }
--- open_on_setup = true,
--- })
 
 -- animate.vim
 vim.api.nvim_set_keymap("n", "<Up>", ":call animate#window_delta_height(10)<CR>", { noremap = true, silent = true })
@@ -48,8 +40,6 @@ vim.g.vimtex_view_method = "zathura"
 vim.g.tex_flavor = "latex"
 
 require("neoscroll").setup()
-
--- require("startup").setup({ theme = "dashboard" })
 
 require("toggleterm").setup({
 	open_mapping = [[<c-\>]],

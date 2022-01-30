@@ -118,7 +118,7 @@ return require("packer").startup({
 		-- telescope
 
 		use("nvim-telescope/telescope.nvim")
-		use("nvim-telescope/telescope-fzy-native.nvim")
+		-- use("nvim-telescope/telescope-fzy-native.nvim")
 		use("xiyaowong/telescope-emoji.nvim")
 		use({
 			"nvim-telescope/telescope-frecency.nvim",
@@ -127,6 +127,7 @@ return require("packer").startup({
 			end,
 			requires = { "tami5/sqlite.lua" },
 		})
+		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 		--
 		-- Lua
 		use({
@@ -218,20 +219,6 @@ return require("packer").startup({
 				require("alpha").setup(require("alpha.themes.startify").opts)
 			end,
 		})
-		-- use({
-		-- 	"startup-nvim/startup.nvim",
-		-- 	requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		-- 	config = function()
-		-- 		require("startup").setup()
-		-- 	end,
-		-- })
-		-- use {
-		--   "nvim-telescope/telescope-frecency.nvim",
-		--   config = function()
-		--     require"telescope".load_extension("frecency")
-		--   end,
-		--   requires = {"tami5/sqlite.lua"}
-		-- }
 
 		use("tpope/vim-unimpaired")
 		use("tpope/vim-repeat")
