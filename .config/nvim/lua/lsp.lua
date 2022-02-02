@@ -7,7 +7,6 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local illuminate = require("illuminate")
-local lsp_status = require("lsp-status")
 
 -- Helper function for luasnip.
 local has_words_before = function()
@@ -100,9 +99,6 @@ end
 
 local on_attach = function(client)
 	illuminate.on_attach(client)
-
-	lsp_status.on_attach(client)
-	lsp_status.register_progress()
 
 	-- Mappings.
 	m("n", "ga", "lua vim.lsp.buf.code_action()")
@@ -198,5 +194,7 @@ local sources = {
 }
 
 null_ls.setup({ sources = sources })
+
+require("fidget").setup({})
 
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])

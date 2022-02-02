@@ -50,7 +50,6 @@ return require("packer").startup({
 		})
 
 		-- lualine
-		use("nvim-lua/lsp-status.nvim")
 		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -94,6 +93,7 @@ return require("packer").startup({
 			"onsails/lspkind-nvim",
 		})
 
+		use("j-hui/fidget.nvim")
 		-- Copilot
 		use("github/copilot.vim")
 
@@ -127,6 +127,7 @@ return require("packer").startup({
 			end,
 			requires = { "tami5/sqlite.lua" },
 		})
+
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 		--
 		-- Lua
