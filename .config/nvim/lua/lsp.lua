@@ -89,6 +89,13 @@ cmp.setup.cmdline(":", {
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- Mapping diagnostic.
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<space>a", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+
 -- helper function for mappings
 local m = function(mode, key, result)
 	vim.api.nvim_buf_set_keymap(0, mode, key, "<cmd> " .. result .. "<cr>", {
@@ -97,20 +104,25 @@ local m = function(mode, key, result)
 	})
 end
 
-local on_attach = function(client)
+local on_attach = function(client, bufnr)
 	illuminate.on_attach(client)
 
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
 	-- Mappings.
-	m("n", "ga", "lua vim.lsp.buf.code_action()")
-	m("n", "gD", "lua vim.lsp.buf.declaration()")
 	m("n", "gd", "lua vim.lsp.buf.definition()")
-	m("n", "ge", "lua vim.lsp.diagnostic.goto_next()")
-	m("n", "gE", "lua vim.lsp.diagnostic.goto_prev()")
-	m("n", "gi", "lua vim.lsp.buf.implementation()")
-	m("n", "gr", "lua vim.lsp.buf.references()")
+	m("n", "gD", "lua vim.lsp.buf.declaration()")
 	m("n", "K", "lua vim.lsp.buf.hover()")
-	m("n", "gl", "lua vim.lsp.diagnostic.show_line_diagnostics()")
-	m("n", "<space>rn", "lua vim.lsp.buf.rename()")
+	m("n", "gi", "lua vim.lsp.buf.implementation()")
+	m("n", "<C-K>", "lua vim.lsp.buf.signature_help()")
+	m("n", "<leader>wa", "lua vim.lsp.buf.add_workspace_folder()")
+	m("n", "<leader>wr", "lua vim.lsp.buf.remove_workspace_folder()")
+	m("n", "<leader>wl", "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))")
+	m("n", "<leader>D", "lua vim.lsp.buf.type_definition()")
+	m("n", "<leader>rn", "lua vim.lsp.buf.rename()")
+	m("n", "ga", "lua vim.lsp.buf.code_action()")
+	m("n", "gr", "lua vim.lsp.buf.references()")
 	m("n", "<C-L>", "lua vim.lsp.buf.formatting()")
 end
 

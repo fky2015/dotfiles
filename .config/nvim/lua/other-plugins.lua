@@ -90,3 +90,15 @@ map("n", "<Space>bl", ":BufferOrderByLanguage<CR>", opts)
 map("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, unpack(opts) })
 -- imap <silent><script><expr>
 vim.g.copilot_no_tab_map = true
+
+-- which-key.nvim
+
+-- TODO: maybe we should map all keybind here.
+local wk = require("which-key")
+
+wk.register({
+	["<leader>"] = {
+		name = "Find",
+		n = { "Find current file in NvimTree" },
+	},
+})
