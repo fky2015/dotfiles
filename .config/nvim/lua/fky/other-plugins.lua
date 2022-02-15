@@ -34,7 +34,7 @@ require("nvim-autopairs").setup({
 -- gitsigns.nvim
 require("gitsigns").setup()
 
-vim.g.indent_blankline_filetype_exclude = { "alpha" }
+vim.g.indent_blankline_filetype_exclude = { "alpha", "FTerm", "toggleterm" }
 
 require("indent_blankline").setup({
 	-- for example, context is off by default, use this to turn it on
