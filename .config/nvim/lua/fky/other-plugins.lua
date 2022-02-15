@@ -7,7 +7,11 @@ vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFindFile<CR>", opts)
 -- SymbolsOutline
 vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
 vim.api.nvim_set_keymap("!", "<F3>", "<C-O>:SymbolsOutline<CR>", opts)
+vim.g.symbols_outline = {
+  width = 45,
+}
 
+-- FTerm
 vim.api.nvim_set_keymap("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
 vim.api.nvim_set_keymap("t", "<F4>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 vim.api.nvim_set_keymap("i", "<F4>", '<C-O><CMD>lua require("FTerm").toggle()<CR>', opts)
