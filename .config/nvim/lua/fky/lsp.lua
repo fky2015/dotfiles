@@ -183,6 +183,8 @@ lsp_installer.on_server_ready(function(server)
 				},
 			},
 		}
+	elseif server.name == "clangd" then
+    opts.capabilities.offsetEncoding = { "utf-16" }
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.

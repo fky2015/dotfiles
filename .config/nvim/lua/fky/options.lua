@@ -1,3 +1,4 @@
+print("OPTION SCRIPT LOADED")
 vim.g.mapleader = " "
 vim.g.maplocalleader = "-"
 
@@ -31,7 +32,7 @@ vim.opt.sidescrolloff = 4
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 vim.api.nvim_set_keymap("x", ";", ":", { noremap = true })
 
-vim.api.nvim_set_keymap("n", ":", '<Plug>Lightspeed_;_ft' , { noremap = false })
+vim.api.nvim_set_keymap("n", ":", "<Plug>Lightspeed_;_ft", { noremap = false })
 
 -- Quicker way to open command window
 vim.api.nvim_set_keymap("n", "q;", "q:", { noremap = true })
@@ -46,7 +47,7 @@ vim.api.nvim_set_keymap("v", "<C-C>", '"+y', { noremap = true })
 -- Edit config
 local config_path = vim.fn.stdpath("config")
 vim.api.nvim_set_keymap("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>sc", ":source " .. config_path .. "<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
 
 -- Copy all
 vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
@@ -56,3 +57,4 @@ vim.api.nvim_set_keymap("i", "<ESC>", "<nop>", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<leader>pi", ":PackerInstall<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ps", ":PackerSync<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>pc", ":PackerCompile<CR>", { noremap = true })

@@ -17,6 +17,9 @@ return require("packer").startup({
 		use({ "akinsho/toggleterm.nvim" })
 		use("numToStr/FTerm.nvim")
 
+		-- A Vim / Neovim plugin to copy text to the system clipboard from anywhere using the ANSI OSC52 sequence.
+		use("ojroques/vim-oscyank")
+
 		use("mg979/vim-visual-multi")
 
 		use({
@@ -93,18 +96,13 @@ return require("packer").startup({
 			"onsails/lspkind-nvim",
 		})
 
-		use("j-hui/fidget.nvim")
+		use({ "j-hui/fidget.nvim", branch = "no-fold" })
 		-- Copilot
 		use("github/copilot.vim")
 
 		-- For LuaSnip
 		use({
 			"rafamadriz/friendly-snippets",
-		})
-
-		use({
-			"weilbith/nvim-code-action-menu",
-			cmd = "CodeActionMenu",
 		})
 
 		use("kosayoda/nvim-lightbulb")
