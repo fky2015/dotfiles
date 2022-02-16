@@ -30,7 +30,12 @@ fi
 
 if [ ! -f "$HOME/.local.zsh" ]; then
   cat >> "$HOME/.local.zsh" << EOF
-export DC_CN=TRUE
+# Change to suit your needs.
+
+# If the network is whin CN.
+export DC_CN=true
+# If the server is a remote server.
+export REMOTE_SERVER=true
 EOF
 fi
 
