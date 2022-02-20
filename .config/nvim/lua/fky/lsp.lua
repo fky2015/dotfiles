@@ -169,6 +169,10 @@ lsp_installer.on_server_ready(function(server)
 		server:attach_buffers()
 		return
 	elseif server.name == "sumneko_lua" then
+		local runtime_path = vim.split(package.path, ";")
+		table.insert(runtime_path, "lua/?.lua")
+		table.insert(runtime_path, "lua/?/init.lua")
+
 		opts.commands = {
 			Format = {
 				function()
@@ -178,13 +182,28 @@ lsp_installer.on_server_ready(function(server)
 		}
 		opts.settings = {
 			Lua = {
+				runtime = {
+					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+					version = "LuaJIT",
+					-- Setup your lua path
+					path = runtime_path,
+				},
 				diagnostics = {
+					-- Get the language server to recognize the `vim` global
 					globals = { "vim" },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = {
+					enable = false,
 				},
 			},
 		}
 	elseif server.name == "clangd" then
-    opts.capabilities.offsetEncoding = { "utf-16" }
+		opts.capabilities.offsetEncoding = { "utf-16" }
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.
@@ -205,9 +224,9 @@ local null_ls = require("null-ls")
 local sources = {
 	null_ls.builtins.code_actions.gitsigns,
 	null_ls.builtins.formatting.stylua,
-  null_ls.builtins.diagnostics.shellcheck,
-  null_ls.builtins.diagnostics.selene,
-  null_ls.builtins.formatting.codespell,
+	null_ls.builtins.diagnostics.shellcheck,
+	null_ls.builtins.diagnostics.selene,
+	-- null_ls.builtins.formatting.codespell,
 }
 
 null_ls.setup({ sources = sources })

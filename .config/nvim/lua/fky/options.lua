@@ -1,4 +1,3 @@
-print("OPTION SCRIPT LOADED")
 vim.g.mapleader = " "
 vim.g.maplocalleader = "-"
 
