@@ -46,6 +46,18 @@ return require("packer").startup({
 			end,
 		})
 
+		use({
+			"danymat/neogen",
+			config = function()
+				require("neogen").setup({
+          enabled = true
+        })
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
+			-- Uncomment next line if you want to follow only stable versions
+			-- tag = "*"
+		})
+
 		-- Tabbar
 		use({
 			"romgrk/barbar.nvim",

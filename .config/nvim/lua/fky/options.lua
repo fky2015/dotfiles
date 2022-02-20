@@ -57,3 +57,6 @@ vim.api.nvim_set_keymap("i", "<ESC>", "<nop>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>pi", ":PackerInstall<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ps", ":PackerSync<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>pc", ":PackerCompile<CR>", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>q", "empty(filter(getwininfo(), 'v:val.quickfix')) ? ':copen<CR>' : ':cclose<CR>'", {noremap = true, expr = true} )

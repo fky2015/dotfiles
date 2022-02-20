@@ -109,3 +109,6 @@ wk.register({
 		n = { "Find current file in NvimTree" },
 	},
 })
+
+-- neogen
+vim.api.nvim_set_keymap("n", "<leader>g", ":lua require('neogen').generate()<CR>", opts)
