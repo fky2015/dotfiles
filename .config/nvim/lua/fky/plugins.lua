@@ -37,8 +37,9 @@ return require("packer").startup({
 
 		use("lilydjwg/fcitx.vim")
 
+		-- TODO: considering replace it due to lacking of maintain.
 		use({
-			"blackCauldron7/surround.nvim",
+			"ur4ltz/surround.nvim",
 			config = function()
 				-- In order to avoid the conflict to `lightspeed.nvim`,
 				-- use surround mode.
@@ -50,8 +51,8 @@ return require("packer").startup({
 			"danymat/neogen",
 			config = function()
 				require("neogen").setup({
-          enabled = true
-        })
+					enabled = true,
+				})
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 			-- Uncomment next line if you want to follow only stable versions
