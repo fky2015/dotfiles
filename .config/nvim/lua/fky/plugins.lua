@@ -14,6 +14,23 @@ return require("packer").startup({
 	function(use)
 		use("wbthomason/packer.nvim")
 
+		use({
+			"kevinhwang91/nvim-bqf",
+			ft = "qf",
+			requires = {
+				{
+					"junegunn/fzf",
+					run = function()
+						vim.fn["fzf#install"]()
+					end,
+          config = function ()
+            vim.g.fzf_preview_window = {'right:40%:hidden', 'ctrl-/'}
+          end
+				},
+				{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+			},
+		})
+
 		use({ "akinsho/toggleterm.nvim" })
 		use("numToStr/FTerm.nvim")
 
