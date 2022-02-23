@@ -8,7 +8,7 @@ vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFindFile<CR>", opts)
 vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
 vim.api.nvim_set_keymap("!", "<F3>", "<C-O>:SymbolsOutline<CR>", opts)
 vim.g.symbols_outline = {
-  width = 45,
+	width = 45,
 }
 
 -- FTerm
@@ -26,7 +26,7 @@ vim.api.nvim_set_keymap("n", "<Right>", ":call animate#window_delta_width(-10)<C
 require("Comment").setup()
 
 require("nvim-autopairs").setup({
-	disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+	disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input", "lsp_installer", "" },
 })
 
 --- Git Relative
