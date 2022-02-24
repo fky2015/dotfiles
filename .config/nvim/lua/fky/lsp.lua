@@ -226,6 +226,7 @@ local sources = {
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.diagnostics.shellcheck,
 	null_ls.builtins.diagnostics.selene,
+	null_ls.builtins.formatting.shfmt,
 	-- null_ls.builtins.formatting.codespell,
 }
 
