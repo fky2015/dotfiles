@@ -23,9 +23,9 @@ return require("packer").startup({
 					run = function()
 						vim.fn["fzf#install"]()
 					end,
-          config = function ()
-            vim.g.fzf_preview_window = {'right:40%:hidden', 'ctrl-/'}
-          end
+					config = function()
+						vim.g.fzf_preview_window = { "right:40%:hidden", "ctrl-/" }
+					end,
 				},
 				{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 			},
