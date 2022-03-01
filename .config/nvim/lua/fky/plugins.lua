@@ -282,6 +282,13 @@ return require("packer").startup({
 				require("dapui").setup()
 			end,
 		})
+		use({
+			"theHamsta/nvim-dap-virtual-text",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("nvim-dap-virtual-text").setup()
+			end,
+		})
 		use("Pocco81/DAPInstall.nvim")
 
 		-- ATTENTION: require github-cli.
