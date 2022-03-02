@@ -1,5 +1,9 @@
 ### Added by Zplugin's installer
-source "$HOME/.zinit/bin/zinit.zsh"
+if [[ -f "$HOME/.zinit/bin/zinit.zsh"  ]]; then
+  source "$HOME/.zinit/bin/zinit.zsh"
+else
+  source "$HOME/.local/share/zinit/zinit.git/zinit.zsh" 
+fi
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zplugin installer's chunk
