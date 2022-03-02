@@ -20,35 +20,21 @@ setopt HIST_IGNORE_SPACE
 # Vim emulation.
 bindkey -v
 
+# Create local.zsh if it doesn't exist.
+if [ ! -f "$HOME/.local.zsh" ]; then
+  cp $HOME/.local.example.zsh $HOME/.local.zsh
+fi
+# Any other customizations only available to local.
+source "$HOME/.local.zsh"
+
 # All export's.
 source "$HOME/.exports.zsh"
-
-# for tilix terminal eluminator
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
-
-if [ ! -f "$HOME/.local.zsh" ]; then
-  cat >> "$HOME/.local.zsh" << EOF
-# Change to suit your needs.
-
-# If the network is whin CN.
-export DC_CN=true
-# If the server is a remote server.
-export REMOTE_SERVER=true
-EOF
-fi
-
-source "$HOME/.local.zsh"
 
 # Zinit comfig.
 source "$HOME/.zinit.zsh"
 
 # All self-defined functions.
 source "$HOME/.functions.zsh"
-
-# SDKMan 
-#[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
 
 # All self-defined aliases.
 source "$HOME/.aliases.zsh"
