@@ -64,6 +64,16 @@ set clipboard+=unnamed
 
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
+if !isdirectory($HOME."/.vim/files/backup")
+    silent! execute "!mkdir ~/.vim/files/backup"
+endif
+if !isdirectory($HOME."/.vim/files/undo")
+    silent! execute "!mkdir ~/.vim/files/undo"
+endif
+if !isdirectory($HOME."/.vim/files/swap//")
+    silent! execute "!mkdir ~/.vim/files/swap//"
+endif
+
 set backup
 set backupdir   =$HOME/.vim/files/backup/
 set backupext   =-vimbackup
