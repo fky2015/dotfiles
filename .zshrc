@@ -20,15 +20,16 @@ setopt HIST_IGNORE_SPACE
 # Vim emulation.
 bindkey -v
 
-# Create local.zsh if it doesn't exist.
+# All export's.
+# It includes $PATH so that we source it before `.local.zsh`.
+source "$HOME/.exports.zsh"
+
+# Create `local.zsh` if it doesn't exist.
 if [ ! -f "$HOME/.local.zsh" ]; then
   cp $HOME/.local.example.zsh $HOME/.local.zsh
 fi
 # Any other customizations only available to local.
 source "$HOME/.local.zsh"
-
-# All export's.
-source "$HOME/.exports.zsh"
 
 # Zinit comfig.
 source "$HOME/.zinit.zsh"
