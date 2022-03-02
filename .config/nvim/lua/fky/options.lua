@@ -27,7 +27,7 @@ vim.opt.cursorline = true
 vim.opt.spelllang = "en_us"
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 4
-vim.opt.guifont = 'FiraCode Nerd Font Mono, MesloLGL Nerd Font Mono, Noto Sans Mono'
+vim.opt.guifont = "FiraCode Nerd Font Mono, MesloLGL Nerd Font Mono, Noto Sans Mono"
 
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 vim.api.nvim_set_keymap("x", ";", ":", { noremap = true })
@@ -46,8 +46,17 @@ vim.api.nvim_set_keymap("v", "<C-C>", '"+y', { noremap = true })
 
 -- Edit config
 local config_path = vim.fn.stdpath("config")
-vim.api.nvim_set_keymap("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
+-- vim.cmd({
+-- 	[[
+--   command! ConfigEdit :vs<cr>:e ]] .. config_path .. [[<cr>
+--   command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>
+-- ]],
+-- })
+vim.cmd("command! ConfigEdit :vs<cr>:e " .. config_path .. "<cr>")
+vim.cmd("command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>") 
+-- vim.api.nvim_set_keymap("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
+--
+-- vim.api.nvim_set_keymap("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
 
 -- Copy all
 vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
@@ -60,4 +69,9 @@ vim.api.nvim_set_keymap("n", "<leader>ps", ":PackerSync<CR>", { noremap = true }
 vim.api.nvim_set_keymap("n", "<leader>pc", ":PackerCompile<CR>", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>q", "empty(filter(getwininfo(), 'v:val.quickfix')) ? ':copen<CR>' : ':cclose<CR>'", {noremap = true, expr = true} )
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>q",
+	"empty(filter(getwininfo(), 'v:val.quickfix')) ? ':copen<CR>' : ':cclose<CR>'",
+	{ noremap = true, expr = true }
+)
