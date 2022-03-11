@@ -14,9 +14,9 @@ return require("packer").startup({
 	function(use)
 		use("wbthomason/packer.nvim")
 
-		use({ "protex/better-digraphs.nvim", require = {
-			"nvim-telescope/telescope.nvim",
-		} })
+		-- use({ "protex/better-digraphs.nvim", require = {
+		-- 	"nvim-telescope/telescope.nvim",
+		-- } })
 
 		use({
 			"nyngwang/NeoRoot.lua",
