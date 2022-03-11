@@ -19,7 +19,7 @@ require("scrollbar").setup({
 		Warn = { color = colors.warning },
 		Info = { color = colors.info },
 		Hint = { color = colors.hint },
-		Misc = { color = colors.purple },
+		Misc = { color = colors.cyan },
 	},
 	excluded_filetypes = {
 		"prompt",

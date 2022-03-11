@@ -14,6 +14,23 @@ return require("packer").startup({
 	function(use)
 		use("wbthomason/packer.nvim")
 
+		use({ "protex/better-digraphs.nvim", require = {
+			"nvim-telescope/telescope.nvim",
+		} })
+
+		use({
+			"nyngwang/NeoRoot.lua",
+		})
+
+		use({
+			"zegervdv/nrpattern.nvim",
+			config = function()
+				-- Basic setup
+				-- See below for more options
+				require("nrpattern").setup()
+			end,
+		})
+
 		use({
 			"kevinhwang91/nvim-bqf",
 			ft = "qf",

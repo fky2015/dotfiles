@@ -11,6 +11,6 @@ require("lualine").setup({
 		lualine_y = { "%3p%%/%L" },
 	},
 	options = {
-		theme = "github",
+		theme = "github_light_colorblind",
 	},
 })
