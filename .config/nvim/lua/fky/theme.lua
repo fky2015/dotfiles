@@ -1,30 +1,39 @@
 -- vim.g.tokyonight_style = "storm"
 
-local github_theme_style = "light_colorblind"
-require("github-theme").setup({
-	theme_style = github_theme_style,
-})
+local M = {}
 
-local colors = require("github-theme.colors").setup({
-	theme_style = github_theme_style,
-})
+-- Change this one: "github", "fox"
+local colorscheme = "nightfox"
 
-require("scrollbar").setup({
-	handle = {
-		color = colors.bg_highlight,
-	},
-	marks = {
-		Search = { color = colors.orange },
-		Error = { color = colors.error },
-		Warn = { color = colors.warning },
-		Info = { color = colors.info },
-		Hint = { color = colors.hint },
-		Misc = { color = colors.cyan },
-	},
-	excluded_filetypes = {
-		"prompt",
-		"TelescopePrompt",
-		"qf",
-    "alpha"
-	},
-})
+if colorscheme == "nightfox" then
+	M.nightfox_theme_style = "nordfox"
+
+	local pallet = require("nightfox.pallet").load(M.nightfox_theme_style)
+
+	M.colors = {
+		orange = pallet.orange.base,
+		error = pallet.red.base,
+		warning = pallet.yellow.base,
+		info = pallet.blue.base,
+		hint = pallet.green.base,
+		cyan = pallet.cyan.base,
+		bg_highlight = pallet.bg1,
+	}
+	-- setup must be called before loading
+	vim.cmd("colorscheme " .. M.nightfox_theme_style)
+elseif colorscheme == "github" then
+	-- Change this
+	M.github_theme_style = "light_colorblind"
+	M.lualine_theme_style = "github_" .. M.github_theme_style
+	M.colors = require("github-theme").setup({
+		theme_style = M.github_theme_style,
+	})
+
+	M.colors = require("github-theme.colors").setup({
+		theme_style = M.github_theme_style,
+	})
+end
+
+M.colorscheme = colorscheme
+
+return M

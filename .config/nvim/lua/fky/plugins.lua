@@ -109,10 +109,8 @@ return require("packer").startup({
 		use("andymass/vim-matchup")
 
 		-- Colorscheme
-		use("folke/tokyonight.nvim")
-		use("Iron-E/nvim-highlite")
-		use("rmehri01/onenord.nvim")
 		use("projekt0n/github-nvim-theme")
+    use("EdenEast/nightfox.nvim")
 
 		-- Rust
 		use("simrat39/rust-tools.nvim")
@@ -213,7 +211,7 @@ return require("packer").startup({
 					auto_close = true,
 					open_on_tab = true,
 					view = {
-						-- width = 30,
+						width = 30,
 						auto_resize = true,
 					},
 				})
