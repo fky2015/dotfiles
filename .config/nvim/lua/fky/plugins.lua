@@ -14,6 +14,12 @@ return require("packer").startup({
 	function(use)
 		use("wbthomason/packer.nvim")
 
+		use({
+			"christoomey/vim-tmux-navigator",
+			config = function()
+				vim.g.tmux_navigator_no_mappings = 1
+			end,
+		})
 		-- use({ "protex/better-digraphs.nvim", require = {
 		-- 	"nvim-telescope/telescope.nvim",
 		-- } })
@@ -110,7 +116,7 @@ return require("packer").startup({
 
 		-- Colorscheme
 		use("projekt0n/github-nvim-theme")
-    use("EdenEast/nightfox.nvim")
+		use("EdenEast/nightfox.nvim")
 
 		-- Rust
 		use("simrat39/rust-tools.nvim")
