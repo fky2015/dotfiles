@@ -112,10 +112,12 @@ local on_attach = function(client, bufnr)
 
 	-- Mappings.
 	m("n", "gd", "lua vim.lsp.buf.definition()")
+	m("n", "gy", "lua vim.lsp.buf.type_definition()")
 	m("n", "gD", "lua vim.lsp.buf.declaration()")
 	m("n", "K", "lua vim.lsp.buf.hover()")
 	m("n", "gi", "lua vim.lsp.buf.implementation()")
-	m("n", "<C-K>", "lua vim.lsp.buf.signature_help()")
+	m("n", "<C-k>", "lua vim.lsp.buf.signature_help()")
+	m("i", "<A-i>", "lua vim.lsp.buf.signature_help()")
 	m("n", "<leader>wa", "lua vim.lsp.buf.add_workspace_folder()")
 	m("n", "<leader>wr", "lua vim.lsp.buf.remove_workspace_folder()")
 	m("n", "<leader>wl", "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))")
@@ -227,6 +229,9 @@ local sources = {
 	null_ls.builtins.diagnostics.shellcheck,
 	null_ls.builtins.diagnostics.selene,
 	null_ls.builtins.formatting.shfmt,
+	null_ls.builtins.diagnostics.vale,
+	null_ls.builtins.code_actions.proselint,
+	null_ls.builtins.diagnostics.proselint,
 	-- null_ls.builtins.formatting.codespell,
 }
 

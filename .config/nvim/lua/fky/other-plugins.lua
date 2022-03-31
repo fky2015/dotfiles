@@ -1,4 +1,4 @@
-local colors = require('fky.theme').colors
+local colors = require("fky.theme").colors
 
 local opts = { noremap = true, silent = true }
 -- nvim-tree
@@ -94,7 +94,6 @@ map("n", "<Space>bb", ":BufferOrderByBufferNumber<CR>", opts)
 map("n", "<Space>bd", ":BufferOrderByDirectory<CR>", opts)
 map("n", "<Space>bl", ":BufferOrderByLanguage<CR>", opts)
 
-
 -- Tmux Navigator
 map("n", "<A-j>", ":TmuxNavigateDown<CR>", opts)
 map("n", "<A-k>", ":TmuxNavigateUp<CR>", opts)
@@ -143,6 +142,8 @@ require("scrollbar").setup({
 		"alpha",
 	},
 })
+
+require'qf_helper'.setup()
 
 -- NeoRoot.lua
 -- local NOREF_NOERR_TRUNC = { noremap = true, silent = true, nowait = true }

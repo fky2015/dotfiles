@@ -2,8 +2,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
--- local github_format_url = vim.env.DC_CN and "https://hub.fastgit.org/%s" or "https://github.com/%s"
-local github_format_url = vim.env.DC_CN and "https://ghproxy.com/https://github.com/%s" or "https://github.com/%s"
+local github_format_url = vim.env.DC_CN and "https://hub.fastgit.xyz/%s" or "https://github.com/%s"
+-- local github_format_url = vim.env.DC_CN and "https://ghproxy.com/https://github.com/%s" or "https://github.com/%s"
 
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -13,6 +13,15 @@ end
 return require("packer").startup({
 	function(use)
 		use("wbthomason/packer.nvim")
+
+		use({
+			"mizlan/iswap.nvim",
+			config = function()
+				require("iswap").setup({})
+			end,
+		})
+
+		use("stevearc/qf_helper.nvim")
 
 		use({
 			"christoomey/vim-tmux-navigator",
