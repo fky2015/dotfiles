@@ -28,3 +28,15 @@
 
 [diff]
         colorMoved = default
+[url "https://hub.fastgit.xyz/"]
+	insteadOf = https://github.com/
+
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+# set "nvim" as tool for merging
+[merge]
+  tool = nvim
+# automatically launch merge tool without displaying a prompt
+[mergetool]
+  prompt = false
