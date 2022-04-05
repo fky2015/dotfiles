@@ -8,16 +8,16 @@ local colorscheme = "nightfox"
 if colorscheme == "nightfox" then
 	M.nightfox_theme_style = "nordfox"
 
-	local pallet = require("nightfox.pallet").load(M.nightfox_theme_style)
+	local palette = require("nightfox.palette").load(M.nightfox_theme_style)
 
 	M.colors = {
-		orange = pallet.orange.base,
-		error = pallet.red.base,
-		warning = pallet.yellow.base,
-		info = pallet.blue.base,
-		hint = pallet.green.base,
-		cyan = pallet.cyan.base,
-		bg_highlight = pallet.bg1,
+		orange = palette.orange.base,
+		error = palette.red.base,
+		warning = palette.yellow.base,
+		info = palette.blue.base,
+		hint = palette.green.base,
+		cyan = palette.cyan.base,
+		bg_highlight = palette.bg1,
 	}
 	-- setup must be called before loading
 	vim.cmd("colorscheme " .. M.nightfox_theme_style)
