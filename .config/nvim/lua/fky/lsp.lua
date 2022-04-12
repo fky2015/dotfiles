@@ -229,9 +229,9 @@ local sources = {
 	null_ls.builtins.diagnostics.shellcheck,
 	null_ls.builtins.diagnostics.selene,
 	null_ls.builtins.formatting.shfmt,
-	null_ls.builtins.diagnostics.vale,
-	null_ls.builtins.code_actions.proselint,
-	null_ls.builtins.diagnostics.proselint,
+	-- null_ls.builtins.diagnostics.vale,
+	-- null_ls.builtins.code_actions.proselint,
+	-- null_ls.builtins.diagnostics.proselint,
 	-- null_ls.builtins.formatting.codespell,
 }
 

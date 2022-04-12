@@ -222,11 +222,13 @@ return require("packer").startup({
 			},
 			config = function()
 				require("nvim-tree").setup({
-					auto_resize = true,
-					open_on_tab = true,
 					view = {
 						width = 30,
-						auto_resize = true,
+					},
+					actions = {
+						open_file = {
+							resize_window = true,
+						},
 					},
 				})
 			end,
