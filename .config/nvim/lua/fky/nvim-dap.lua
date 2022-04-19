@@ -1,5 +1,5 @@
-local dap_install = require("dap-install")
-local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
+-- local dap_install = require("dap-install")
+-- local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
 local dap, dapui = require("dap"), require("dapui")
 
 dap.adapters.lldb = {
