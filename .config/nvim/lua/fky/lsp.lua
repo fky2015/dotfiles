@@ -175,13 +175,6 @@ lsp_installer.on_server_ready(function(server)
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
 
-    opts.commands = {
-      Format = {
-        function()
-          require("stylua-nvim").format_file()
-        end,
-      },
-    }
     opts.settings = {
       Lua = {
         runtime = {
@@ -225,7 +218,6 @@ local null_ls = require("null-ls")
 -- register any number of sources simultaneously
 local sources = {
   null_ls.builtins.code_actions.gitsigns,
-  null_ls.builtins.formatting.stylua,
   null_ls.builtins.diagnostics.shellcheck,
   null_ls.builtins.diagnostics.selene,
   null_ls.builtins.formatting.shfmt,
