@@ -89,17 +89,16 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
 end
 
-local m = vim.api.nvim_set_keymap
-local opts = { noremap = true }
+local m = vim.keymap.set
 
-m("v", "<M-k>", "<Cmd>lua require('dapui').eval()<CR>", opts)
-m("n", "<F6>", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
-m("n", "<F7>", ":lua require'dap'.continue()<CR>", opts)
-m("n", "<F8>", ":lua require'dap'.step_over()<CR>", opts)
-m("n", "<F9>", ":lua require'dap'.step_into()<CR>", opts)
-m("n", "<F10>", ":lua require'dap'.step_out()<CR>", opts)
-m("n", "<leader>dc", ":lua require'dap'.run_to_cursor()<CR>", opts)
-m("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
-m("n", "<leader>db", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
-m("n", "<leader>dr", ":lua require'dap'.repl.toggle()<CR>", opts)
-m("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", opts)
+m("v", "<M-k>", "<Cmd>lua require('dapui').eval()<CR>")
+m("n", "<F6>", ":lua require'dap'.toggle_breakpoint()<CR>")
+m("n", "<F7>", ":lua require'dap'.continue()<CR>")
+m("n", "<F8>", ":lua require'dap'.step_over()<CR>")
+m("n", "<F9>", ":lua require'dap'.step_into()<CR>")
+m("n", "<F10>", ":lua require'dap'.step_out()<CR>")
+m("n", "<leader>dc", ":lua require'dap'.run_to_cursor()<CR>")
+m("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+m("n", "<leader>db", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
+m("n", "<leader>dr", ":lua require'dap'.repl.toggle()<CR>")
+m("n", "<leader>dl", ":lua require'dap'.run_last()<CR>")

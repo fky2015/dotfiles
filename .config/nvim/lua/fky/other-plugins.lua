@@ -1,34 +1,34 @@
 local colors = require("fky.theme").colors
 
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 -- nvim-tree
-vim.api.nvim_set_keymap("", "<F2>", ":NvimTreeToggle<CR>", opts)
-vim.api.nvim_set_keymap("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>n", ":NvimTreeFindFile<CR>", opts)
+vim.keymap.set("", "<F2>", ":NvimTreeToggle<CR>", opts)
+vim.keymap.set("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", opts)
+vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", opts)
 
 -- SymbolsOutline
-vim.api.nvim_set_keymap("", "<F3>", ":SymbolsOutline<CR>", opts)
-vim.api.nvim_set_keymap("!", "<F3>", "<C-O>:SymbolsOutline<CR>", opts)
+vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", opts)
+vim.keymap.set("!", "<F3>", "<C-O>:SymbolsOutline<CR>", opts)
 vim.g.symbols_outline = {
-	width = 45,
+  width = 45,
 }
 
 -- FTerm
-vim.api.nvim_set_keymap("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
-vim.api.nvim_set_keymap("t", "<F4>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
-vim.api.nvim_set_keymap("i", "<F4>", '<C-O><CMD>lua require("FTerm").toggle()<CR>', opts)
+vim.keymap.set("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', opts)
+vim.keymap.set("t", "<F4>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+vim.keymap.set("i", "<F4>", '<C-O><CMD>lua require("FTerm").toggle()<CR>', opts)
 
 -- animate.vim
-vim.api.nvim_set_keymap("n", "<Up>", ":call animate#window_delta_height(10)<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Down>", ":call animate#window_delta_height(-10)<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Left>", ":call animate#window_delta_width(10)<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Right>", ":call animate#window_delta_width(-10)<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Up>", ":call animate#window_delta_height(10)<CR>", opts)
+vim.keymap.set("n", "<Down>", ":call animate#window_delta_height(-10)<CR>", opts)
+vim.keymap.set("n", "<Left>", ":call animate#window_delta_width(10)<CR>", opts)
+vim.keymap.set("n", "<Right>", ":call animate#window_delta_width(-10)<CR>", opts)
 
 -- numToStr/Comment.nvim
 require("Comment").setup()
 
 require("nvim-autopairs").setup({
-	disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input", "lsp_installer", "" },
+  disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input", "lsp_installer", "" },
 })
 
 --- Git Relative
@@ -39,9 +39,9 @@ require("gitsigns").setup()
 vim.g.indent_blankline_filetype_exclude = { "alpha", "FTerm", "toggleterm" }
 
 require("indent_blankline").setup({
-	-- for example, context is off by default, use this to turn it on
-	show_current_context = true,
-	show_current_context_start = true,
+  -- for example, context is off by default, use this to turn it on
+  show_current_context = true,
+  show_current_context_start = true,
 })
 
 vim.g.vimtex_compiler_progname = "nvr"
@@ -51,15 +51,15 @@ vim.g.tex_flavor = "latex"
 -- require("neoscroll").setup()
 
 require("toggleterm").setup({
-	open_mapping = [[<c-\>]],
-	shade_terminals = false,
+  open_mapping = [[<c-\>]],
+  shade_terminals = false,
 })
 
 -- if you use `<CR>` as toggle, then you should handle when to fallback yourself so it won't intercept the plain-old `<CR>`.
-vim.api.nvim_set_keymap("n", "<leader>z", ":NeoZoomToggle<CR>", { noremap = true, silent = true, nowait = true })
+vim.keymap.set("n", "<leader>z", ":NeoZoomToggle<CR>", { silent = true, nowait = true })
 
 -- barbar.nvim
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Move to previous/next
@@ -113,37 +113,37 @@ vim.g.copilot_no_tab_map = true
 local wk = require("which-key")
 
 wk.register({
-	["<leader>"] = {
-		name = "Find",
-		n = { "Find current file in NvimTree" },
-	},
+  ["<leader>"] = {
+    name = "Find",
+    n = { "Find current file in NvimTree" },
+  },
 })
 
 -- neogen
-vim.api.nvim_set_keymap("n", "<leader>g", ":lua require('neogen').generate()<CR>", opts)
+vim.keymap.set("n", "<leader>g", ":lua require('neogen').generate()<CR>", opts)
 
 -- scrollbar
 require("scrollbar").setup({
-	handle = {
-		color = colors.bg_highlight,
-	},
-	marks = {
-		Search = { color = colors.orange },
-		Error = { color = colors.error },
-		Warn = { color = colors.warning },
-		Info = { color = colors.info },
-		Hint = { color = colors.hint },
-		Misc = { color = colors.cyan },
-	},
-	excluded_filetypes = {
-		"prompt",
-		"TelescopePrompt",
-		"qf",
-		"alpha",
-	},
+  handle = {
+    color = colors.bg_highlight,
+  },
+  marks = {
+    Search = { color = colors.orange },
+    Error = { color = colors.error },
+    Warn = { color = colors.warning },
+    Info = { color = colors.info },
+    Hint = { color = colors.hint },
+    Misc = { color = colors.cyan },
+  },
+  excluded_filetypes = {
+    "prompt",
+    "TelescopePrompt",
+    "qf",
+    "alpha",
+  },
 })
 
-require'qf_helper'.setup()
+require("qf_helper").setup()
 
 -- NeoRoot.lua
 -- local NOREF_NOERR_TRUNC = { noremap = true, silent = true, nowait = true }

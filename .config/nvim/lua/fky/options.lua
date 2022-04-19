@@ -29,20 +29,20 @@ vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 4
 vim.opt.guifont = "FiraCode Nerd Font Mono, MesloLGL Nerd Font Mono, Noto Sans Mono"
 
-vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
-vim.api.nvim_set_keymap("x", ";", ":", { noremap = true })
+vim.keymap.set("n", ";", ":")
+vim.keymap.set("x", ";", ":")
 
-vim.api.nvim_set_keymap("n", ":", "<Plug>Lightspeed_;_ft", { noremap = false })
+vim.keymap.set("n", ":", "<Plug>Lightspeed_;_ft", { noremap = false })
 
 -- Quicker way to open command window
-vim.api.nvim_set_keymap("n", "q;", "q:", { noremap = true })
+vim.keymap.set("n", "q;", "q:")
 
 -- Quicker <Esc> in insert mode
-vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "jk", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set("i", "jk", "<ESC>", { silent = true })
+vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
 -- Quick Copy
-vim.api.nvim_set_keymap("v", "<C-C>", '"+y', { noremap = true })
+vim.keymap.set("v", "<C-C>", '"+y')
 
 -- Edit config
 local config_path = vim.fn.stdpath("config")
@@ -54,20 +54,20 @@ local config_path = vim.fn.stdpath("config")
 -- })
 vim.cmd("command! ConfigEdit :vs<cr>:e " .. config_path .. "<cr>")
 vim.cmd("command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>")
--- vim.api.nvim_set_keymap("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
+-- vim.keymap.set("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
 --
--- vim.api.nvim_set_keymap("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
+-- vim.keymap.set("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
 
 -- Copy all
-vim.api.nvim_set_keymap("n", "<leader>ca", 'ggvG"+Y<c-o>', { noremap = true })
+vim.keymap.set("n", "<leader>ca", 'ggvG"+Y<c-o>')
 
 -- Force to learn new key binding
-vim.api.nvim_set_keymap("i", "<ESC>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<ESC>", "<nop>")
 
-vim.api.nvim_set_keymap("n", "<leader>pi", ":PackerInstall<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ps", ":PackerSync<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>pc", ":PackerCompile<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
+vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
+vim.keymap.set("n", "<leader>pc", ":PackerCompile<CR>")
 
-vim.api.nvim_set_keymap("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>q", ":QFToggle!<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>l", ":LLToggle!<CR>", { noremap = true })
+vim.keymap.set("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>")
+vim.keymap.set("n", "<leader>q", ":QFToggle!<CR>")
+vim.keymap.set("n", "<leader>l", ":LLToggle!<CR>")
