@@ -2,12 +2,6 @@
 " For a minimal vimrc.
 """
 
-"" vim-plug
-"call plug#begin('~/.vim/plugged')
-
-"call plug#end()
-" [end]
-
 " Enable folding
 " set foldmethod=indent
 " set foldlevel=99
@@ -34,10 +28,8 @@ set backspace   =2 " Make backspace work as you would expect.
 set hidden                 " Switch between buffers without having to save first.
 
 "set laststatus  =2         " Always show statusline.
-"As I use Air Line, I disabled this --FKY
 
 "set display     =lastline  " Show as much as possible of the last line.
-"Don't know what's that mean --FKY
 
 set showmode               " Show current mode in command-line.
 
@@ -62,27 +54,33 @@ set clipboard+=unnamed
 "set list                   " Show non-printable characters.
 
 
+if empty($XDG_CACHE_HOME)
+    let $XDG_CACHE_HOME=$HOME."/.cache"
+endif
+
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-if !isdirectory($HOME."/.vim/files/backup")
-    silent! execute "!mkdir ~/.vim/files/backup"
+if !isdirectory($XDG_CACHE_HOME . "/vim/files/backup") && exists('*mkdir')
+  call mkdir($XDG_CACHE_HOME . "/vim/files/backup", "p")
 endif
-if !isdirectory($HOME."/.vim/files/undo")
-    silent! execute "!mkdir ~/.vim/files/undo"
+
+if !isdirectory($XDG_CACHE_HOME . "/vim/files/swap") && exists('*mkdir')
+  call mkdir($XDG_CACHE_HOME . "/vim/files/swap", "p")
 endif
-if !isdirectory($HOME."/.vim/files/swap//")
-    silent! execute "!mkdir ~/.vim/files/swap//"
+
+if !isdirectory($XDG_CACHE_HOME . "/vim/files/undo") && exists('*mkdir')
+  call mkdir($XDG_CACHE_HOME . "/vim/files/undo", "p")
 endif
 
 set backup
-set backupdir   =$HOME/.vim/files/backup/
+set backupdir   =$XDG_CACHE_HOME/vim/files/backup
 set backupext   =-vimbackup
 set backupskip  =
-set directory   =$HOME/.vim/files/swap//
+set directory   =$XDG_CACHE_HOME/vim/files/swap
 set updatecount =100
 set undofile
-set undodir     =$HOME/.vim/files/undo/
-set viminfo     ='100,n$HOME/.vim/files/info/viminfo
+set undodir     =$XDG_CACHE_HOME/vim/files/undo
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 
 nnoremap ; :
 xnoremap ; :
