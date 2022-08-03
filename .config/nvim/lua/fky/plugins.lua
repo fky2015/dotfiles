@@ -249,7 +249,15 @@ return require("packer").startup({
     use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 
     use("wakatime/vim-wakatime")
-    use("Pocco81/TrueZen.nvim")
+    use({
+      "Pocco81/true-zen.nvim",
+      config = function()
+         require("true-zen").setup {
+          -- your config goes here
+          -- or just leave it empty :)
+         }
+      end,
+    })
 
     use("lervag/vimtex")
 
