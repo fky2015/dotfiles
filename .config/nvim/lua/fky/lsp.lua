@@ -129,18 +129,35 @@ local on_attach = function(client, bufnr)
   m("n", "<C-L>", "lua vim.lsp.buf.formatting()")
 end
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+require("mason").setup {
+  github = {
+    -- The template URL to use when downloading assets from GitHub.
+    -- The placeholders are the following (in order):
+    -- 1. The repository (e.g. "rust-lang/rust-analyzer")
+    -- 2. The release version (e.g. "v0.3.0")
+    -- 3. The asset name (e.g. "rust-analyzer-v0.3.0-x86_64-unknown-linux-gnu.tar.gz")
+    download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
+  },
+}
+require("mason-lspconfig").setup {
+  ensure_installed = { "rust_analyzer@nightly", "sumneko_lua" },
+}
 
-  -- (optional) Customize the options passed to the server
-  -- if server.name == "tsserver" then
-  --     opts.root_dir = function() ... end
-  -- end
-  if server.name == "rust_analyzer" then
+local lspconfig = require('lspconfig')
+local setup_opts = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+require("mason-lspconfig").setup_handlers({
+  -- The first entry (without a key) will be the default handler
+  -- and will be called for each installed server that doesn't have
+  -- a dedicated handler.
+  function(server_name) -- default handler (optional)
+    lspconfig[server_name].setup {}
+  end,
+  -- Next, you can provide targeted overrides for specific servers.
+  ["rust_analyzer"] = function()
     local extension_path = string.format(
       "%s/.vscode-oss/extensions/vadimcn.vscode-lldb-%s/",
       vim.env.HOME,
@@ -149,63 +166,107 @@ lsp_installer.on_server_ready(function(server)
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
     local rustopts = {
-      server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+      server = vim.tbl_deep_extend("force", opts, {
         dap = {
           adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-        },
-
-        settings = {
-          ["rust-analyzer"] = {
-            -- completion = {
-            --     postfix = {
-            --         enable = false
-            --     }
-            -- },
-            -- checkOnSave = {
-            --     command = "clippy"
-            -- },
-          },
         },
       }),
     }
     require("rust-tools").setup(rustopts)
-    server:attach_buffers()
-    return
-  elseif server.name == "sumneko_lua" then
-    local runtime_path = vim.split(package.path, ";")
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
-
-    opts.settings = {
+  end,
+  ["sumneko_lua"] = function()
+    setup_opts.settings = {
       Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          -- Setup your lua path
-          path = runtime_path,
-        },
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
-      },
+          globals = { "vim" }
+        }
+      }
     }
-  elseif server.name == "clangd" then
-    opts.capabilities.offsetEncoding = { "utf-16" }
+    lspconfig.sumneko_lua.setup(setup_opts)
+  end,
+  ["clangd"] = function()
+    setup_opts.capabilities.offsetEncoding = { 'utf-16' }
+    lspconfig.clangd.setup(setup_opts)
   end
+})
 
-  -- This setup() function is exactly the same as lspconfig's setup function.
-  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  server:setup(opts)
-end)
+-- local lsp_installer = require("nvim-lsp-installer")
+-- lsp_installer.on_server_ready(function(server)
+--   local opts = {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--   }
+--
+--   -- (optional) Customize the options passed to the server
+--   -- if server.name == "tsserver" then
+--   --     opts.root_dir = function() ... end
+--   -- end
+--   if server.name == "rust_analyzer" then
+--     local extension_path = string.format(
+--       "%s/.vscode-oss/extensions/vadimcn.vscode-lldb-%s/",
+--       vim.env.HOME,
+--       "1.6.10"
+--     )
+--     local codelldb_path = extension_path .. "adapter/codelldb"
+--     local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+--     local rustopts = {
+--       server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+--         dap = {
+--           adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+--         },
+--
+--         settings = {
+--           ["rust-analyzer"] = {
+--             -- completion = {
+--             --     postfix = {
+--             --         enable = false
+--             --     }
+--             -- },
+--             -- checkOnSave = {
+--             --     command = "clippy"
+--             -- },
+--           },
+--         },
+--       }),
+--     }
+--     require("rust-tools").setup(rustopts)
+--     server:attach_buffers()
+--     return
+--   elseif server.name == "sumneko_lua" then
+--     local runtime_path = vim.split(package.path, ";")
+--     table.insert(runtime_path, "lua/?.lua")
+--     table.insert(runtime_path, "lua/?/init.lua")
+--
+--     opts.settings = {
+--       Lua = {
+--         runtime = {
+--           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--           version = "LuaJIT",
+--           -- Setup your lua path
+--           path = runtime_path,
+--         },
+--         diagnostics = {
+--           -- Get the language server to recognize the `vim` global
+--           globals = { "vim" },
+--         },
+--         workspace = {
+--           -- Make the server aware of Neovim runtime files
+--           library = vim.api.nvim_get_runtime_file("", true),
+--         },
+--         -- Do not send telemetry data containing a randomized but unique identifier
+--         telemetry = {
+--           enable = false,
+--         },
+--       },
+--     }
+--   elseif server.name == "clangd" then
+--     opts.capabilities.offsetEncoding = { "utf-16" }
+--   end
+--
+--   -- This setup() function is exactly the same as lspconfig's setup function.
+--   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+--   server:setup(opts)
+-- end)
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -220,8 +281,9 @@ local null_ls = require("null-ls")
 local sources = {
   null_ls.builtins.code_actions.gitsigns,
   null_ls.builtins.diagnostics.shellcheck,
-  null_ls.builtins.diagnostics.selene,
+  -- null_ls.builtins.diagnostics.selene,
   null_ls.builtins.formatting.shfmt,
+  null_ls.builtins.formatting.latexindent,
   -- null_ls.builtins.diagnostics.vale,
   -- null_ls.builtins.code_actions.proselint,
   -- null_ls.builtins.diagnostics.proselint,

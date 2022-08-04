@@ -150,10 +150,15 @@ return require("packer").startup({
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       -- Automatically Install LSP for built-in LSP.
-      "williamboman/nvim-lsp-installer",
+      -- "williamboman/nvim-lsp-installer",
       -- pictograms to lsp, VSCode-like.
       "onsails/lspkind-nvim",
     })
+
+    use{
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    }
 
     use({ "j-hui/fidget.nvim", branch = "no-fold" })
     -- Copilot
