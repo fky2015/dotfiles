@@ -166,7 +166,7 @@ require("mason-lspconfig").setup_handlers({
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
     local rustopts = {
-      server = vim.tbl_deep_extend("force", opts, {
+      server = vim.tbl_deep_extend("force", setup_opts, {
         dap = {
           adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
         },
