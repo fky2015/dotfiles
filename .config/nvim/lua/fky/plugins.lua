@@ -15,6 +15,13 @@ return require("packer").startup({
     use("wbthomason/packer.nvim")
 
     use({
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup()
+      end,
+    })
+
+    use({
       "mizlan/iswap.nvim",
       config = function()
         require("iswap").setup({})
@@ -86,14 +93,11 @@ return require("packer").startup({
 
     use("lilydjwg/fcitx.vim")
 
-    -- TODO: considering replace it due to lacking of maintain.
     use({
-      "ur4ltz/surround.nvim",
+      "kylechui/nvim-surround",
       config = function()
-        -- In order to avoid the conflict to `lightspeed.nvim`,
-        -- use surround mode.
-        require("surround").setup({ mappings_style = "surround" })
-      end,
+        require("nvim-surround").setup()
+      end
     })
 
     use({
@@ -155,7 +159,7 @@ return require("packer").startup({
       "onsails/lspkind-nvim",
     })
 
-    use{
+    use {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     }
@@ -257,10 +261,10 @@ return require("packer").startup({
     use({
       "Pocco81/true-zen.nvim",
       config = function()
-         require("true-zen").setup {
+        require("true-zen").setup {
           -- your config goes here
           -- or just leave it empty :)
-         }
+        }
       end,
     })
 
