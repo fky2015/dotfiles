@@ -7,7 +7,7 @@ local github_format_url = vim.env.DC_CN and "https://hub.fastgit.xyz/%s" or "htt
 
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({ "git", "clone", "--depth", "1", packer_github_url, install_path })
+  PackerBootstrap = fn.system({ "git", "clone", "--depth", "1", packer_github_url, install_path })
 end
 
 return require("packer").startup({
@@ -127,6 +127,7 @@ return require("packer").startup({
     use("andymass/vim-matchup")
 
     -- Colorscheme
+    use { "catppuccin/nvim", as = "catppuccin" }
     use("projekt0n/github-nvim-theme")
     use("EdenEast/nightfox.nvim")
 
@@ -176,15 +177,12 @@ return require("packer").startup({
     use("kosayoda/nvim-lightbulb")
 
     use({
-
       "nvim-lua/plenary.nvim",
       requires = { "nvim-telescope/telescope.nvim" },
     })
 
     -- telescope
-
     use("nvim-telescope/telescope.nvim")
-    -- use("nvim-telescope/telescope-fzy-native.nvim")
     use("xiyaowong/telescope-emoji.nvim")
     use({
       "nvim-telescope/telescope-frecency.nvim",
@@ -363,7 +361,7 @@ return require("packer").startup({
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if packer_bootstrap then
+    if PackerBootstrap then
       require("packer").sync()
     end
   end,
