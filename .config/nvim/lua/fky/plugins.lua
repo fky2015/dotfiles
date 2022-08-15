@@ -14,6 +14,8 @@ return require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
 
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+
     use({
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       config = function()
