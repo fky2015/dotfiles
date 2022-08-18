@@ -83,9 +83,6 @@ require("toggleterm").setup({
   shade_terminals = false,
 })
 
--- if you use `<CR>` as toggle, then you should handle when to fallback yourself so it won't intercept the plain-old `<CR>`.
-vim.keymap.set("n", "<leader>z", ":NeoZoomToggle<CR>", { silent = true, nowait = true })
-
 -- barbar.nvim
 local map = vim.keymap.set
 local map_opts = { silent = true }

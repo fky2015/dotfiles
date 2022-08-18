@@ -14,7 +14,7 @@ return require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
 
-    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
     use({
       "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -244,6 +244,11 @@ return require("packer").startup({
 
     use({
       "nyngwang/NeoZoom.lua",
+      config = function()
+        require('neo-zoom').setup {}
+        local NOREF_NOERR_TRUNC = { silent = true, nowait = true }
+        vim.keymap.set('n', '<leader>z', require("neo-zoom").neo_zoom, NOREF_NOERR_TRUNC)
+      end
     })
 
     use("camspiers/animate.vim")
