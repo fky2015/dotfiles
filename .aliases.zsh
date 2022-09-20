@@ -77,6 +77,7 @@ alias qemu="qemu-system-x86_64"
 alias mine="cd ~/code/git/mine"
 alias ssr="electron-ssr"
 alias ls="exa"
+alias ll="exa -al"
 
 # LaTeX
 # https://wiki.archlinux.org/title/TeX_Live
