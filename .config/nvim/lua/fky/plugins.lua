@@ -2,7 +2,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-local github_format_url = vim.env.DC_CN and "https://hub.fastgit.xyz/%s" or "https://github.com/%s"
+-- local github_format_url = vim.env.DC_CN and "https://hub.fastgit.xyz/%s" or "https://github.com/%s"
+local github_format_url = vim.env.DC_CN and "https://github.com/%s" or "https://github.com/%s"
 -- local github_format_url = vim.env.DC_CN and "https://ghproxy.com/https://github.com/%s" or "https://github.com/%s"
 
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
@@ -13,6 +14,9 @@ end
 return require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
+
+    -- Packer
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
@@ -221,7 +225,7 @@ return require("packer").startup({
       requires = "nvim-treesitter/nvim-treesitter",
     })
 
-    use("simrat39/symbols-outline.nvim")
+    use({ "simrat39/symbols-outline.nvim" })
 
     use({
       "kyazdani42/nvim-tree.lua",

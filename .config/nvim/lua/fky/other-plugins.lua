@@ -6,12 +6,12 @@ vim.keymap.set("", "<F2>", ":NvimTreeToggle<CR>", map_opts)
 vim.keymap.set("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", map_opts)
 vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", map_opts)
 
--- SymbolsOutline
+-- https://github.com/simrat39/symbols-outline.nvim
 vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", map_opts)
 vim.keymap.set("!", "<F3>", "<C-O>:SymbolsOutline<CR>", map_opts)
-vim.g.symbols_outline = {
-  width = 45,
-}
+require("symbols-outline").setup({
+  width = 35,
+})
 
 -- FTerm
 vim.keymap.set("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', map_opts)
@@ -24,8 +24,10 @@ vim.keymap.set("n", "<Down>", ":call animate#window_delta_height(-10)<CR>", map_
 vim.keymap.set("n", "<Left>", ":call animate#window_delta_width(10)<CR>", map_opts)
 vim.keymap.set("n", "<Right>", ":call animate#window_delta_width(-10)<CR>", map_opts)
 
--- numToStr/Comment.nvim
+-- https://github.com/numToStr/Comment.nvim
 require("Comment").setup()
+vim.keymap.set('i', "<C-_>", '<C-O>gcc', { remap = true })
+
 
 require("nvim-autopairs").setup({
   disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input", "lsp_installer", "" },
@@ -217,3 +219,10 @@ require('ufo').setup({
   --   return { 'treesitter', 'indent' }
   -- end
 })
+
+vim.g.oscyank_term = 'default'
+
+-- https://github.com/sindrets/diffview.nvim
+vim.keymap.set('n', '<leader>dv', '<CMD>DiffviewOpen<CR>', map_opts)
+vim.keymap.set('n', '<leader>dh', '<CMD>DiffviewFileHistory<CR>', map_opts)
+vim.keymap.set('n', '<leader>df', '<CMD>DiffviewFileHistory %<CR>', map_opts)

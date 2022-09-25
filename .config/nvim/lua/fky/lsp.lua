@@ -158,7 +158,7 @@ require("mason-lspconfig").setup_handlers({
   -- and will be called for each installed server that doesn't have
   -- a dedicated handler.
   function(server_name) -- default handler (optional)
-    lspconfig[server_name].setup {}
+    lspconfig[server_name].setup(setup_opts)
   end,
   -- Next, you can provide targeted overrides for specific servers.
   ["rust_analyzer"] = function()
