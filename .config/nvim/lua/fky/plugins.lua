@@ -15,6 +15,11 @@ return require("packer").startup({
   function(use)
     use("wbthomason/packer.nvim")
 
+    use { 'lewis6991/impatient.nvim',
+      config = function()
+        require('impatient')
+      end
+    }
     -- Packer
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
@@ -92,7 +97,6 @@ return require("packer").startup({
     })
 
     use({ "jdhao/better-escape.vim", event = "InsertEnter" })
-    use("karb94/neoscroll.nvim")
     use("ggandor/lightspeed.nvim")
 
     use("lukas-reineke/indent-blankline.nvim")
@@ -178,6 +182,10 @@ return require("packer").startup({
     -- For LuaSnip
     use({
       "rafamadriz/friendly-snippets",
+      event = "InsertEnter",
+      config = function()
+        require("luasnip/loaders/from_vscode").lazy_load()
+      end
     })
 
     use("kosayoda/nvim-lightbulb")
@@ -188,14 +196,40 @@ return require("packer").startup({
     })
 
     -- telescope
-    use("nvim-telescope/telescope.nvim")
+    use({ "nvim-telescope/telescope.nvim",
+      cmd = "Telescope",
+      after = { "telescope-emoji.nvim", "trouble.nvim", "telescope-fzf-native.nvim" },
+      config = function()
+        local trouble = require("trouble.providers.telescope")
+
+        require("telescope").setup {
+          defaults = {
+            mappings = {
+              i = {
+                ["<esc>"] = require("telescope.actions").close,
+                ["<C-h>"] = "which_key",
+                ["<c-t>"] = trouble.open_with_trouble,
+              },
+              n = {
+                ["<c-t>"] = trouble.open_with_trouble
+              }
+            },
+          },
+        }
+
+        require("telescope").load_extension("emoji")
+
+        require("telescope").load_extension("fzf")
+      end
+    })
     use("xiyaowong/telescope-emoji.nvim")
     use({
       "nvim-telescope/telescope-frecency.nvim",
+      after = "telescope.nvim",
       config = function()
         require("telescope").load_extension("frecency")
       end,
-      requires = { "tami5/sqlite.lua" },
+      requires = { "tami5/sqlite.lua", "nvim-telescope/telescope.nvim" },
     })
 
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -218,7 +252,18 @@ return require("packer").startup({
     use("nvim-treesitter/nvim-treesitter")
     use("nvim-treesitter/nvim-treesitter-refactor")
     use("nvim-treesitter/nvim-treesitter-textobjects")
-    use("p00f/nvim-ts-rainbow")
+    use({ "p00f/nvim-ts-rainbow", event = "VimEnter",
+      config = function()
+        require("nvim-treesitter.configs").setup {
+          rainbow = {
+            enable = true,
+            extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+            max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+          },
+        }
+      end
+
+    })
     use("romgrk/nvim-treesitter-context")
     use({
       "SmiteshP/nvim-gps",
@@ -285,6 +330,7 @@ return require("packer").startup({
 
     use({
       "folke/trouble.nvim",
+      cmd = { "TroubleToggle", "Telescope" },
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
         require("trouble").setup({
@@ -318,7 +364,7 @@ return require("packer").startup({
 
     use("RRethy/vim-illuminate")
 
-    use("petertriho/nvim-scrollbar")
+    use({ "petertriho/nvim-scrollbar" })
     use({
       "kevinhwang91/nvim-hlslens",
       config = function()
@@ -349,6 +395,7 @@ return require("packer").startup({
     -- ATTENTION: require github-cli.
     use({
       "pwntester/octo.nvim",
+      cmd = { "Octo" },
       requires = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
