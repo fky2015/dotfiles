@@ -1,10 +1,19 @@
 local colors = require("fky.theme").colors
 
 local map_opts = { silent = true }
+local k = vim.keymap.set
+
+-- telescope
+k("n", "<leader>f", "<cmd>Telescope find_files<cr>")
+k("n", "<leader>t", "<cmd>Telescope live_grep<cr>")
+k("n", "<leader>b", "<cmd>Telescope buffers<cr>")
+k("n", "<leader>h", "<cmd>Telescope help_tags<cr>")
+k("n", "<leader>s", "<cmd>Telescope treesitter<cr>")
+
 -- nvim-tree
-vim.keymap.set("", "<F2>", ":NvimTreeToggle<CR>", map_opts)
-vim.keymap.set("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", map_opts)
-vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", map_opts)
+k("", "<F2>", ":NvimTreeToggle<CR>", map_opts)
+k("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", map_opts)
+k("n", "<leader>n", ":NvimTreeFindFile<CR>", map_opts)
 
 -- https://github.com/simrat39/symbols-outline.nvim
 vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", map_opts)
@@ -130,8 +139,8 @@ map("n", "<A-\\>", ":TmuxNavigatePrevious<CR>", map_opts)
 
 -- Copilot
 
-map("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, unpack(map_opts) })
--- imap <silent><script><expr>
+map("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+-- imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 vim.g.copilot_no_tab_map = true
 
 -- which-key.nvim

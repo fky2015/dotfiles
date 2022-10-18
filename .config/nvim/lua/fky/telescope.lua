@@ -1,8 +1,3 @@
-vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<cr>")
-vim.keymap.set("n", "<leader>t", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>")
-vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<cr>")
-vim.keymap.set("n", "<leader>s", "<cmd>Telescope treesitter<cr>")
 
 -- local trouble = require("trouble.providers.telescope")
 --

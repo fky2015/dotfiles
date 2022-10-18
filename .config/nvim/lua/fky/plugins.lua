@@ -6,6 +6,10 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local github_format_url = vim.env.DC_CN and "https://github.com/%s" or "https://github.com/%s"
 -- local github_format_url = vim.env.DC_CN and "https://ghproxy.com/https://github.com/%s" or "https://github.com/%s"
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
 if fn.empty(fn.glob(install_path)) > 0 then
   PackerBootstrap = fn.system({ "git", "clone", "--depth", "1", packer_github_url, install_path })
@@ -279,16 +283,14 @@ return require("packer").startup({
       },
       config = function()
         require("nvim-tree").setup({
-          view = {
-            width = 30,
-          },
+          open_on_setup = true,
           actions = {
             open_file = {
               resize_window = true,
             },
           },
         })
-      end,
+      end
     })
 
     use({
