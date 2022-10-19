@@ -181,7 +181,25 @@ return require("packer").startup({
 
     use({ "j-hui/fidget.nvim", branch = "no-fold" })
     -- Copilot
-    use("github/copilot.vim")
+    use(
+      { "github/copilot.vim",
+        config = function()
+          vim.keymap.set("i", "<C-J>", "copilot#Accept('<CR>')", { expr = true, silent = true, replace_keycodes = false })
+          vim.g.copilot_no_tab_map = true
+        end })
+    -- use { "zbirenbaum/copilot.lua",
+    --   event = "VimEnter",
+    --   config = function()
+    --     require("copilot").setup({
+    --       suggestion = {
+    --         auto_trigger = true,
+    --         keymap = {
+    --           accept = "<M-j>",
+    --         },
+    --       }
+    --     })
+    --   end,
+    -- }
 
     -- For LuaSnip
     use({

@@ -139,9 +139,9 @@ map("n", "<A-\\>", ":TmuxNavigatePrevious<CR>", map_opts)
 
 -- Copilot
 
-map("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+-- map("i", "<C-J>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
 -- imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_no_tab_map = true
 
 -- which-key.nvim
 
