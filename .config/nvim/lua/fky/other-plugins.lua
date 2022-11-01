@@ -3,6 +3,16 @@ local colors = require("fky.theme").colors
 local map_opts = { silent = true }
 local k = vim.keymap.set
 
+vim.keymap.set("n", ":", "<Plug>Lightspeed_;_ft", { noremap = false })
+
+vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
+vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
+vim.keymap.set("n", "<leader>pc", ":PackerCompile<CR>")
+
+vim.keymap.set("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>")
+vim.keymap.set("n", "<leader>q", ":QFToggle!<CR>")
+vim.keymap.set("n", "<leader>l", ":LLToggle!<CR>")
+
 -- telescope
 k("n", "<leader>f", "<cmd>Telescope find_files<cr>")
 k("n", "<leader>t", "<cmd>Telescope live_grep<cr>")

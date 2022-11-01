@@ -1,3 +1,9 @@
+-- NOTE: This file try to maintain a minimal configuration,
+-- especially when open a lage file that you only want to do
+-- some simple operations.
+--
+-- Assumed that only the following package are loaded:
+-- (currently none)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "-"
 
@@ -33,7 +39,6 @@ vim.opt.guifont = "MesloLGS NF:h20"
 vim.keymap.set("n", ";", ":")
 vim.keymap.set("x", ";", ":")
 
-vim.keymap.set("n", ":", "<Plug>Lightspeed_;_ft", { noremap = false })
 
 -- Quicker way to open command window
 vim.keymap.set("n", "q;", "q:")
@@ -44,17 +49,18 @@ vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
 -- Quick Copy
 vim.keymap.set("v", "<C-C>", '"+y')
+vim.keymap.set("n", "<C-C>", 'V"+y')
 
 -- Edit config
-local config_path = vim.fn.stdpath("config")
+-- local config_path = vim.fn.stdpath("config")
 -- vim.cmd({
 -- 	[[
 --   command! ConfigEdit :vs<cr>:e ]] .. config_path .. [[<cr>
 --   command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>
 -- ]],
 -- })
-vim.cmd("command! ConfigEdit :vs<cr>:e " .. config_path .. "<cr>")
-vim.cmd("command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>")
+-- vim.cmd("command! ConfigEdit :vs<cr>:e " .. config_path .. "<cr>")
+-- vim.cmd("command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>")
 -- vim.keymap.set("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
 --
 -- vim.keymap.set("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
@@ -67,11 +73,3 @@ vim.keymap.set("n", "<leader>ca", 'ggvG"+Y<c-o>')
 
 -- Force to learn new key binding
 vim.keymap.set("i", "<ESC>", "<nop>")
-
-vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
-vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
-vim.keymap.set("n", "<leader>pc", ":PackerCompile<CR>")
-
-vim.keymap.set("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>")
-vim.keymap.set("n", "<leader>q", ":QFToggle!<CR>")
-vim.keymap.set("n", "<leader>l", ":LLToggle!<CR>")
