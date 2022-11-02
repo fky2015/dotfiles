@@ -245,3 +245,7 @@ vim.g.oscyank_term = 'default'
 vim.keymap.set('n', '<leader>dv', '<CMD>DiffviewOpen<CR>', map_opts)
 vim.keymap.set('n', '<leader>dh', '<CMD>DiffviewFileHistory<CR>', map_opts)
 vim.keymap.set('n', '<leader>df', '<CMD>DiffviewFileHistory %<CR>', map_opts)
+
+-- https://github.com/pwntester/octo.nvim#-examples
+k('n', '<leader>Gi', '<CMD>Octo issue list<CR>', map_opts)
+k('n', '<leader>Gp', '<CMD>Octo pr list<CR>', map_opts)

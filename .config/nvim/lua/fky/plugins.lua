@@ -17,14 +17,19 @@ end
 
 return require("packer").startup({
   function(use)
+    -- Packer
     use("wbthomason/packer.nvim")
+
+    use "elkowar/yuck.vim"
+
+    use({ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" })
 
     use { 'lewis6991/impatient.nvim',
       config = function()
         require('impatient')
       end
     }
-    -- Packer
+
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
@@ -416,6 +421,7 @@ return require("packer").startup({
     use({
       "pwntester/octo.nvim",
       cmd = { "Octo" },
+      after = "telescope.nvim",
       requires = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
