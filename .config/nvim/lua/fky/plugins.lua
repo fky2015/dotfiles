@@ -20,6 +20,12 @@ return require("packer").startup({
     -- Packer
     use("wbthomason/packer.nvim")
 
+    use({ "junegunn/vim-easy-align",
+      config = function()
+        vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { noremap = false })
+        vim.keymap.set("n", "ga", "<Plug>(EasyAlign)", { noremap = false })
+      end })
+
     use "elkowar/yuck.vim"
 
     use({ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" })
