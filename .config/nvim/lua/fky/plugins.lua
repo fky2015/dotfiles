@@ -111,7 +111,14 @@ return require("packer").startup({
       end,
     })
 
-    use({ "jdhao/better-escape.vim", event = "InsertEnter" })
+    use({ "max397574/better-escape.nvim", event = "InsertEnter",
+
+      config = function()
+        require("better_escape").setup({
+          mapping = { "jk" },
+        })
+      end,
+    })
     use("ggandor/lightspeed.nvim")
 
     use("lukas-reineke/indent-blankline.nvim")
