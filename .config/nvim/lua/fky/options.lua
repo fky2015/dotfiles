@@ -30,7 +30,7 @@ vim.opt.smartindent = true
 vim.opt.title = true
 vim.opt.titlestring = "%<%F%=%l/%L - nvim"
 vim.opt.cursorline = true
-vim.opt.spelllang = "en_us"
+vim.opt.spelllang = "en_us,cjk"
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 4
 -- vim.opt.guifont = "FiraCode Nerd Font Mono:h20, MesloLGL NF:h20, Noto Sans Mono:h20"
