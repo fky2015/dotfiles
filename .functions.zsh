@@ -94,4 +94,13 @@ function take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-
+function loop() {
+  count=0
+  echo "Loop $count start"
+  while $@; do
+    echo "Loop $count start"
+    count=$((count+1))
+    echo "Loop $count end"
+  done
+  echo "Loop $count end (exit)"
+}
