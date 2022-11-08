@@ -154,22 +154,6 @@ font:
     x: 0
     y: 0
 
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  use_thin_strokes: true
-
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
@@ -192,7 +176,7 @@ colors:
     matches:
       foreground: CellBackground
       background: '#88c0d0'
-    bar:
+    focused_match:
       background: '#434c5e'
       foreground: '#d8dee9'
   normal:
@@ -222,6 +206,9 @@ colors:
     magenta: '#8c738c'
     cyan: '#6d96a5'
     white: '#aeb3bb'
+  footer_bar:
+    background: '#c5c8c6'
+    foreground: '#1d1f21'
 
 bell:
   animation: EaseOutExpo
