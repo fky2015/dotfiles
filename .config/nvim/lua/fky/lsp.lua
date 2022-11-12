@@ -281,7 +281,6 @@ local sources = {
 
 null_ls.setup({ sources = sources })
 
-require("fidget").setup({})
 require("cmp_git").setup()
 
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])

@@ -23,8 +23,7 @@ return require("packer").startup({
     use({
       "folke/noice.nvim",
       config = function()
-        require("noice").setup({
-        })
+        require("noice").setup({})
       end,
       requires = {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -213,7 +212,12 @@ return require("packer").startup({
       "williamboman/mason-lspconfig.nvim",
     }
 
-    use({ "j-hui/fidget.nvim", branch = "no-fold" })
+    use({ "j-hui/fidget.nvim",
+      config = function()
+        require("fidget").setup()
+      end,
+    })
+
     -- Copilot
     use(
       { "github/copilot.vim",
