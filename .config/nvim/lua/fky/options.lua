@@ -13,7 +13,6 @@ vim.opt.expandtab = true
 vim.opt.showmode = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.signcolumn = "number"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
