@@ -20,6 +20,22 @@ return require("packer").startup({
     -- Packer
     use("wbthomason/packer.nvim")
 
+    -- https://github.com/samjwill/nvim-unception
+    -- Prevent vim-in-vim
+    use({ "samjwill/nvim-unception",
+      config = function()
+        vim.api.nvim_create_autocmd(
+          "User",
+          {
+            pattern = "UnceptionEditRequestReceived",
+            callback = function()
+              -- Toggle the terminal off.
+              require('FTerm').close()
+            end
+          }
+        )
+      end })
+
     use({
       "folke/noice.nvim",
       config = function()
