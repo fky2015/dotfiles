@@ -39,11 +39,25 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+zinit ice nocompletions
+zinit light Aloxaf/zsh-sqlite
+
+# == forgit
+forgit_add=gai
+forgit_diff=gdi
+forgit_log=glgi
+
+zinit wait="0" lucid light-mode for \
+    hlissner/zsh-autopair \
+    cloneopts="--branch zsqlite" Aloxaf/zsh-histdb \
+    wfxr/forgit 
+
 zinit ice svn
 zinit snippet OMZ::plugins/extract
 
 zinit ice lucid wait='1'
-zinit snippet OMZ::plugins/git/git.plugin.zsh
 #zinit snippet OMZ::plugins/docker/_docker
 zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
