@@ -62,6 +62,7 @@ alias paxel="pc axel -n 10"
 
 alias sml="rl sml"
 alias cdc="cd ~/code"
+alias cdi="cd ~/code/incubators"
 alias telegram="QT_QPA_PLATFORMTHEME="" QT_STYLE_OVERRIDE="" telegram-desktop"
 alias yd=ydcv
 alias ub="proxychains4 -q zdict --dict urban"
@@ -83,3 +84,7 @@ alias ll="exa -al"
 # LaTeX
 # https://wiki.archlinux.org/title/TeX_Live
 alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
+
+# Rust
+alias cb="cargo b"
+alias cbr="cargo b --release"
