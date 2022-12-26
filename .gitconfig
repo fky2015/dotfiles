@@ -41,8 +41,8 @@
 [pager]
   difftool = true
 
-[url "https://ghproxy.com/github.com/"]
-	insteadOf = https://github.com/
+; [url "https://ghproxy.com/github.com/"]
+; 	insteadOf = https://github.com/
 
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
@@ -53,3 +53,9 @@
 # automatically launch merge tool without displaying a prompt
 [mergetool]
   prompt = false
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
