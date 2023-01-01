@@ -28,6 +28,7 @@ alias kose='kompose'
 alias dm='docker-machine'
 alias or='optirun'
 alias zshrc="$VISUAL ~/.zshrc"
+alias zinitrc="$VISUAL ~/.zinit.zsh"
 alias vimrc="$VISUAL ~/.vimrc"
 alias nvimrc="nvim ~/.config/nvim/"
 alias ipad="ip addr | grep inet && hostname -i"
