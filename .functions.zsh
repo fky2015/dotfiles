@@ -104,3 +104,37 @@ function loop() {
   done
   echo "Loop $count end (exit)"
 }
+
+# Move the repo to the ghq directory according to git remote url.
+hatch() {
+  repo=$1
+  hash ghq
+  cd $repo
+  git_url=`git remote -v | grep fetch | awk '{print $2}'`
+  cd ..
+  platform=`echo $git_url | awk -F'[:/@]' '{print $2}'`
+  username=`echo $git_url | awk -F'[:/@]' '{print $3}'`
+  repo_name=`echo $git_url | awk -F'[:/@]' '{print $4}' | sed 's/\.git$//'`
+  dest=`ghq root`/$platform/$username
+
+  echo "Moving $repo to $dest/$repo_name"
+  read REPLY\?"Do you want to continue (y/n)?"
+
+  # If $dest does not exist, create it.
+  if [ ! -d $dest ]; then
+    mkdir -p $dest
+  fi
+
+  # If $dest/$repo_name exists, prompt then abort.
+  if [ -d $dest/$repo_name ]; then
+    echo "$dest/$repo_name already exists."
+    return 1
+  fi
+
+  if [ "$REPLY" = "y" ]; then
+    mv $repo $dest/$repo_name
+    cd $dest/$repo_name
+  else
+    echo "Aborted, please enter y to confirm."
+  fi
+}
