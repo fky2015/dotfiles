@@ -51,21 +51,6 @@ vim.keymap.set("t", "jk", "<C-\\><C-n>")
 vim.keymap.set("v", "<C-C>", '"+y')
 vim.keymap.set("n", "<C-C>", 'V"+y')
 
--- Edit config
--- local config_path = vim.fn.stdpath("config")
--- vim.cmd({
--- 	[[
---   command! ConfigEdit :vs<cr>:e ]] .. config_path .. [[<cr>
---   command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>
--- ]],
--- })
--- vim.cmd("command! ConfigEdit :vs<cr>:e " .. config_path .. "<cr>")
--- vim.cmd("command! ConfigLoad lua require('fky.utils').ReloadConfig()<CR>")
--- vim.keymap.set("n", "<leader>ec", ":vs<cr>:e " .. config_path .. "<cr>", { noremap = true })
---
--- vim.keymap.set("n", "<leader>sc", "<Cmd>lua require('fky.utils').ReloadConfig()<CR>", { noremap = true })
---
-
 vim.keymap.set("n", "gl", "2g;")
 
 -- Copy all
