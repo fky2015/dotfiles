@@ -10,6 +10,10 @@ local github_format_url = vim.env.DC_CN and "https://github.com/%s" or "https://
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  vim.g.sqlite_clib_path = fn.stdpath("data") .. "\\sqlite3.dll"
+end
+
 local packer_github_url = string.format(github_format_url, "wbthomason/packer.nvim")
 if fn.empty(fn.glob(install_path)) > 0 then
   PackerBootstrap = fn.system({ "git", "clone", "--depth", "1", packer_github_url, install_path })
