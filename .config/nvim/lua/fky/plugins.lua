@@ -24,6 +24,11 @@ return require("packer").startup({
     -- Packer
     use("wbthomason/packer.nvim")
 
+
+    use "mattn/emmet-vim"
+
+    use "vim-test/vim-test"
+
     -- https://github.com/samjwill/nvim-unception
     -- Prevent vim-in-vim
     use({ "samjwill/nvim-unception",
