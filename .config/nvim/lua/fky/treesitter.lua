@@ -17,8 +17,8 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "grm",
     },
   },
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/316
   textobjects = {
-    enable = true,
     select = {
       enable = true,
       -- Automatically jump forward to textobj, similar to targets.vim
@@ -32,6 +32,15 @@ require("nvim-treesitter.configs").setup({
         ["ic"] = "@class.inner",
         ["ia"] = "@parameter.inner",
         ["aa"] = "@parameter.outer",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<localleader>a"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<localleader>A"] = "@parameter.inner",
       },
     },
     move = {
@@ -64,16 +73,16 @@ require("nvim-treesitter.configs").setup({
         smart_rename = "grr",
       },
     },
-    -- navigation = {
-    --   enable = true,
-    --   keymaps = {
-    --     goto_definition = "gnd",
-    --     list_definitions = "gnD",
-    --     list_definitions_toc = "gO",
-    --     goto_next_usage = "<a-*>",
-    --     goto_previous_usage = "<a-#>",
-    --   },
-    -- },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gnd",
+        list_definitions = "gnD",
+        list_definitions_toc = "gO",
+        goto_next_usage = "<a-*>",
+        goto_previous_usage = "<a-#>",
+      },
+    },
   },
   rainbow = {
     enable = true,
