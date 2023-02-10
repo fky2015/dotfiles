@@ -315,15 +315,17 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-  null_ls.builtins.code_actions.gitsigns,
-  null_ls.builtins.diagnostics.shellcheck,
-  -- null_ls.builtins.diagnostics.selene,
-  null_ls.builtins.formatting.shfmt,
-  null_ls.builtins.formatting.latexindent,
-  null_ls.builtins.formatting.jq,
-  -- null_ls.builtins.code_actions.proselint,
-  -- null_ls.builtins.diagnostics.proselint,
-  -- null_ls.builtins.formatting.codespell,
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.diagnostics.shellcheck,
+    -- null_ls.builtins.diagnostics.selene,
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.latexindent,
+    null_ls.builtins.formatting.jq,
+    -- Python
+    null_ls.builtins.formatting.black,
+    -- null_ls.builtins.code_actions.proselint,
+    -- null_ls.builtins.diagnostics.proselint,
+    -- null_ls.builtins.formatting.codespell,
 }
 
 null_ls.setup({ sources = sources })
