@@ -169,114 +169,140 @@ local on_attach = function(client, bufnr)
 end
 
 require("mason").setup {
-  github = {
-    -- The template URL to use when downloading assets from GitHub.
-    -- The placeholders are the following (in order):
-    -- 1. The repository (e.g. "rust-lang/rust-analyzer")
-    -- 2. The release version (e.g. "v0.3.0")
-    -- 3. The asset name (e.g. "rust-analyzer-v0.3.0-x86_64-unknown-linux-gnu.tar.gz")
-    -- download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
-  },
+    github = {
+        -- The template URL to use when downloading assets from GitHub.
+        -- The placeholders are the following (in order):
+        -- 1. The repository (e.g. "rust-lang/rust-analyzer")
+        -- 2. The release version (e.g. "v0.3.0")
+        -- 3. The asset name (e.g. "rust-analyzer-v0.3.0-x86_64-unknown-linux-gnu.tar.gz")
+        -- download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
+    },
 }
 require("mason-lspconfig").setup {
-  ensure_installed = { "rust_analyzer@nightly", "sumneko_lua" },
+    ensure_installed = { "rust_analyzer@nightly", "sumneko_lua" },
 }
 
 local lspconfig = require('lspconfig')
 local setup_opts = {
-  on_attach = on_attach,
-  capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 require("mason-lspconfig").setup_handlers({
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
-  function(server_name) -- default handler (optional)
-    lspconfig[server_name].setup(setup_opts)
-  end,
-  -- Next, you can provide targeted overrides for specific servers.
-  ["rust_analyzer"] = function()
-    local extension_path = string.format(
-      "%s/.vscode-oss/extensions/vadimcn.vscode-lldb-%s/",
-      vim.env.HOME,
-      "1.6.10"
-    )
-    local codelldb_path = extension_path .. "adapter/codelldb"
-    local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-    local rustopts = {
-      server = vim.tbl_deep_extend("keep", {
-        dap = {
-          adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-        },
-        on_attach = function(client, bufnr)
-          illuminate.on_attach(client)
-
-          -- Enable completion triggered by <c-x><c-o>
-          vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-          -- Mappings.
-          m("n", "gd", "lua vim.lsp.buf.definition()")
-          m("n", "gy", "lua vim.lsp.buf.type_definition()")
-          m("n", "gD", "lua vim.lsp.buf.declaration()")
-          -- m("n", "K", "lua vim.lsp.buf.hover()")
-          m("n", "gi", "lua vim.lsp.buf.implementation()")
-          m("n", "<C-k>", "lua vim.lsp.buf.signature_help()")
-          m("i", "<A-i>", "lua vim.lsp.buf.signature_help()")
-          m("n", "<leader>wa", "lua vim.lsp.buf.add_workspace_folder()")
-          m("n", "<leader>wr", "lua vim.lsp.buf.remove_workspace_folder()")
-          m("n", "<leader>wl", "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))")
-          m("n", "<leader>rn", "lua vim.lsp.buf.rename()")
-          m("n", "ga", "lua vim.lsp.buf.code_action()")
-          m("n", "gr", "lua vim.lsp.buf.references()")
-          m("n", "<C-L>", "lua vim.lsp.buf.format{ async = true }")
-
-          -- Hover actions
-          vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
-          -- Code action groups
-          -- vim.keymap.set("n", "ga", rt.code_action_group.code_action_group, { buffer = bufnr })
-        end,
-
-        settings = {
-
-          ["rust-analyzer"] = {
-            checkOnSave = {
-              command = "clippy",
-            },
-            inlayHints = {
-              lifetimeElisionHints = {
-                enable = true,
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function(server_name) -- default handler (optional)
+      lspconfig[server_name].setup(setup_opts)
+    end,
+    -- Next, you can provide targeted overrides for specific servers.
+    ["rust_analyzer"] = function()
+      local extension_path = string.format(
+              "%s/.vscode-oss/extensions/vadimcn.vscode-lldb-%s/",
+              vim.env.HOME,
+              "1.6.10"
+          )
+      local codelldb_path = extension_path .. "adapter/codelldb"
+      local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+      local rustopts = {
+          server = vim.tbl_deep_extend("keep", {
+              dap = {
+                  adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
               },
-              reborrowHints = {
-                enable = true,
+              on_attach = function(client, bufnr)
+                illuminate.on_attach(client)
+
+                -- Enable completion triggered by <c-x><c-o>
+                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+                -- Mappings.
+                m("n", "gd", "lua vim.lsp.buf.definition()")
+                m("n", "gy", "lua vim.lsp.buf.type_definition()")
+                m("n", "gD", "lua vim.lsp.buf.declaration()")
+                -- m("n", "K", "lua vim.lsp.buf.hover()")
+                m("n", "gi", "lua vim.lsp.buf.implementation()")
+                m("n", "<C-k>", "lua vim.lsp.buf.signature_help()")
+                m("i", "<A-i>", "lua vim.lsp.buf.signature_help()")
+                m("n", "<leader>wa", "lua vim.lsp.buf.add_workspace_folder()")
+                m("n", "<leader>wr", "lua vim.lsp.buf.remove_workspace_folder()")
+                m("n", "<leader>wl", "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))")
+                m("n", "<leader>rn", "lua vim.lsp.buf.rename()")
+                m("n", "ga", "lua vim.lsp.buf.code_action()")
+                m("n", "gr", "lua vim.lsp.buf.references()")
+                m("n", "<C-L>", "lua vim.lsp.buf.format{ async = true }")
+
+                -- Hover actions
+                vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
+                -- Code action groups
+                -- vim.keymap.set("n", "ga", rt.code_action_group.code_action_group, { buffer = bufnr })
+              end,
+
+              -- all the opts to send to nvim-lspconfig
+              -- these override the defaults set by rust-tools.nvim
+              server = {
+                  settings = {
+                      ["rust-analyzer"] = {
+                          checkOnSave = {
+                              command = "clippy",
+                          },
+                          inlayHints = {
+                              lifetimeElisionHints = {
+                                  enable = "always",
+                              },
+                              reborrowHints = {
+                                  enable = "always",
+                              }
+                          }
+                      }
+                  }
               }
-            }
-          }
 
-        }
-      }, setup_opts),
-    }
-    rt.setup(rustopts)
-  end,
-  ["sumneko_lua"] = function()
-    local lua_opts = vim.tbl_deep_extend(
-      "keep", {
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
-            },
+          }, setup_opts),
+      }
+      rt.setup(rustopts)
+    end,
+    ["sumneko_lua"] = function()
+      local lua_opts = vim.tbl_deep_extend(
+              "keep", {
+              settings = {
+                  Lua = {
+                      diagnostics = {
+                          globals = { "vim" },
+                      },
+                  },
+              },
+          }, setup_opts
+          )
+
+      lspconfig.sumneko_lua.setup(lua_opts)
+    end,
+    ["clangd"] = function()
+      setup_opts.capabilities.offsetEncoding = { 'utf-16' }
+      lspconfig.clangd.setup(setup_opts)
+    end,
+    ["gopls"] = function()
+      local gopls_ops = vim.tbl_deep_extend(
+              "keep", {
+              cmd = { "gopls" },
+              settings = {
+                  gopls = {
+                      experimentalPostfixCompletions = true,
+                      analyses = {
+                          unusedparams = true,
+                          shadow = true,
+                      },
+                      staticcheck = true,
+                  },
+                  init_options = {
+                      usePlaceholders = true,
+                      completeUnimported = true,
+                  },
+              }
           },
-        },
-      }, setup_opts
-    )
-
-    lspconfig.sumneko_lua.setup(lua_opts)
-  end,
-  ["clangd"] = function()
-    setup_opts.capabilities.offsetEncoding = { 'utf-16' }
-    lspconfig.clangd.setup(setup_opts)
-  end
+              setup_opts
+          )
+      lspconfig.gopls.setup(setup_opts)
+    end
 })
 
 
