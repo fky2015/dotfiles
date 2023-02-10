@@ -221,12 +221,19 @@ return require("packer").startup({
     -- Rust
     use("simrat39/rust-tools.nvim")
     use({ "stevearc/dressing.nvim" })
+
+    -- https://github.com/Saecki/crates.nvim
     use {
       'saecki/crates.nvim',
       event = { "BufRead Cargo.toml" },
       requires = { { 'nvim-lua/plenary.nvim' } },
       config = function()
-        require('crates').setup()
+        require('crates').setup({
+          null_ls = {
+            enabled = true,
+            name = "crates.nvim",
+          },
+        })
       end,
     }
 
@@ -245,6 +252,11 @@ return require("packer").startup({
       -- "williamboman/nvim-lsp-installer",
       -- pictograms to lsp, VSCode-like.
       "onsails/lspkind-nvim",
+      "dmitmel/cmp-cmdline-history",
+      -- https://github.com/hrsh7th/cmp-emoji
+      "hrsh7th/cmp-emoji",
+      -- https://github.com/kdheepak/cmp-latex-symbols
+      "kdheepak/cmp-latex-symbols",
     })
 
     use {
@@ -308,10 +320,10 @@ return require("packer").startup({
               i = {
                 ["<esc>"] = require("telescope.actions").close,
                 ["<C-h>"] = "which_key",
-                ["<c-t>"] = trouble.open_with_trouble,
+                ["<c-o>"] = trouble.open_with_trouble,
               },
               n = {
-                ["<c-t>"] = trouble.open_with_trouble
+                ["<c-o>"] = trouble.open_with_trouble
               }
             },
           },
