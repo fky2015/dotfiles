@@ -114,8 +114,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- https://github.com/kevinhwang91/nvim-ufo
 capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true
+    dynamicRegistration = false,
+    lineFoldingOnly = true
 }
 
 -- Mapping diagnostic.
@@ -128,8 +128,8 @@ vim.keymap.set("n", "<space>a", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts
 -- helper function for mappings
 local m = function(mode, key, result)
   vim.keymap.set(mode, key, "<cmd> " .. result .. "<cr>", {
-    buffer = 0,
-    silent = true,
+      buffer = 0,
+      silent = true,
   })
 end
 
@@ -146,15 +146,15 @@ local on_attach = function(client, bufnr)
   m("n", "gy", "lua vim.lsp.buf.type_definition()")
   m("n", "gD", "lua vim.lsp.buf.declaration()")
   vim.keymap.set("n", "K",
-    function()
-      print("K")
-      -- https://github.com/kevinhwang91/nvim-ufo
-      local winid = require('ufo').peekFoldedLinesUnderCursor()
-      if not winid then
-        -- choose one of coc.nvim and nvim lsp
-        vim.lsp.buf.hover()
+      function()
+        print("K")
+        -- https://github.com/kevinhwang91/nvim-ufo
+        local winid = require('ufo').peekFoldedLinesUnderCursor()
+        if not winid then
+          -- choose one of coc.nvim and nvim lsp
+          vim.lsp.buf.hover()
+        end
       end
-    end
   )
   m("n", "gi", "lua vim.lsp.buf.implementation()")
   m("n", "<C-k>", "lua vim.lsp.buf.signature_help()")
