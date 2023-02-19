@@ -3,7 +3,9 @@ local colors = require("fky.theme").colors
 local map_opts = { silent = true }
 local k = vim.keymap.set
 
-vim.keymap.set("n", ":", "<Plug>Lightspeed_;_ft", { noremap = false })
+
+-- https://github.com/ggandor/leap.nvim
+require('leap').add_default_mappings()
 
 vim.keymap.set("n", "<leader>pi", ":PackerInstall<CR>")
 vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>")
