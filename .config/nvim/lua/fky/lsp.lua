@@ -179,7 +179,7 @@ require("mason").setup {
     },
 }
 require("mason-lspconfig").setup {
-    ensure_installed = { "rust_analyzer@nightly", "sumneko_lua" },
+    ensure_installed = { "rust_analyzer@nightly", "lua_ls" },
 }
 
 local lspconfig = require('lspconfig')
@@ -261,7 +261,7 @@ require("mason-lspconfig").setup_handlers({
       }
       rt.setup(rustopts)
     end,
-    ["sumneko_lua"] = function()
+    ["lua_ls"] = function()
       local lua_opts = vim.tbl_deep_extend(
               "keep", {
               settings = {
@@ -274,7 +274,7 @@ require("mason-lspconfig").setup_handlers({
           }, setup_opts
           )
 
-      lspconfig.sumneko_lua.setup(lua_opts)
+      lspconfig.lua_ls.setup(lua_opts)
     end,
     ["clangd"] = function()
       setup_opts.capabilities.offsetEncoding = { 'utf-16' }
