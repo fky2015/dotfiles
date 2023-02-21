@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Pastebin
 PB_HOST="https://fars.ee"
 
@@ -95,14 +97,25 @@ function take() {
 }
 
 function loop() {
+  set -o pipefail
   count=0
+  cmds=($@)
   echo "Loop $count start"
-  while $@; do
-    echo "Loop $count start"
-    count=$((count+1))
+  # If environment variable LOOP_OUTPUT is set, output the result of the command.
+  if [ -n "$LOOP_OUTPUT" ]; then
+    echo "Loop $count output to $LOOP_OUTPUT"
+    cmds+=("| tee $LOOP_OUTPUT")
+  fi
+
+  echo "Loop commands: ${cmds[@]}"
+  
+  while eval ${cmds[@]}; do
     echo "Loop $count end"
+      count=$((count+1))
+    echo "Loop $count start"
   done
-  echo "Loop $count end (exit)"
+  echo "Loop $count end (exit)\n"
+  set +o pipefail
 }
 
 # Move the repo to the ghq directory according to git remote url.
