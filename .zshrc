@@ -42,13 +42,13 @@ source "$HOME/.aliases.zsh"
 
 # https://github.com/larkery/zsh-histdb
 _zsh_autosuggest_strategy_histdb_top_here() {
-    emulate -L zsh
-    (( $+functions[_histdb_query] && $+builtins[zsqlite_exec] )) || return
-    _histdb_init
-    local last_cmd="$(sql_escape ${history[$((HISTCMD-1))]})"
-    local cmd="$(sql_escape $1)"
-    local pwd="$(sql_escape $PWD)"
-    local reply=$(zsqlite_exec _HISTDB "
+  emulate -L zsh
+  (( $+functions[_histdb_query] && $+builtins[zsqlite_exec] )) || return
+  _histdb_init
+  local last_cmd="$(sql_escape ${history[$((HISTCMD-1))]})"
+  local cmd="$(sql_escape $1)"
+  local pwd="$(sql_escape $PWD)"
+  local reply=$(zsqlite_exec _HISTDB "
 SELECT argv FROM (SELECT * FROM (
   SELECT c1.argv, p1.dir, h1.session, h1.start_time, 1 AS priority
   FROM history h1, history h2
@@ -68,12 +68,25 @@ SELECT argv FROM (SELECT * FROM (
 ORDER BY dir != '$pwd', priority DESC, session != $HISTDB_SESSION, start_time DESC
 LIMIT 1
 ")
-    typeset -g suggestion=$reply
+  typeset -g suggestion=$reply
 }
+
+# support atuin
+
+_zsh_autosuggest_strategy_atuin_search() {
+  emulate -L zsh
+  # (( $+functions[_atuin_search] )) || return
+  local reply=$(/home/fky/.cargo/bin/atuin search --cmd-only --search-mode prefix $1 | tail -n 1)
+  typeset -g suggestion=$reply
+}
+
 ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here match_prev_cmd completion)
+# ZSH_AUTOSUGGEST_STRATEGY=(atuin_search)
 
 # p10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ZSH Profiling
 #zprof
+
+# eval "$(atuin init zsh)"

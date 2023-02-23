@@ -41,6 +41,8 @@ zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
+zinit light RobertDeRose/virtualenv-autodetect
+
 zinit ice nocompletions
 zinit light Aloxaf/zsh-sqlite
 
@@ -48,6 +50,7 @@ zinit light Aloxaf/zsh-sqlite
 forgit_add=gai
 forgit_diff=gdi
 forgit_log=glgi
+forgit_checkout_commit=gcoi
 
 zinit wait="0" lucid light-mode for \
     hlissner/zsh-autopair \
