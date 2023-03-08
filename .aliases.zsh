@@ -37,6 +37,7 @@ alias cdd="cd ~/Downloads" # change to the Downloads
 alias cdo="cd ~/Documents/onedrive"
 alias h="htop"
 alias nv="nvim"
+alias nv.="nvim ."
 alias nvc="nvim --clean -u $HOME/.config/nvim/lua/fky/options.lua"
 alias v="vim"
 
