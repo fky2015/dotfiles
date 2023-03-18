@@ -24,6 +24,28 @@ return require("packer").startup({
           -- Packer
           use("wbthomason/packer.nvim")
 
+          -- cppman
+          use {
+              'madskjeldgaard/cppman.nvim',
+              requires = {
+                  { 'MunifTanjim/nui.nvim' }
+              },
+              config = function()
+                local cppman = require "cppman"
+                cppman.setup()
+
+                -- Make a keymap to open the word under cursor in CPPman
+                vim.keymap.set("n", "<leader>cm", function()
+                  cppman.open_cppman_for(vim.fn.expand("<cword>"))
+                end)
+
+                -- Open search box
+                vim.keymap.set("n", "<leader>cc", function()
+                  cppman.input()
+                end)
+              end
+          }
+
 
           use "mattn/emmet-vim"
 
@@ -287,7 +309,8 @@ return require("packer").startup({
                         { expr = true, silent = true, replace_keycodes = false })
                     vim.g.copilot_no_tab_map = true
                   end
-              })
+              }
+          )
           -- use { "zbirenbaum/copilot.lua",
           --   event = "VimEnter",
           --   config = function()
