@@ -56,6 +56,9 @@ vim.keymap.set("n", "gl", "2g;")
 -- Copy all
 vim.keymap.set("n", "<leader>ca", 'ggvG"+Y<c-o>')
 
+-- Create new tab
+vim.keymap.set("n", "<leader>T", ":tabnew %<CR>")
+
 -- Force to learn new key binding
 vim.keymap.set("i", "<ESC>", "<nop>")
 
