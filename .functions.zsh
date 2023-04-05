@@ -81,8 +81,8 @@ b64() { echo -n $1 | base64 }
 b64d() { echo -n $1 | base64 -d}
 
 set_proxy() {
-    export http_proxy=http://localhost:8888
-    export https_proxy=http://localhost:8888
+    export http_proxy=http://localhost:1080
+    export https_proxy=http://localhost:1080
 }
 
 unset_proxy(){
