@@ -70,5 +70,4 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
         let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
         set shellquote= shellxquote=
   ]]
-
 end
