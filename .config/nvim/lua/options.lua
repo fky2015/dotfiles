@@ -33,6 +33,7 @@ vim.opt.spelllang = "en_us,cjk"
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 4
 -- vim.opt.guifont = "FiraCode Nerd Font Mono:h20, MesloLGL NF:h20, Noto Sans Mono:h20"
+vim.opt.termguicolors = true
 vim.opt.guifont = "MesloLGS NF:h20"
 vim.o.formatoptions = "jcroqlt"
 
