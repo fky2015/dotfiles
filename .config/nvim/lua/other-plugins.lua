@@ -10,7 +10,7 @@ require('leap').add_default_mappings()
 vim.keymap.set("n", "<leader>pi", ":Lazy install<CR>")
 vim.keymap.set("n", "<leader>ps", ":Lazy sync<CR>")
 
-vim.keymap.set("n", "<localleader>f", ":lua require('fky.utils').FoldColumnToggle()<CR>")
+vim.keymap.set("n", "<localleader>f", ":lua require('utils').FoldColumnToggle()<CR>")
 vim.keymap.set("n", "<leader>q", ":QFToggle!<CR>")
 vim.keymap.set("n", "<leader>l", ":LLToggle!<CR>")
 
@@ -124,12 +124,12 @@ map("n", "<A-\\>", ":TmuxNavigatePrevious<CR>", map_opts)
 -- TODO: maybe we should map all keybind here.
 local wk = require("which-key")
 
--- wk.register({
---   ["<leader>"] = {
---     name = "Find",
---     n = { "Find current file in NvimTree" },
---   },
--- })
+wk.register({
+  ["<leader>"] = {
+    name = "Find",
+    n = { "Find current file in NvimTree" },
+  },
+})
 
 -- neogen
 vim.keymap.set("n", "<leader>g", ":lua require('neogen').generate()<CR>", map_opts)
@@ -189,10 +189,10 @@ vim.keymap.set('n', '<leader>xl', '<CMD>TroubleToggle loclist<CR>', map_opts)
 vim.keymap.set('n', 'gR', '<CMD>TroubleToggle lsp_references<CR>', map_opts)
 
 -- nvim-ufo
--- vim.o.foldcolumn = '1'
--- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
--- vim.o.foldlevelstart = 99
--- vim.o.foldenable = true
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)

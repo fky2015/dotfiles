@@ -18,7 +18,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Properly load sqlite3.dll on Windows.
 if vim.loop.os_uname().sysname == "Windows_NT" then
-  vim.g.sqlite_clib_path = fn.stdpath("data") .. "\\sqlite3.dll"
+  vim.g.sqlite_clib_path = vim.fn.stdpath("data") .. "\\sqlite3.dll"
 end
 
 local opts = {

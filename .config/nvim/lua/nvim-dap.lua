@@ -19,7 +19,6 @@ dap.configurations.cpp = {
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = {},
-
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
     --
     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
@@ -92,11 +91,11 @@ end
 local m = vim.keymap.set
 
 m("v", "<M-k>", "<Cmd>lua require('dapui').eval()<CR>")
-m("n", "<F6>", ":lua require'dap'.toggle_breakpoint()<CR>")
-m("n", "<F7>", ":lua require'dap'.continue()<CR>")
-m("n", "<F8>", ":lua require'dap'.step_over()<CR>")
-m("n", "<F9>", ":lua require'dap'.step_into()<CR>")
-m("n", "<F10>", ":lua require'dap'.step_out()<CR>")
+m("n", "<F6>", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
+m("n", "<F7>", ":lua require'dap'.continue()<CR>", { silent = true })
+m("n", "<F8>", ":lua require'dap'.step_over()<CR>", { silent = true })
+m("n", "<F9>", ":lua require'dap'.step_into()<CR>", { silent = true })
+m("n", "<F11>", ":lua require'dap'.step_out()<CR>", { silent = true })
 m("n", "<leader>Dc", ":lua require'dap'.run_to_cursor()<CR>")
 m("n", "<leader>DB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
 m("n", "<leader>Db", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
