@@ -302,7 +302,10 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    -- tag = 'release' -- To use the latest release
+    tag = "release",
+    config = function()
+      require("gitsigns").setup()
+    end,
   },
 
   "RRethy/vim-illuminate",
