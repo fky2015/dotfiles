@@ -1,10 +1,12 @@
 local k = vim.keymap.set
 -- telescope
 k("n", "<leader>f", "<cmd>Telescope find_files<cr>")
+k("n", "<leader>F", "<cmd>Telescope git_files<cr>")
 k("n", "<leader>t", "<cmd>Telescope live_grep<cr>")
 k("n", "<leader>b", "<cmd>Telescope buffers<cr>")
 k("n", "<leader>h", "<cmd>Telescope help_tags<cr>")
 k("n", "<leader>s", "<cmd>Telescope treesitter<cr>")
+k("n", "<leader>r", "<cmd>Telescope resume<cr>")
 
 return {
   {
@@ -55,12 +57,19 @@ return {
     config = function() require("telescope").load_extension("fzf") end
   },
 
+  -- Consider deprecated.
   {
     "nvim-telescope/telescope-frecency.nvim",
-    dependencies = "nvim-telescope/telescope.nvim",
     config = function()
       require("telescope").load_extension("frecency")
     end,
-    requires = { "tami5/sqlite.lua", "nvim-telescope/telescope.nvim" },
+    dependencies = { "tami5/sqlite.lua", "nvim-telescope/telescope.nvim" },
+  },
+  {
+    'prochri/telescope-all-recent.nvim',
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require 'telescope-all-recent'.setup {}
+    end,
   }
 }
