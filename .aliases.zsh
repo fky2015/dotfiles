@@ -90,3 +90,6 @@ alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 # Rust
 alias cb="cargo b"
 alias cbr="cargo b --release"
+alias de="direnv edit"
+alias sp="set_proxy"
+alias usp="unset_proxy"
