@@ -93,3 +93,6 @@ alias cbr="cargo b --release"
 alias de="direnv edit"
 alias sp="set_proxy"
 alias usp="unset_proxy"
+
+# Nix
+alias home="nvim $HOME/.config/home-manager/home.nix"
