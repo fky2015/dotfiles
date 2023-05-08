@@ -18,7 +18,7 @@ zinit light zdharma-continuum/zinit-annex-bin-gem-node
 # 安装二进制软件
 
 # See ~/.local.zsh for more.
-if $ZINIT_DOWNLOAD_BIN;
+if [[ "$ZINIT_DOWNLOAD_BIN" == "foo" ]] 
 then
   # direnv
   zinit from"gh-r" as"program" mv"direnv* -> direnv" \
