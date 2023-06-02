@@ -40,6 +40,8 @@ vim.o.formatoptions = "jcroqlt"
 vim.keymap.set("n", ";", ":")
 vim.keymap.set("x", ";", ":")
 
+vim.keymap.set("n", ":", ";")
+
 
 -- Quicker way to open command window
 vim.keymap.set("n", "q;", "q:")

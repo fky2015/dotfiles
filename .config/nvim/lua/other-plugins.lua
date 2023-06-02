@@ -107,11 +107,11 @@ map("n", "<Space>bd", ":BufferOrderByDirectory<CR>", map_opts)
 map("n", "<Space>bl", ":BufferOrderByLanguage<CR>", map_opts)
 
 -- Tmux Navigator
-map("n", "<A-j>", ":TmuxNavigateDown<CR>", map_opts)
-map("n", "<A-k>", ":TmuxNavigateUp<CR>", map_opts)
-map("n", "<A-h>", ":TmuxNavigateLeft<CR>", map_opts)
-map("n", "<A-l>", ":TmuxNavigateRight<CR>", map_opts)
-map("n", "<A-\\>", ":TmuxNavigatePrevious<CR>", map_opts)
+-- map("n", "<A-j>", ":TmuxNavigateDown<CR>", map_opts)
+-- map("n", "<A-k>", ":TmuxNavigateUp<CR>", map_opts)
+-- map("n", "<A-h>", ":TmuxNavigateLeft<CR>", map_opts)
+-- map("n", "<A-l>", ":TmuxNavigateRight<CR>", map_opts)
+-- map("n", "<A-\\>", ":TmuxNavigatePrevious<CR>", map_opts)
 
 -- Copilot
 

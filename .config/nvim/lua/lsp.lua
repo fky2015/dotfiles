@@ -12,26 +12,26 @@ local navic = require("nvim-navic")
 
 -- Helper function for luasnip.
 local has_words_before = function()
-  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)     -- For `luasnip` users.
+      require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable,     -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -55,7 +55,7 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
-    { name = "luasnip" },     -- For luasnip users.
+    { name = "luasnip" }, -- For luasnip users.
   }, {
     { name = "buffer" },
     { name = "path" },
@@ -66,7 +66,7 @@ cmp.setup({
     {
       name = "latex_symbols",
       option = {
-        strategy = 0,         -- mixed
+        strategy = 0, -- mixed
       },
     },
   }),
@@ -279,8 +279,24 @@ require("mason-lspconfig").setup_handlers({
     lspconfig.lua_ls.setup(lua_opts)
   end,
   ["clangd"] = function()
+    local clangd_extension = require("clangd_extensions")
     setup_opts.capabilities.offsetEncoding = { 'utf-16' }
-    lspconfig.clangd.setup(setup_opts)
+    vim.keymap.set('n', "<localleader>-", ":ClangdSwitchSourceHeader<CR>", { silent = true })
+    setup_opts.cmd = {
+      "clangd",
+      "--clang-tidy",
+      "--cross-file-rename",
+      "--completion-style=bundled",
+      "--header-insertion=iwyu",
+    }
+    clangd_extension.setup{
+      server = setup_opts,
+      extensions = {
+        -- autoSetHints = false,
+      }
+    }
+    vim.keymap.set('n', '<localeader>d', ':ClangdTypeHierarchy<CR>', { silent = true })
+    -- lspconfig.clangd.setup(setup_opts)
   end,
   ["gopls"] = function()
     local gopls_ops = vim.tbl_deep_extend(
@@ -309,7 +325,7 @@ require("mason-lspconfig").setup_handlers({
 
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = false } }))
 
 -- null-ls.nvim
 
@@ -325,6 +341,7 @@ local sources = {
   null_ls.builtins.formatting.jq,
   -- Python
   null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.xmlformat,
   -- null_ls.builtins.code_actions.proselint,
   -- null_ls.builtins.diagnostics.proselint,
   -- null_ls.builtins.formatting.codespell,

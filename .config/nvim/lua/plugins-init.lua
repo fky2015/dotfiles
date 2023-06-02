@@ -22,7 +22,7 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
 end
 
 local opts = {
-  concurrency = 14
+  concurrency = 14,
 }
 
 require("lazy").setup("plugins", opts)
