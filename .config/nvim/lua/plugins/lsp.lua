@@ -20,7 +20,10 @@ return {
   { "petertriho/cmp-git", dependencies = "nvim-lua/plenary.nvim" },
 
   -- Mason
-  "williamboman/mason.nvim",
+  {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate"
+  },
   "williamboman/mason-lspconfig.nvim",
 
   {

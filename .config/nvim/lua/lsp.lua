@@ -137,13 +137,14 @@ end
 
 local on_attach = function(client, bufnr)
   illuminate.on_attach(client)
+  -- require("lsp-inlayhints").on_attach(client, bufnr)
 
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
 
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings.
   m("n", "gd", "lua vim.lsp.buf.definition()")
@@ -196,7 +197,7 @@ require("mason-lspconfig").setup_handlers({
   -- The first entry (without a key) will be the default handler
   -- and will be called for each installed server that doesn't have
   -- a dedicated handler.
-  function(server_name)   -- default handler (optional)
+  function(server_name) -- default handler (optional)
     lspconfig[server_name].setup(setup_opts)
   end,
   -- Next, you can provide targeted overrides for specific servers.
@@ -286,6 +287,7 @@ require("mason-lspconfig").setup_handlers({
       "clangd",
       "--clang-tidy",
       "--cross-file-rename",
+      "--background-index",
       "--completion-style=bundled",
       "--header-insertion=iwyu",
     }
@@ -341,7 +343,10 @@ local sources = {
   null_ls.builtins.formatting.jq,
   -- Python
   null_ls.builtins.formatting.black,
+  -- XML
   null_ls.builtins.formatting.xmlformat,
+  -- CPP
+  null_ls.builtins.diagnostics.clang_check
   -- null_ls.builtins.code_actions.proselint,
   -- null_ls.builtins.diagnostics.proselint,
   -- null_ls.builtins.formatting.codespell,
