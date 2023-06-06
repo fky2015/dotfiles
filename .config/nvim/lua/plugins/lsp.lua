@@ -43,4 +43,15 @@ return {
     end
   },
   "jose-elias-alvarez/null-ls.nvim",
+  -- {"lvimuser/lsp-inlayhints.nvim",
+  -- config = function()
+  --   require("lsp-inlayhints").setup{}
+  -- end
+  -- }
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require"lsp_signature".setup(cfg)
+    end
+  }
 }
