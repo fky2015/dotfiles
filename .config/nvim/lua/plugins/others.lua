@@ -78,6 +78,7 @@ return {
   "stevearc/qf_helper.nvim",
   {
     "christoomey/vim-tmux-navigator",
+    enabled = false,
     config = function()
       vim.g.tmux_navigator_no_mappings = 1
     end,
@@ -112,7 +113,18 @@ return {
   },
 
   { "akinsho/toggleterm.nvim" },
-  "numToStr/FTerm.nvim",
+  {
+    "numToStr/FTerm.nvim",
+
+    config = function()
+      require('FTerm').setup({
+        dimensions = {
+          height = 0.9, -- Height of the terminal window
+          width = 0.9,  -- Width of the terminal window
+        },
+      })
+    end
+  },
   -- A Vim / Neovim plugin to copy text to the system clipboard from anywhere using the ANSI OSC52 sequence.
   "ojroques/vim-oscyank",
 
@@ -218,27 +230,27 @@ return {
     },
     config = function()
       -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup
-      local function open_nvim_tree(data)
-        -- buffer is a [No Name]
-        local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-
-        -- buffer is a directory
-        local directory = vim.fn.isdirectory(data.file) == 1
-
-        if not no_name and not directory then
-          return
-        end
-
-        -- change to the directory
-        if directory then
-          vim.cmd.cd(data.file)
-        end
-
-        -- open the tree
-        require("nvim-tree.api").tree.open()
-      end
-
-      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+      -- local function open_nvim_tree(data)
+      --   -- buffer is a [No Name]
+      --   local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+      --
+      --   -- buffer is a directory
+      --   local directory = vim.fn.isdirectory(data.file) == 1
+      --
+      --   if not no_name and not directory then
+      --     return
+      --   end
+      --
+      --   -- change to the directory
+      --   if directory then
+      --     vim.cmd.cd(data.file)
+      --   end
+      --
+      --   -- open the tree
+      --   require("nvim-tree.api").tree.open()
+      -- end
+      --
+      -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
       require("nvim-tree").setup({
         actions = {
@@ -253,9 +265,13 @@ return {
   {
     "nyngwang/NeoZoom.lua",
     config = function()
-      require('neo-zoom').setup {}
-      local NOREF_NOERR_TRUNC = { silent = true, nowait = true }
-      vim.keymap.set('n', '<leader>z', require("neo-zoom").neo_zoom, NOREF_NOERR_TRUNC)
+      require('neo-zoom').setup {
+        exclude_buftypes = { 'terminal' },
+        exclude_filetypes = { 'lspinfo', 'mason', 'lazy', 'fzf', 'qf', 'ClangdTypeHierarchy' },
+      }
+      -- local NOREF_NOERR_TRUNC = { silent = true, nowait = true }
+      -- vim.keymap.set('n', '<leader>z', require("neo-zoom").neo_zoom, NOREF_NOERR_TRUNC)
+      vim.keymap.set('n', '<CR>', function() vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
     end
   },
 
