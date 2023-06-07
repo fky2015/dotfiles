@@ -379,4 +379,46 @@ return {
       })
     end,
   },
+  {
+    'ThePrimeagen/harpoon',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      vim.keymap.set("n", "<C-s>", mark.add_file)
+      vim.keymap.set("n", "<leader>i", ui.toggle_quick_menu)
+      -- vim.keymap.set("n", "<C-]>", function() ui.nav_next() end)
+      -- vim.keymap.set("n", "<C-[>", function() ui.nav_prev() end)
+
+      vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
+      vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
+    end,
+  },
+  {
+    -- https://github.com/rmagatti/auto-session
+    "rmagatti/auto-session",
+    config = function()
+      function close_all_floating_wins()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local config = vim.api.nvim_win_get_config(win)
+          if config.relative ~= '' then
+            vim.api.nvim_win_close(win, false)
+          end
+        end
+      end
+
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/code", "~/Downloads", "/" },
+        pre_save_cmds = { close_all_floating_wins },
+      }
+    end
+  },
+  {
+    'RaafatTurki/hex.nvim',
+    config = function()
+      require 'hex'.setup()
+    end
+  }
 }
