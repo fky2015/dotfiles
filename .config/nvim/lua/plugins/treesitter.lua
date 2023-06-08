@@ -141,4 +141,17 @@ return {
       }
     end
   },
+  {
+    'Wansmer/treesj',
+    keys = { '<space>m', '<space>j', '<space>J' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({
+        use_default_keymaps = false
+      })
+      vim.keymap.set('n', '<leader>m', require('treesj').toggle)
+      vim.keymap.set('n', '<leader>j', require('treesj').join)
+      vim.keymap.set('n', '<leader>J', require('treesj').split)
+    end,
+  }
 }
