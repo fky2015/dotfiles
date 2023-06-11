@@ -33,7 +33,7 @@ elseif colorscheme == "github" then
     theme_style = M.github_theme_style,
   })
 elseif colorscheme == "catppuccin" then
-  local flavor = "mocha" -- latte, frappe, macchiato, mocha
+  local flavor = "frappe" -- latte, frappe, macchiato, mocha
   vim.g.catppuccin_flavour = flavor
 
   local palette = require("catppuccin.palettes").get_palette(flavor)
@@ -77,22 +77,22 @@ elseif colorscheme == "catppuccin" then
         },
       },
     },
-    color_overrides = {
-      mocha = {
-        text = "#F4CDE9",
-        subtext1 = "#DEBAD4",
-        subtext0 = "#C8A6BE",
-        overlay2 = "#B293A8",
-        overlay1 = "#9C7F92",
-        overlay0 = "#866C7D",
-        surface2 = "#705867",
-        surface1 = "#5A4551",
-        surface0 = "#44313B",
-        base = "#352939",
-        mantle = "#211924",
-        crust = "#1a1016",
-      },
-    },
+    -- color_overrides = {
+    --   mocha = {
+    --     text = "#F4CDE9",
+    --     subtext1 = "#DEBAD4",
+    --     subtext0 = "#C8A6BE",
+    --     overlay2 = "#B293A8",
+    --     overlay1 = "#9C7F92",
+    --     overlay0 = "#866C7D",
+    --     surface2 = "#705867",
+    --     surface1 = "#5A4551",
+    --     surface0 = "#44313B",
+    --     base = "#352939",
+    --     mantle = "#211924",
+    --     crust = "#1a1016",
+    --   },
+    -- },
   })
 
   M.lualine_theme_style = "catppuccin"
