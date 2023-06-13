@@ -50,7 +50,8 @@ alias oned='onedrive --synchronize --confdir="~/.config/onedriveEdu" --upload-on
 
 alias cdg="cd ~/Documents/gdrive"
 alias p="pwd" # shorter
-alias tmux="tmux -2" # fix the problem with vim
+# alias tmux="tmux -2" # fix the problem with vim
+alias ta="tmux a"
 alias y="yay"
 alias tmuxrc="vim ~/.tmux.conf"
 alias destory="/bin/rm"
