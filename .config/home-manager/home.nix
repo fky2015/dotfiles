@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 
+let
+my-python-packages = ps: with ps; [
+    pandas
+    numpy
+    requests
+    virtualenv
+  ];
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -30,6 +38,9 @@
     tealdeer
     xsv
     fzf
+    du-dust
+    hexyl
+    hyperfine
 
     # Overview
     htop
@@ -39,6 +50,7 @@
     # Development
     direnv
     neovim
+    tree-sitter
     tmux
     jq
     nnn
@@ -48,8 +60,8 @@
     vim
     helix
     gitui
-    lldb_16
     rr
+    lz4
 
     # Files
     zstd
@@ -58,7 +70,13 @@
     # Develop environment
     fnm
     sqlite
-    clang-tools
+    clang-tools_16
+    mold
+    lld_16
+    gcc12
+    (python310.withPackages my-python-packages)
+    # gcc_debug
+    # llvmPackages_16.clangNoLibcxx
     # python311
     # python311Packages.pip
 
