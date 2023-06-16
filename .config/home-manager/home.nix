@@ -6,6 +6,7 @@ my-python-packages = ps: with ps; [
     numpy
     requests
     virtualenv
+    psutil
   ];
 in
 {
@@ -66,6 +67,7 @@ in
     # Files
     zstd
     restic
+    neofetch
 
     # Develop environment
     fnm
@@ -75,6 +77,7 @@ in
     lld_16
     gcc12
     (python310.withPackages my-python-packages)
+    sccache
     # gcc_debug
     # llvmPackages_16.clangNoLibcxx
     # python311
