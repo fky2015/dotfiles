@@ -60,8 +60,11 @@ require("indent_blankline").setup({
 vim.g.vimtex_compiler_progname = "nvr"
 vim.g.vimtex_view_method = "zathura"
 vim.g.tex_flavor = "latex"
-vim.g.vimtex_quickfix_method = 'pplatex'
 vim.g.vimtex_quickfix_open_on_warning = 0
+-- Disable pplatex on macOS
+if vim.loop.os_uname().sysname ~= 'Darwin' then
+  vim.g.vimtex_quickfix_method = 'pplatex'
+end
 
 -- require("neoscroll").setup()
 
