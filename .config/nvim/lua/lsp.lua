@@ -322,6 +322,13 @@ require("mason-lspconfig").setup_handlers({
       setup_opts
     )
     lspconfig.gopls.setup(gopls_ops)
+  end,
+  ["neocmake"] = function()
+    lspconfig.neocmake.setup({})
+  end,
+  -- jdtls must use with at least JDK 17
+  ["jdtls"] = function()
+    lspconfig.jdtls.setup({})
   end
 })
 
