@@ -320,7 +320,9 @@ return {
     },
     tag = "release",
     config = function()
-      require("gitsigns").setup()
+      require("gitsigns").setup({
+        yadm = { enable = true },
+      })
     end,
   },
 
