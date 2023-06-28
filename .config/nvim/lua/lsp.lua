@@ -281,18 +281,27 @@ require("mason-lspconfig").setup_handlers({
   end,
   ["clangd"] = function()
     local clangd_extension = require("clangd_extensions")
-    setup_opts.capabilities.offsetEncoding = { 'utf-16' }
+    clangd_opts = vim.tbl_deep_extend("keep", {
+      {
+        capabilities = {
+          offsetEncoding = {
+            'utf-16'
+          }
+        }
+      },
+      cmd = {
+        "clangd",
+        "--clang-tidy",
+        "--cross-file-rename",
+        "--background-index",
+        "--completion-style=bundled",
+        "--header-insertion=iwyu",
+      }
+
+    }, setup_opts);
     vim.keymap.set('n', "<localleader>-", ":ClangdSwitchSourceHeader<CR>", { silent = true })
-    setup_opts.cmd = {
-      "clangd",
-      "--clang-tidy",
-      "--cross-file-rename",
-      "--background-index",
-      "--completion-style=bundled",
-      "--header-insertion=iwyu",
-    }
-    clangd_extension.setup{
-      server = setup_opts,
+    clangd_extension.setup {
+      server = clangd_opts,
       extensions = {
         -- autoSetHints = false,
       }
@@ -324,11 +333,11 @@ require("mason-lspconfig").setup_handlers({
     lspconfig.gopls.setup(gopls_ops)
   end,
   ["neocmake"] = function()
-    lspconfig.neocmake.setup({})
+    lspconfig.neocmake.setup(setup_opts)
   end,
   -- jdtls must use with at least JDK 17
   ["jdtls"] = function()
-    lspconfig.jdtls.setup({})
+    lspconfig.jdtls.setup(setup_opts)
   end
 })
 
