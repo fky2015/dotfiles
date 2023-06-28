@@ -1,7 +1,10 @@
 local lualine_theme_style = require('theme').lualine_theme_style
 
 local ops = {
-  theme = "auto"
+  theme = "auto",
+  disabled_filetypes = {
+    winbar = { "NvimTree", "toggleterm", "fugitive" }
+  },
 }
 if lualine_theme_style then
   ops.theme = lualine_theme_style
