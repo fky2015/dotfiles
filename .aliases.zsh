@@ -1,6 +1,20 @@
 #! /bin/sh
 
-# Baisc
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+# If is Linux, then use, alias `open` to `xdg-open`.
+if [[ machine = "Linux" ]]; then
+  alias open="xdg-open"
+fi
+
+# Basic
 alias aliases="$VISUAL ~/.aliases.zsh"
 
 # fix alias in command `watch`
