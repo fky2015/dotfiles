@@ -281,7 +281,7 @@ require("mason-lspconfig").setup_handlers({
   end,
   ["clangd"] = function()
     local clangd_extension = require("clangd_extensions")
-    clangd_opts = vim.tbl_deep_extend("keep", {
+    local clangd_opts = vim.tbl_deep_extend("keep", {
       {
         capabilities = {
           offsetEncoding = {
