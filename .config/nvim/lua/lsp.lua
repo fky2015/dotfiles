@@ -281,12 +281,10 @@ require("mason-lspconfig").setup_handlers({
   end,
   ["clangd"] = function()
     local clangd_extension = require("clangd_extensions")
-    clangd_opts = vim.tbl_deep_extend("keep", {
-      {
-        capabilities = {
-          offsetEncoding = {
-            'utf-16'
-          }
+    local clangd_opts = vim.tbl_deep_extend("keep", {
+      capabilities = {
+        offsetEncoding = {
+          'utf-16'
         }
       },
       cmd = {
@@ -297,7 +295,6 @@ require("mason-lspconfig").setup_handlers({
         "--completion-style=bundled",
         "--header-insertion=iwyu",
       }
-
     }, setup_opts);
     vim.keymap.set('n', "<localleader>-", ":ClangdSwitchSourceHeader<CR>", { silent = true })
     clangd_extension.setup {
