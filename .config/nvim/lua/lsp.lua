@@ -294,6 +294,8 @@ require("mason-lspconfig").setup_handlers({
         "--background-index",
         "--completion-style=bundled",
         "--header-insertion=iwyu",
+        "--enable-config",
+        "--compile-commands-dir=./build",
       }
     }, setup_opts);
     vim.keymap.set('n', "<localleader>-", ":ClangdSwitchSourceHeader<CR>", { silent = true })
