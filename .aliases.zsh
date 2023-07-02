@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/zsh
 
 unameOut="$(uname -s)"
 case "${unameOut}" in
@@ -10,7 +10,7 @@ case "${unameOut}" in
 esac
 
 # If is Linux, then use, alias `open` to `xdg-open`.
-if [[ machine = "Linux" ]]; then
+if [[ $machine == "Linux" ]]; then
   alias open="xdg-open"
 fi
 
