@@ -265,15 +265,21 @@ return {
 
   {
     "nyngwang/NeoZoom.lua",
+    -- config = function()
+    --   require('neo-zoom').setup {
+    --     exclude_buftypes = { 'terminal' },
+    --     exclude_filetypes = { 'lspinfo', 'mason', 'lazy', 'fzf', 'qf', 'ClangdTypeHierarchy' },
+    --   }
+    --   vim.keymap.set('n', '<leader>z', function() vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
+    -- end
+  },
+  {
+    "folke/zen-mode.nvim",
     config = function()
-      require('neo-zoom').setup {
-        exclude_buftypes = { 'terminal' },
-        exclude_filetypes = { 'lspinfo', 'mason', 'lazy', 'fzf', 'qf', 'ClangdTypeHierarchy' },
-      }
-      vim.keymap.set('n', '<leader>z', function() vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
+      vim.keymap.set('n', '<leader>z', function() require("zen-mode").toggle { window = { width = 0.90 } } end,
+        { silent = true, nowait = true })
     end
   },
-
   "camspiers/animate.vim",
 
   {
