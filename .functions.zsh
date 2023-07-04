@@ -85,6 +85,7 @@ set_proxy() {
     export http_proxy=$CUSTOM_HTTP_PROXY
     if [[ ! -z $CUSTOM_NO_PROXY ]]; then
       export no_proxy=$CUSTOM_NO_PROXY
+      export NO_PROXY=$CUSTOM_NO_PROXY
     fi
   
 }
@@ -93,6 +94,7 @@ unset_proxy(){
     unset http_proxy
     unset https_proxy
     unset no_proxy
+    unset NO_PROXY
 }
 
 nasm-bin() { nasm $1.asm -f bin -o $1.bin }
