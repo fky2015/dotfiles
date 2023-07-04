@@ -9,7 +9,7 @@ export GOPATH=$HOME/code/go
 export PATH="$GOPATH/bin:$PATH"
 
 #export JAVA_HOME
-export JAVA_HOME="/usr/lib/jvm/default"
+# export JAVA_HOME="/usr/lib/jvm/default"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # FZF
