@@ -39,8 +39,9 @@ vim.keymap.set("n", "<Left>", ":call animate#window_delta_width(10)<CR>", map_op
 vim.keymap.set("n", "<Right>", ":call animate#window_delta_width(-10)<CR>", map_opts)
 
 -- https://github.com/numToStr/Comment.nvim
-require("Comment").setup()
-vim.keymap.set('i', "<C-_>", '<C-O>gcc', { remap = true })
+-- Never used.
+-- require("Comment").setup()
+-- vim.keymap.set('i', "<C-_>", '<C-O>gcc', { remap = true })
 
 
 require("nvim-autopairs").setup({
