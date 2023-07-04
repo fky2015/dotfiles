@@ -270,9 +270,7 @@ return {
         exclude_buftypes = { 'terminal' },
         exclude_filetypes = { 'lspinfo', 'mason', 'lazy', 'fzf', 'qf', 'ClangdTypeHierarchy' },
       }
-      -- local NOREF_NOERR_TRUNC = { silent = true, nowait = true }
-      -- vim.keymap.set('n', '<leader>z', require("neo-zoom").neo_zoom, NOREF_NOERR_TRUNC)
-      vim.keymap.set('n', '<CR>', function() vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
+      vim.keymap.set('n', '<leader>z', function() vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
     end
   },
 
