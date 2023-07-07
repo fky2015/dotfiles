@@ -289,8 +289,6 @@ return {
     end,
   },
 
-  { "iamcco/markdown-preview.nvim", build = "cd app && yarn install" },
-
   "wakatime/vim-wakatime",
   {
     "Pocco81/true-zen.nvim",
