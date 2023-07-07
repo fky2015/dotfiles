@@ -42,6 +42,9 @@ in
     du-dust
     hexyl
     hyperfine
+    git
+    delta
+    ripgrep
 
     # Overview
     htop
@@ -63,6 +66,10 @@ in
     gitui
     rr
     lz4
+    ninja
+    cmake
+    nasm
+    yasm
 
     # Files
     zstd
@@ -75,9 +82,11 @@ in
     clang-tools_16
     mold
     lld_16
-    gcc12
+    # gcc12
+    clang_16
     (python310.withPackages my-python-packages)
     sccache
+
     # gcc_debug
     # llvmPackages_16.clangNoLibcxx
     # python311
