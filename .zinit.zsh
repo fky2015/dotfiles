@@ -118,7 +118,7 @@ zinit light joshskidmore/zsh-fzf-history-search
 # Git extension
 zinit as"null" wait"1" lucid for \
     sbin    Fakerr/git-recall \
-    sbin    cloneopts paulirish/git-open \
+    sbin    paulirish/git-open \
     sbin    paulirish/git-recent \
     sbin    davidosomething/git-my \
     sbin atload"export _MENU_THEME=legacy" \
