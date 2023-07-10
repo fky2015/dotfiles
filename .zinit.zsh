@@ -14,6 +14,17 @@ zinit load zdharma-continuum/zinit-annex-readurl
 # z-a-bin-gem-node
 zinit light zdharma-continuum/zinit-annex-bin-gem-node
 
+z_lucid() {
+	zinit ice lucid ver'master' "$@"
+}
+
+zi0a() {
+	z_lucid wait'0a' "$@"
+}
+
+zi_program() {
+	zi0a as'program' "$@"
+}
 
 # 安装二进制软件
 
@@ -88,8 +99,14 @@ zinit ice svn
 zinit snippet OMZ::plugins/extract
 
 zinit ice lucid wait='1'
-#zinit snippet OMZ::plugins/docker/_docker
-zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zinit wait lucid for \
+  atinit"zicompinit; zicdreplay"  \
+    OMZP::colored-man-pages \
+  as"completion" \
+    OMZP::kubectl
+
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # nnn cd on quit
 # see: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
@@ -115,10 +132,16 @@ zinit light joshskidmore/zsh-fzf-history-search
 #          https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/share/man/man1/fzf.1'
 # zinit light junegunn/fzf
 
-# Git extension
+
+
+## Git extension
+
+# git-open has a manpage that I want in my MANPATH
+zi_program has'git' atclone"cp git-open.1.md $HOME/.local/man/man1/git-open.1" atpull'%atclone'
+zinit light paulirish/git-open
+
 zinit as"null" wait"1" lucid for \
     sbin    Fakerr/git-recall \
-    sbin    paulirish/git-open \
     sbin    paulirish/git-recent \
     sbin    davidosomething/git-my \
     sbin atload"export _MENU_THEME=legacy" \
