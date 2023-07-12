@@ -70,6 +70,7 @@ in
     cmake
     nasm
     yasm
+    gdb
 
     # Files
     zstd
