@@ -140,7 +140,7 @@ wk.register({
     name = "Format",
     q = { "Format the code under the current range." },
   },
-}, { mode = "v" })
+}, { mode = "x" })
 
 -- neogen
 vim.keymap.set("n", "<leader>g", ":lua require('neogen').generate()<CR>", map_opts)

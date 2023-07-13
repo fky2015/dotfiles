@@ -90,7 +90,7 @@ end
 
 local m = vim.keymap.set
 
-m("v", "<M-k>", "<Cmd>lua require('dapui').eval()<CR>")
+m("x", "<M-k>", "<Cmd>lua require('dapui').eval()<CR>")
 m("n", "<F6>", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
 m("n", "<F7>", ":lua require'dap'.continue()<CR>", { silent = true })
 m("n", "<F8>", ":lua require'dap'.step_over()<CR>", { silent = true })
