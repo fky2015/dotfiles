@@ -142,7 +142,7 @@ vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 m("n", "<space>a", "lua vim.diagnostic.setloclist()")
 
 -- Mapping Formmating
-m({ "n", "x" }, "<C-L>", "lua vim.lsp.buf.format{ async = true }")
+m({ "n", "x" }, "<C-l>", "lua vim.lsp.buf.format{ async = true }")
 
 
 
@@ -181,6 +181,7 @@ local on_attach = function(client, bufnr)
   m("n", "<leader>rn", "lua vim.lsp.buf.rename()")
   m("n", "ga", "lua vim.lsp.buf.code_action()")
   m("n", "gr", "lua vim.lsp.buf.references()")
+  m({ "n", "x" }, "<C-l>", "lua vim.lsp.buf.format{ async = true }")
 end
 
 require("mason").setup {

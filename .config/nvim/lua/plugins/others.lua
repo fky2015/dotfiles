@@ -115,7 +115,6 @@ return {
   { "akinsho/toggleterm.nvim" },
   {
     "numToStr/FTerm.nvim",
-
     config = function()
       require('FTerm').setup({
         dimensions = {
