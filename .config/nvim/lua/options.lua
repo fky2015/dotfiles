@@ -51,7 +51,7 @@ vim.keymap.set("i", "jk", "<ESC>", { silent = true })
 vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
 -- Quick Copy
-vim.keymap.set("v", "<C-C>", '"+y')
+vim.keymap.set("x", "<C-C>", '"+y')
 vim.keymap.set("n", "<C-C>", 'V"+y')
 
 vim.keymap.set("n", "gl", "2g;")
