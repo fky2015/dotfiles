@@ -71,6 +71,7 @@ in
     nasm
     yasm
     gdb
+    rustup
 
     # Files
     zstd
@@ -87,11 +88,7 @@ in
     clang_16
     (python310.withPackages my-python-packages)
     sccache
-
-    # gcc_debug
-    # llvmPackages_16.clangNoLibcxx
-    # python311
-    # python311Packages.pip
+    rr
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
