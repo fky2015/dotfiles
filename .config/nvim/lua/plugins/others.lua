@@ -206,7 +206,17 @@ return {
     end
   },
 
-  "kosayoda/nvim-lightbulb",
+  {
+    "kosayoda/nvim-lightbulb",
+    config = function()
+      require("nvim-lightbulb").setup({
+        autocmd = { enabled = true },
+        number = {
+          enabled = true,
+        },
+      })
+    end
+  },
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
