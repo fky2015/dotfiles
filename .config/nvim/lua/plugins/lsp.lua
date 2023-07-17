@@ -42,4 +42,5 @@ return {
     end
   },
   "jose-elias-alvarez/null-ls.nvim",
+  
 }
