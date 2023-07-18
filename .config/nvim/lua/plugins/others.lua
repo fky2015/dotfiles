@@ -134,11 +134,22 @@ return {
     -- https://github.com/rmagatti/auto-session
     "rmagatti/auto-session",
     config = function()
+      local filetype_to_close = { "fzf", "qf", "help", "terminal", "DiffviewFiles" };
       function close_all_floating_wins()
         for _, win in ipairs(vim.api.nvim_list_wins()) do
           local config = vim.api.nvim_win_get_config(win)
           if config.relative ~= '' then
             vim.api.nvim_win_close(win, false)
+          end
+
+          -- If filetype is in the list, close it.
+          local buf = vim.api.nvim_win_get_buf(win)
+          local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+
+          for _, ft_to_close in ipairs(filetype_to_close) do
+            if ft == ft_to_close then
+              vim.api.nvim_win_close(win, false)
+            end
           end
         end
       end
