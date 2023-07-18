@@ -79,9 +79,9 @@ return {
     end
   },
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     dependencies = {
-      "kyazdani42/nvim-web-devicons", -- optional, for file icon
+      "nvim-tree/nvim-web-devicons", -- optional, for file icon
     },
     config = function()
       -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup
@@ -128,7 +128,7 @@ return {
 
   {
     "goolord/alpha-nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("alpha").setup(require("alpha.themes.startify").opts)
     end,
@@ -144,15 +144,20 @@ return {
   -- Tabbar
   {
     "romgrk/barbar.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
   -- lualine
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
   "stevearc/dressing.nvim",
-
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  }
 }
