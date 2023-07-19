@@ -19,7 +19,7 @@ k("n", "<leader-/>", "<cmd>Telescope><CR>")
 return {
   {
     "folke/trouble.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup({
         -- your configuration comes here
