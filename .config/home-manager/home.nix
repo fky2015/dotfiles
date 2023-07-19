@@ -45,6 +45,7 @@ in
     git
     delta
     ripgrep
+    just
 
     # Overview
     htop
