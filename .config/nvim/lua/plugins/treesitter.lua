@@ -90,34 +90,6 @@ return {
     end
   },
   {
-    "nvim-treesitter/nvim-treesitter-refactor",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        refactor = {
-          highlight_definitions = { enable = true },
-          -- highlight_current_scope = { enable = true },
-          smart_rename = {
-            enable = true,
-            keymaps = {
-              smart_rename = "grr",
-            },
-          },
-          navigation = {
-            enable = true,
-            keymaps = {
-              goto_definition = "gnd",
-              list_definitions = "gnD",
-              list_definitions_toc = "gO",
-              goto_next_usage = "<a-*>",
-              goto_previous_usage = "<a-#>",
-            },
-          },
-        },
-      })
-    end
-  },
-  {
     "SmiteshP/nvim-navic",
     dependencies = "neovim/nvim-lspconfig",
     config = function()
@@ -181,6 +153,7 @@ return {
     "RRethy/vim-illuminate",
     config = function()
       require('illuminate').configure({
+        -- Large file will be slow.
         large_file_cutoff = 3000,
       })
     end
