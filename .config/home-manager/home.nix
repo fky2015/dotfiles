@@ -46,6 +46,7 @@ in
     delta
     ripgrep
     just
+    lnav
 
     # Overview
     htop
