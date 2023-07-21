@@ -21,11 +21,11 @@ k("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", map_opts)
 k("n", "<leader>n", ":NvimTreeFindFile<CR>", map_opts)
 
 -- https://github.com/simrat39/symbols-outline.nvim
-vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", map_opts)
-vim.keymap.set("!", "<F3>", "<C-O>:SymbolsOutline<CR>", map_opts)
-require("symbols-outline").setup({
-  width = 35,
-})
+-- vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", map_opts)
+-- vim.keymap.set("!", "<F3>", "<C-O>:SymbolsOutline<CR>", map_opts)
+-- require("symbols-outline").setup({
+--   width = 35,
+-- })
 
 -- FTerm
 vim.keymap.set("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', map_opts)

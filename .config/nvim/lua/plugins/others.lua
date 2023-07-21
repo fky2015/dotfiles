@@ -157,6 +157,7 @@ return {
       vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
       require("auto-session").setup {
         log_level = "error",
+        auto_restore_enabled = false,
         auto_session_suppress_dirs = { "~/", "~/code", "~/Downloads", "/" },
         pre_save_cmds = { close_all_floating_wins },
       }
