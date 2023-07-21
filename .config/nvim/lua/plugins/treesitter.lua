@@ -177,7 +177,14 @@ return {
       vim.keymap.set('n', '<F3>', '<cmd>AerialToggle!<CR>')
     end
   },
-  "RRethy/vim-illuminate",
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require('illuminate').configure({
+        large_file_cutoff = 3000,
+      })
+    end
+  },
   {
     "luukvbaal/statuscol.nvim",
     config = function()

@@ -6,7 +6,6 @@ vim.opt.completeopt = "menu,menuone,noselect"
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-local illuminate = require("illuminate")
 local rt = require("rust-tools")
 local navic = require("nvim-navic")
 
@@ -147,7 +146,6 @@ m({ "n", "x" }, "<C-l>", "lua vim.lsp.buf.format{ async = true }")
 
 
 local on_attach = function(client, bufnr)
-  illuminate.on_attach(client)
   -- require("lsp-inlayhints").on_attach(client, bufnr)
 
   if client.server_capabilities.documentSymbolProvider then
@@ -226,8 +224,6 @@ require("mason-lspconfig").setup_handlers({
           adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
         },
         on_attach = function(client, bufnr)
-          illuminate.on_attach(client)
-
           -- Enable completion triggered by <c-x><c-o>
           vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
