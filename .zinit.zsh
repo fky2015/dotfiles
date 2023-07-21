@@ -61,6 +61,9 @@ zinit load zdharma-continuum/history-search-multi-word
 zinit ice lucid wait='0' atinit='zpcompinit'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
+zinit ice depth='1'
+zinit load MichaelAquilina/zsh-you-should-use
+
 # 自动建议
 zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
