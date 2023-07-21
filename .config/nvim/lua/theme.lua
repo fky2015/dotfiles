@@ -40,6 +40,7 @@ elseif colorscheme == "catppuccin" then
 
   require("catppuccin").setup({
     integrations = {
+      aerial = true,
       lsp_trouble = true,
       dap = {
         enabled = true,
