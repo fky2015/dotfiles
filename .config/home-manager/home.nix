@@ -74,6 +74,8 @@ in
     yasm
     gdb
     rustup
+    docker-compose
+    ctop
 
     # Files
     zstd
