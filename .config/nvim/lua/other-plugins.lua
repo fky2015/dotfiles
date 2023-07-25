@@ -21,11 +21,11 @@ k("!", "<F2>", "<C-O>:NvimTreeToggle<CR>", map_opts)
 k("n", "<leader>n", ":NvimTreeFindFile<CR>", map_opts)
 
 -- https://github.com/simrat39/symbols-outline.nvim
-vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", map_opts)
-vim.keymap.set("!", "<F3>", "<C-O>:SymbolsOutline<CR>", map_opts)
-require("symbols-outline").setup({
-  width = 35,
-})
+-- vim.keymap.set("", "<F3>", ":SymbolsOutline<CR>", map_opts)
+-- vim.keymap.set("!", "<F3>", "<C-O>:SymbolsOutline<CR>", map_opts)
+-- require("symbols-outline").setup({
+--   width = 35,
+-- })
 
 -- FTerm
 vim.keymap.set("n", "<F4>", '<CMD>lua require("FTerm").toggle()<CR>', map_opts)
@@ -180,16 +180,6 @@ vim.diagnostic.config({
 -- vim.keymap.set('n', '<Leader>pre', function() vim.cmd('NeoRootChange') end, NOREF_NOERR_TRUNC)
 --
 
-vim.keymap.set('n', 'n',
-  [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-  map_opts)
-vim.keymap.set('n', 'N',
-  [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-  map_opts)
-vim.keymap.set('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], map_opts)
-vim.keymap.set('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], map_opts)
-vim.keymap.set('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], map_opts)
-vim.keymap.set('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], map_opts)
 
 -- trouble.nvim
 vim.keymap.set('n', '<leader>xx', '<CMD>TroubleToggle<CR>', map_opts)

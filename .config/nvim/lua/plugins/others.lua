@@ -43,13 +43,23 @@ return {
     end,
   },
   "mg979/vim-visual-multi",
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end,
-  },
 
+  {
+    "uga-rosa/ccc.nvim",
+    config = function()
+      local ccc = require("ccc")
+
+      ccc.setup({
+        -- Your preferred settings
+        -- Example: enable highlighter
+        highlighter = {
+          auto_enable = true,
+          lsp = true,
+        },
+        disable_default_mappings = true
+      })
+    end
+  },
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -157,6 +167,7 @@ return {
       vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
       require("auto-session").setup {
         log_level = "error",
+        auto_restore_enabled = false,
         auto_session_suppress_dirs = { "~/", "~/code", "~/Downloads", "/" },
         pre_save_cmds = { close_all_floating_wins },
       }
