@@ -45,6 +45,8 @@ in
     git
     delta
     ripgrep
+    just
+    lnav
 
     # Overview
     htop
@@ -72,6 +74,8 @@ in
     yasm
     gdb
     rustup
+    docker-compose
+    ctop
 
     # Files
     zstd

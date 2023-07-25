@@ -90,34 +90,6 @@ return {
     end
   },
   {
-    "nvim-treesitter/nvim-treesitter-refactor",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        refactor = {
-          highlight_definitions = { enable = true },
-          -- highlight_current_scope = { enable = true },
-          smart_rename = {
-            enable = true,
-            keymaps = {
-              smart_rename = "grr",
-            },
-          },
-          navigation = {
-            enable = true,
-            keymaps = {
-              goto_definition = "gnd",
-              list_definitions = "gnD",
-              list_definitions_toc = "gO",
-              goto_next_usage = "<a-*>",
-              goto_previous_usage = "<a-#>",
-            },
-          },
-        },
-      })
-    end
-  },
-  {
     "SmiteshP/nvim-navic",
     dependencies = "neovim/nvim-lspconfig",
     config = function()
@@ -155,8 +127,37 @@ return {
     end,
   },
   -- TODO: https://github.com/nvimdev/lspsaga.nvim#using-lspsaga
-  "simrat39/symbols-outline.nvim",
-  "RRethy/vim-illuminate",
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+    config = function()
+      require('aerial').setup({
+        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+        end,
+        backends = { "lsp", "treesitter", "markdown", "man" },
+      })
+      -- You probably also want to set a keymap to toggle aerial
+      vim.keymap.set('n', '<F3>', '<cmd>AerialToggle!<CR>')
+    end
+  },
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require('illuminate').configure({
+        -- Large file will be slow.
+        large_file_cutoff = 3000,
+      })
+    end
+  },
   {
     "luukvbaal/statuscol.nvim",
     config = function()
@@ -178,5 +179,5 @@ return {
         }
       })
     end,
-  }
+  },
 }
