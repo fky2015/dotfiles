@@ -179,4 +179,13 @@ return {
       require 'hex'.setup()
     end
   },
+  {
+    "m4xshen/hardtime.nvim",
+    config = function()
+      require "hardtime".setup {
+        max_count = 5,
+      }
+    end,
+    opts = {}
+  },
 }
