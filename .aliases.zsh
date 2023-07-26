@@ -55,6 +55,7 @@ alias nv.="nvim ."
 alias nvc="nvim --clean -u $HOME/.config/nvim/lua/fky/options.lua"
 alias anvim="NVIM_APPNAME=astronvim nvim"
 alias v="vim"
+alias n="nnn"
 
 # Onedrive
 alias one="onedrive --synchronize"
