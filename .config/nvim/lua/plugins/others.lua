@@ -184,6 +184,12 @@ return {
     config = function()
       require "hardtime".setup {
         max_count = 5,
+        disabled_keys = {
+          ["<UP>"] = {},
+          ["<DOWN>"] = {},
+          ["<LEFT>"] = {},
+          ["<RIGHT>"] = {},
+        },
       }
     end,
     opts = {}
