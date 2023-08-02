@@ -7,6 +7,7 @@ my-python-packages = ps: with ps; [
     requests
     virtualenv
     psutil
+    pyarrow
   ];
 in
 {
@@ -93,6 +94,7 @@ in
     (python310.withPackages my-python-packages)
     sccache
     rr
+    snzip
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
