@@ -46,9 +46,10 @@ vim.keymap.set("n", ":", ";")
 -- Quicker way to open command window
 vim.keymap.set("n", "q;", "q:")
 
+-- TODO: only enable in simple-config-mode.
 -- Quicker <Esc> in insert mode
-vim.keymap.set("i", "jk", "<ESC>", { silent = true })
-vim.keymap.set("t", "jk", "<C-\\><C-n>")
+-- vim.keymap.set("i", "jk", "<ESC>", { silent = true })
+-- vim.keymap.set("t", "jk", "<C-\\><C-n>")
 
 -- Quick Copy
 vim.keymap.set("x", "<C-C>", '"+y')

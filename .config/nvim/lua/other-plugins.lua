@@ -10,7 +10,6 @@ require('leap').add_default_mappings()
 vim.keymap.set("n", "<leader>pi", ":Lazy install<CR>")
 vim.keymap.set("n", "<leader>ps", ":Lazy sync<CR>")
 
-vim.keymap.set("n", "<localleader>f", ":lua require('utils').FoldColumnToggle()<CR>")
 vim.keymap.set("n", "<leader>q", ":QFToggle!<CR>")
 vim.keymap.set("n", "<leader>l", ":LLToggle!<CR>")
 
