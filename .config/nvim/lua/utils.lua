@@ -1,4 +1,3 @@
-local M = {}
 
 local toBool = {
 	["1"] = true,

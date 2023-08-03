@@ -11,10 +11,9 @@ return {
         highlight = {
           enable = true,
           disable = { "latex" },
+          -- TODO: need large_buf
+          -- disable = function(_, bufnr) return vim.b[bufnr].large_buf end,
           additional_vim_regex_highlighting = { "latex" },
-        },
-        indent = {
-          enable = true,
         },
         incremental_selection = {
           enable = true,
@@ -126,7 +125,6 @@ return {
       vim.keymap.set('n', '<leader>J', require('treesj').split)
     end,
   },
-  -- TODO: https://github.com/nvimdev/lspsaga.nvim#using-lspsaga
   {
     'stevearc/aerial.nvim',
     opts = {},
