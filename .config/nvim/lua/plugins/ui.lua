@@ -62,11 +62,9 @@ return {
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
-    config = function()
-      require("fidget").setup()
-    end,
+    event = "LspAttach",
+    opts = {}
   },
-
   {
     "kosayoda/nvim-lightbulb",
     config = function()
