@@ -1,12 +1,22 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      "windwp/nvim-ts-autotag",
+    },
     build = ":TSUpdate",
     config = function()
-      vim.o.foldmethod = "expr"
-      vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+      -- vim.o.foldmethod = "expr"
+      -- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
       require("nvim-treesitter.configs").setup({
+        -- "windwp/nvim-ts-autotag",
+        autotag = { enable = true },
+        -- 'JoosepAlviste/nvim-ts-context-commentstring',
+        context_commentstring = {
+          enable = true,
+        },
         auto_install = true,
         highlight = {
           enable = true,
