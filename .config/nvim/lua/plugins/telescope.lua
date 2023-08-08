@@ -15,6 +15,7 @@ k("n", "<leader>s", "<cmd>Telescope treesitter<cr>")
 k("n", "<leader>r", "<cmd>Telescope resume<cr>")
 k("n", "<C-_>", "<cmd>Telescope<cr>")
 k("n", "<leader-/>", "<cmd>Telescope><CR>")
+vim.keymap.set("n", "<leader>T", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 return {
   {
@@ -31,9 +32,17 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    dependencies = { 'nvim-lua/plenary.nvim', "folke/trouble.nvim" },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
+    },
     config = function()
       local trouble = require("trouble.providers.telescope")
+
+      -- require("telescope").load_extension("live_grep_args")
+
+      local lga_actions = require("telescope-live-grep-args.actions")
 
       require("telescope").setup {
         defaults = {
@@ -48,6 +57,23 @@ return {
             }
           },
         },
+        extensions = {
+          live_grep_args = {
+            auto_quoting = true, -- enable/disable auto-quoting
+            -- define mappings, e.g.
+            mappings = {
+              -- extend mappings
+              i = {
+                ["<C-k>"] = lga_actions.quote_prompt(),
+                ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              },
+            },
+            -- ... also accepts theme settings, for example:
+            -- theme = "dropdown", -- use dropdown theme
+            -- theme = { }, -- use own theme spec
+            -- layout_config = { mirror=true }, -- mirror preview pane
+          },
+        }
       }
     end
   },
@@ -89,5 +115,5 @@ return {
       require('neoclip').setup()
       require('telescope').load_extension('neoclip')
     end,
-  }
+  },
 }
