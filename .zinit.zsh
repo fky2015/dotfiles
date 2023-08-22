@@ -69,8 +69,13 @@ zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
 # 补全
-zinit ice lucid wait='0'
-zinit light zsh-users/zsh-completions
+zi for \
+    atload"zicompinit; zicdreplay" \
+    blockf \
+    lucid \
+    wait \
+  zsh-users/zsh-completions \
+  nix-community/nix-zsh-completions
 
 # 加载 OMZ 框架及部分插件
 zinit snippet OMZ::lib/completion.zsh
