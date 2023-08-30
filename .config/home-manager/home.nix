@@ -77,6 +77,7 @@ in
     rustup
     docker-compose
     ctop
+    valgrind
 
     # Files
     zstd
@@ -84,15 +85,18 @@ in
     neofetch
 
     # Develop environment
+    include-what-you-use
     fnm
     sqlite
     clang-tools_16
     mold
     lld_16
-    # gcc12
-    clang_16
+    # 
+    gcc12
+    # clang_16
     (python310.withPackages my-python-packages)
     sccache
+    ccache
     rr
     snzip
     thrift
