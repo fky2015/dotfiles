@@ -78,6 +78,7 @@ in
     docker-compose
     ctop
     valgrind
+    k9s
 
     # Files
     zstd
