@@ -98,8 +98,8 @@ alias windows="mount.ntfs /dev/sda3 /mnt/"
 alias qemu="qemu-system-x86_64"
 alias mine="cd ~/code/git/mine"
 alias ssr="electron-ssr"
-alias ls="exa"
-alias ll="exa -al"
+alias ls="eza"
+alias ll="eza -al"
 
 # LaTeX
 # https://wiki.archlinux.org/title/TeX_Live
