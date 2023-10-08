@@ -84,6 +84,7 @@ in
     zstd
     restic
     neofetch
+    nexttrace
 
     # Develop environment
     include-what-you-use
