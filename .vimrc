@@ -95,7 +95,10 @@ nnoremap q; q:
 " Quicker <Esc> in insert mode
 inoremap <silent> jk <Esc>
 
-tnoremap jk <c-\><c-n>
+if v:version > 803
+  tnoremap jk <c-\><c-n>
+endif
+
 
 " Quick Copy
 vnoremap <C-C> "+y
