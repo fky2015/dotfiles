@@ -44,7 +44,7 @@ alias or='optirun'
 alias zshrc="$VISUAL ~/.zshrc"
 alias zinitrc="$VISUAL ~/.zinit.zsh"
 alias vimrc="$VISUAL ~/.vimrc"
-alias nvimrc="cd ~/.config/nvim && nvim . && cd -"
+alias nvimrc="cd ~/.config/astronvim && nvim . && cd -"
 alias ipad="ip addr | grep inet && hostname -i"
 alias cdp="cd ~/playground" # change to the playground
 alias cdd="cd ~/Downloads" # change to the Downloads
@@ -53,7 +53,7 @@ alias h="htop"
 alias nv="nvim"
 alias nv.="nvim ."
 alias nvc="nvim --clean -u $HOME/.config/nvim/lua/fky/options.lua"
-alias anvim="NVIM_APPNAME=astronvim nvim"
+alias nvim="NVIM_APPNAME=astronvim nvim"
 alias anv="anvim"
 alias v="vim"
 alias n="nnn"
