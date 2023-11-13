@@ -1,3 +1,6 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = https://github.com/AstroNvim/AstroNvim.git
+[submodule ".config/nvim/lua/user"]
+	path = .config/nvim/lua/user
+	url = git@github.com:fky2015/astronvim_config.git
