@@ -49,7 +49,11 @@ alias ipad="ip addr | grep inet && hostname -i"
 alias cdp="cd ~/playground" # change to the playground
 alias cdd="cd ~/Downloads" # change to the Downloads
 alias cdo="cd ~/Documents/onedrive"
-alias tt="take ~/playground/$(date -u '+%m%d')"
+tt ()
+{
+    today=$(date -u '+%y%m%d')
+    take ~/playground/${today}
+}
 alias h="htop"
 alias nv="nvim"
 alias nv.="nvim ."
