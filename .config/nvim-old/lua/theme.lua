@@ -33,7 +33,7 @@ elseif colorscheme == "github" then
     theme_style = M.github_theme_style,
   })
 elseif colorscheme == "catppuccin" then
-  local flavor = "frappe" -- latte, frappe, macchiato, mocha
+  local flavor = "latte" -- latte, frappe, macchiato, mocha
   vim.g.catppuccin_flavour = flavor
 
   local palette = require("catppuccin.palettes").get_palette(flavor)
