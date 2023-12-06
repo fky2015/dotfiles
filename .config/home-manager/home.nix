@@ -8,6 +8,7 @@ my-python-packages = ps: with ps; [
     virtualenv
     psutil
     pyarrow
+    packaging
   ];
 in
 {
@@ -48,6 +49,7 @@ in
     ripgrep
     just
     lnav
+    lcov
 
     # Overview
     htop
@@ -71,6 +73,7 @@ in
     lz4
     ninja
     cmake
+    zlib
     nasm
     yasm
     gdb
@@ -90,12 +93,13 @@ in
     include-what-you-use
     fnm
     sqlite
-    clang-tools_16
     mold
     lld_16
     # 
     gcc12
+    clang-tools_16
     # clang_16
+    # llvmPackages_16.clang-unwrapped
     (python310.withPackages my-python-packages)
     sccache
     ccache
