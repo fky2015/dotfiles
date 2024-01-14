@@ -50,6 +50,8 @@ in
     just
     lnav
     lcov
+    gdu
+    bottom
 
     # Overview
     htop
@@ -62,6 +64,7 @@ in
     tree-sitter
     tmux
     jq
+    yq-go
     nnn
     git-crypt
     yadm
@@ -71,7 +74,7 @@ in
     gitui
     rr
     lz4
-    ninja
+    # ninja
     cmake
     zlib
     nasm
