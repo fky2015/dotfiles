@@ -4,6 +4,8 @@
 	signingkey = loveress01@outlook.com
 [alias]
 	st = status
+	rb = rebase
+	p = cherry-pick
 [commit]
 	gpgsign = true
 [gpg]
