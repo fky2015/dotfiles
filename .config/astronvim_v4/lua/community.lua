@@ -37,5 +37,6 @@ return {
   { import = "astrocommunity.color.headlines-nvim" },
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.motion.marks-nvim" },
+  { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
 }
