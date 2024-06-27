@@ -90,8 +90,8 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # zinit light RobertDeRose/virtualenv-autodetect
 
-zinit ice nocompletions
-zinit light Aloxaf/zsh-sqlite
+# zinit ice nocompletions
+# zinit light Aloxaf/zsh-sqlite
 
 # == forgit
 forgit_add=gai

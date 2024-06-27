@@ -30,7 +30,8 @@ return {
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.media.vim-wakatime" },
   { import = "astrocommunity.file-explorer.oil-nvim" },
-  { import = "astrocommunity.motion.leap-nvim" },
+  -- { import = "astrocommunity.motion.leap-nvim" },
+  { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.editing-support.neogen" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },
@@ -39,4 +40,5 @@ return {
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+  { import = "astrocommunity.motion.harpoon" },
 }
