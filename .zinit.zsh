@@ -101,7 +101,6 @@ forgit_checkout_commit=gcoi
 
 zinit wait="0" lucid light-mode for \
     hlissner/zsh-autopair \
-    cloneopts="--branch zsqlite" Aloxaf/zsh-histdb \
     wfxr/forgit 
 
 zinit ice svn
