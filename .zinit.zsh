@@ -39,7 +39,6 @@ then
 
   # fzf, fd, bat, exa using the for-syntax and also z-a-bin-gem-node annex
   zinit wait"1" lucid from"gh-r" as"null" for \
-       sbin"fzf"          junegunn/fzf \
        sbin"**/fd"        @sharkdp/fd \
        sbin"**/bat"       @sharkdp/bat \
        sbin"exa* -> exa"  ogham/exa
@@ -92,6 +91,8 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # zinit ice nocompletions
 # zinit light Aloxaf/zsh-sqlite
+
+zinit pack for fzf
 
 # == forgit
 forgit_add=gai
