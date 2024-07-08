@@ -187,9 +187,15 @@ return {
   },
   {
     "nvim-neorg/neorg",
+    version = "^8",
+    dependencies = {
+      {
+        "vhyrro/luarocks.nvim",
+        priority = 1000, -- We'd like this plugin to load first out of the rest
+        config = true,
+      },
+    },
     ft = "norg",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "Neorg" },
     -- event = "VeryLazy",
     config = function()
