@@ -39,7 +39,6 @@ then
 
   # fzf, fd, bat, exa using the for-syntax and also z-a-bin-gem-node annex
   zinit wait"1" lucid from"gh-r" as"null" for \
-       sbin"fzf"          junegunn/fzf \
        sbin"**/fd"        @sharkdp/fd \
        sbin"**/bat"       @sharkdp/bat \
        sbin"exa* -> exa"  ogham/exa
@@ -90,8 +89,10 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # zinit light RobertDeRose/virtualenv-autodetect
 
-zinit ice nocompletions
-zinit light Aloxaf/zsh-sqlite
+# zinit ice nocompletions
+# zinit light Aloxaf/zsh-sqlite
+
+zinit pack for fzf
 
 # == forgit
 forgit_add=gai
@@ -101,7 +102,6 @@ forgit_checkout_commit=gcoi
 
 zinit wait="0" lucid light-mode for \
     hlissner/zsh-autopair \
-    cloneopts="--branch zsqlite" Aloxaf/zsh-histdb \
     wfxr/forgit 
 
 zinit ice svn
