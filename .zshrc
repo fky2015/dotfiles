@@ -17,6 +17,8 @@ setopt EXTENDED_HISTORY
 # used for sensitive command.
 setopt HIST_IGNORE_SPACE
 
+setopt auto_cd
+
 # Vim emulation.
 bindkey -v
 
