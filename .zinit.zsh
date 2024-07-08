@@ -87,11 +87,6 @@ zinit snippet OMZ::plugins/aws/aws.plugin.zsh
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
-# zinit light RobertDeRose/virtualenv-autodetect
-
-# zinit ice nocompletions
-# zinit light Aloxaf/zsh-sqlite
-
 zinit pack for fzf
 
 # == forgit
