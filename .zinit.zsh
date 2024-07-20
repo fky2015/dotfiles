@@ -84,10 +84,18 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/aws/aws.plugin.zsh
-
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit wait lucid for \
+  OMZP::extract/extract.plugin.zsh \
+  OMZP::docker-compose/docker-compose.plugin.zsh \
+  OMZP::docker/docker.plugin.zsh \
+  OMZP::eza/eza.plugin.zsh \
+  as"completion" \
+  OMZP::extract/_extract \
+  OMZP::docker/completions/_docker \
+  OMZP::docker-compose/_docker-compose
 
-zinit pack for fzf
+zinit pack"default+keys" for fzf
 
 # == forgit
 forgit_add=gai
@@ -98,9 +106,6 @@ forgit_checkout_commit=gcoi
 zinit wait="0" lucid light-mode for \
     hlissner/zsh-autopair \
     wfxr/forgit 
-
-zinit ice svn
-zinit snippet OMZ::plugins/extract
 
 zinit ice lucid wait='1'
 zinit wait lucid for \
