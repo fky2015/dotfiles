@@ -95,7 +95,7 @@ zinit wait lucid for \
   OMZP::docker/completions/_docker \
   OMZP::docker-compose/_docker-compose
 
-zinit pack"default+keys" for fzf
+# zinit pack"default+keys" for fzf
 
 # == forgit
 forgit_add=gai
