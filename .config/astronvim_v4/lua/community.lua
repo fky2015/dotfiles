@@ -5,7 +5,12 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
+  -- recipes
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+  { import = "astrocommunity.recipes.astrolsp-auto-signature-help" },
+  { import = "astrocommunity.recipes.vscode-icons" },
+
+  -- colorscheme
   { import = "astrocommunity.colorscheme.catppuccin" },
   {
     -- further customize the options set by the community
@@ -21,8 +26,11 @@ return {
       },
     },
   },
+  -- pack
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.lua" },
+
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.completion.cmp-cmdline" },
@@ -39,7 +47,6 @@ return {
   -- { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
-  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.motion.harpoon" },
 
   -- Database plugins.
