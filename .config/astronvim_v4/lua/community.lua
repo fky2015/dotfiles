@@ -9,6 +9,7 @@ return {
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.recipes.astrolsp-auto-signature-help" },
   { import = "astrocommunity.recipes.vscode-icons" },
+  { import = "astrocommunity.recipes.neovide" },
 
   -- colorscheme
   { import = "astrocommunity.colorscheme.catppuccin" },
