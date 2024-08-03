@@ -127,22 +127,6 @@ zinit load jarun/nnn
 zinit ice pick".kubectl_aliases"
 zinit load ahmetb/kubectl-aliases
 
-# fzf shell extension
-# see: https://github.com/junegunn/fzf/blob/master/shell/
-# zinit ice multisrc'shell/{completion,key-bindings}.zsh'
-# zinit load junegunn/fzf
-# https://github.com/zdharma-continuum/zinit/discussions/359
-zinit ice lucid wait'0'
-zinit light joshskidmore/zsh-fzf-history-search
-# zinit ice wait lucid from"gh-r" nocompile src'shell/key-bindings.zsh' sbin \
-#       dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> _fzf_completion;
-#          https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
-#          https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/share/man/man1/fzf-tmux.1;
-#          https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/share/man/man1/fzf.1'
-# zinit light junegunn/fzf
-
-
-
 ## Git extension
 
 # git-open has a manpage that I want in my MANPATH
