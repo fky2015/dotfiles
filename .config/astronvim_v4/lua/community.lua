@@ -7,7 +7,6 @@ return {
   "AstroNvim/astrocommunity",
   -- recipes
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
-  { import = "astrocommunity.recipes.astrolsp-auto-signature-help" },
   { import = "astrocommunity.recipes.vscode-icons" },
 
   -- colorscheme
