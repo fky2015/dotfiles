@@ -86,14 +86,10 @@ zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/aws/aws.plugin.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit wait lucid for \
-  OMZP::extract/extract.plugin.zsh \
-  OMZP::docker-compose/docker-compose.plugin.zsh \
-  OMZP::docker/docker.plugin.zsh \
-  OMZP::eza/eza.plugin.zsh \
-  as"completion" \
-  OMZP::extract/_extract \
-  OMZP::docker/completions/_docker \
-  OMZP::docker-compose/_docker-compose
+  OMZP::extract \
+  OMZP::docker-compose \
+  OMZP::eza \
+  OMZP::docker/docker.plugin.zsh
 
 # zinit pack"default+keys" for fzf
 
@@ -114,8 +110,8 @@ zinit wait lucid for \
   as"completion" \
     OMZP::kubectl
 
-zinit ice as"completion"
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+# zinit ice as"completion"
+# zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # nnn cd on quit
 # see: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
