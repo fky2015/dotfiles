@@ -8,6 +8,7 @@ return {
   -- recipes
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.recipes.vscode-icons" },
+  { import = "astrocommunity.recipes.neovide" },
 
   -- colorscheme
   { import = "astrocommunity.colorscheme.catppuccin" },
@@ -29,6 +30,7 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
 
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
