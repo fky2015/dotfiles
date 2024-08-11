@@ -35,7 +35,7 @@ return {
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.completion.cmp-cmdline" },
-  { import = "astrocommunity.debugging.nvim-bqf" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.media.vim-wakatime" },
   { import = "astrocommunity.file-explorer.oil-nvim" },
