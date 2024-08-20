@@ -144,10 +144,6 @@ return {
           '<CMD>lua require("FTerm").toggle()<CR>',
           desc = "Toggle a float terminal",
         },
-        ["<c-\\>"] = {
-          "<cmd>ToggleTerm<cr>",
-          desc = "Toggle terminal",
-        },
       },
       x = {
         [";"] = {
