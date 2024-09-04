@@ -5,7 +5,12 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
+  -- recipes
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+  { import = "astrocommunity.recipes.vscode-icons" },
+  { import = "astrocommunity.recipes.neovide" },
+
+  -- colorscheme
   { import = "astrocommunity.colorscheme.catppuccin" },
   {
     -- further customize the options set by the community
@@ -21,12 +26,16 @@ return {
       },
     },
   },
+  -- pack
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
+
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.git.diffview-nvim" },
   { import = "astrocommunity.completion.cmp-cmdline" },
-  { import = "astrocommunity.debugging.nvim-bqf" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.media.vim-wakatime" },
   { import = "astrocommunity.file-explorer.oil-nvim" },
@@ -36,9 +45,11 @@ return {
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.color.headlines-nvim" },
-  { import = "astrocommunity.utility.noice-nvim" },
+  -- { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.motion.marks-nvim" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
-  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
   { import = "astrocommunity.motion.harpoon" },
+
+  -- Database plugins.
+  { import = "astrocommunity/pack/full-dadbod" },
 }
