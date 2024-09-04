@@ -17,6 +17,8 @@ setopt EXTENDED_HISTORY
 # used for sensitive command.
 setopt HIST_IGNORE_SPACE
 
+setopt auto_cd
+
 # Vim emulation.
 bindkey -v
 
@@ -80,7 +82,7 @@ _zsh_autosuggest_strategy_atuin_search() {
   typeset -g suggestion=$reply
 }
 
-ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here match_prev_cmd completion)
+# ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here match_prev_cmd completion)
 # ZSH_AUTOSUGGEST_STRATEGY=(atuin_search)
 
 # p10k

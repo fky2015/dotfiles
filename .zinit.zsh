@@ -39,7 +39,6 @@ then
 
   # fzf, fd, bat, exa using the for-syntax and also z-a-bin-gem-node annex
   zinit wait"1" lucid from"gh-r" as"null" for \
-       sbin"fzf"          junegunn/fzf \
        sbin"**/fd"        @sharkdp/fd \
        sbin"**/bat"       @sharkdp/bat \
        sbin"exa* -> exa"  ogham/exa
@@ -85,13 +84,14 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/aws/aws.plugin.zsh
-
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit wait lucid for \
+  OMZP::extract \
+  OMZP::docker-compose \
+  OMZP::eza \
+  OMZP::docker/docker.plugin.zsh
 
-# zinit light RobertDeRose/virtualenv-autodetect
-
-# zinit ice nocompletions
-# zinit light Aloxaf/zsh-sqlite
+# zinit pack"default+keys" for fzf
 
 # == forgit
 forgit_add=gai
@@ -101,11 +101,7 @@ forgit_checkout_commit=gcoi
 
 zinit wait="0" lucid light-mode for \
     hlissner/zsh-autopair \
-    cloneopts="--branch zsqlite" Aloxaf/zsh-histdb \
     wfxr/forgit 
-
-zinit ice svn
-zinit snippet OMZ::plugins/extract
 
 zinit ice lucid wait='1'
 zinit wait lucid for \
@@ -114,8 +110,8 @@ zinit wait lucid for \
   as"completion" \
     OMZP::kubectl
 
-zinit ice as"completion"
-zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+# zinit ice as"completion"
+# zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # nnn cd on quit
 # see: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
@@ -126,22 +122,6 @@ zinit load jarun/nnn
 # see: https://github.com/ahmetb/kubectl-aliases
 zinit ice pick".kubectl_aliases"
 zinit load ahmetb/kubectl-aliases
-
-# fzf shell extension
-# see: https://github.com/junegunn/fzf/blob/master/shell/
-# zinit ice multisrc'shell/{completion,key-bindings}.zsh'
-# zinit load junegunn/fzf
-# https://github.com/zdharma-continuum/zinit/discussions/359
-zinit ice lucid wait'0'
-zinit light joshskidmore/zsh-fzf-history-search
-# zinit ice wait lucid from"gh-r" nocompile src'shell/key-bindings.zsh' sbin \
-#       dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> _fzf_completion;
-#          https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
-#          https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/share/man/man1/fzf-tmux.1;
-#          https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/share/man/man1/fzf.1'
-# zinit light junegunn/fzf
-
-
 
 ## Git extension
 
