@@ -102,8 +102,8 @@ in
     gcc12
     clang-tools_16
     # clang_16
-    # llvmPackages_16.clang-unwrapped
-    (python310.withPackages my-python-packages)
+    llvmPackages.libcxxClang
+    (python311.withPackages my-python-packages)
     sccache
     ccache
     rr

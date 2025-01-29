@@ -83,7 +83,7 @@ return {
             d = "Delete surrounding delimiter",
           },
         }
-        wk.register(mappings, opts)
+        wk.add(mappings, opts)
         -- VimTeX Text Objects without variants with targets.vim
         opts = {
           mode = "o", -- Operator pending mode
@@ -103,7 +103,7 @@ return {
           ["im"] = [[LaTeX Item]],
           ["am"] = [[LaTeX Item]],
         }
-        wk.register(objects, opts)
+        wk.add(objects, opts)
       end,
     })
   end,
