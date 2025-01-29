@@ -14,6 +14,7 @@ return {
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = true, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
+      signature_help = true,
     },
     -- customize lsp formatting options
     formatting = {
@@ -106,13 +107,8 @@ return {
       if client.name == "clangd" then
         local wk = require "which-key"
 
-        wk.register {
-          ["<LocalLeader>"] = {
-            ["<LocalLeader>"] = {
-              ":ClangdSwitchSourceHeader<CR>",
-              "Switch between source and header",
-            },
-          },
+        wk.add {
+          { "<LocalLeader><LocalLeader>", ":ClangdSwitchSourceHeader<CR>", desc = "Switch between source and header" },
         }
       end
     end,

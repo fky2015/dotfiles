@@ -52,4 +52,7 @@ return {
 
   -- Database plugins.
   { import = "astrocommunity/pack/full-dadbod" },
+
+  { import = "astrocommunity.completion.magazine-nvim" },
+  -- { import = "astrocommunity.completion.blink-cmp" },
 }
