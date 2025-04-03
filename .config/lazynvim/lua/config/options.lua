@@ -5,3 +5,5 @@
 vim.g.maplocalleader = "-"
 
 vim.opt.wrap = true
+
+vim.g.lazyvim_picker = "snacks"
