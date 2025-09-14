@@ -1,0 +1,23 @@
+plugins:
+  spawn-shell:
+    shortCut: Ctrl-O
+    description: Open shell in new tmux pane
+    scopes:
+      - pod
+    help: Split tmux window and open shell in current context
+    command: tmux
+    args:
+      - split-window
+      - -h
+      - bash -c "KUBECONFIG=$KUBECONFIG kubectl exec $COL-NAME -it --namespace $NAMESPACE -- bash"
+  spawn-shell-virtically:
+    shortCut: Ctrl-V
+    description: Open shell in new tmux pane
+    scopes:
+      - pod
+    help: Split tmux window and open shell in current context
+    command: tmux
+    args:
+      - split-window
+      - -v
+      - bash -c "KUBECONFIG=$KUBECONFIG kubectl exec $COL-NAME -it --namespace $NAMESPACE -- bash"
