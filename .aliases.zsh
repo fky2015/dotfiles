@@ -61,7 +61,7 @@ alias nvc="nvim --clean -u $HOME/.config/nvim/lua/fky/options.lua"
 alias anv="anvim"
 alias lnvim="NVIM_APPNAME=lazynvim nvim"
 alias v="vim"
-alias n="nnn"
+alias n="nvim"
 
 # Onedrive
 alias one="onedrive --synchronize"
@@ -73,7 +73,13 @@ alias cdg="cd ~/Documents/gdrive"
 alias p="pwd" # shorter
 # alias tmux="tmux -2" # fix the problem with vim
 alias ta="tmux a"
-alias y="yay"
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 alias tmuxrc="vim ~/.tmux.conf"
 alias destory="/bin/rm"
 alias pwq='pwd | tr -d "\n" |xclip -selection c && pwd '
@@ -174,3 +180,6 @@ copilot_gh-assist () {
 };
 alias 'gh?'='copilot_gh-assist';
 alias 'wts'='copilot_what-the-shell';
+alias sg=ast-grep
+
+alias k9='k9s --kubeconfig $(find ~/.kube -maxdepth 1 -not -type d | fzf)'
