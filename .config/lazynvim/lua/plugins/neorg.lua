@@ -1,0 +1,29 @@
+-- https://github.com/nvim-neorg/neorg/issues/1715
+return {
+  -- "nvim-neorg/neorg",
+  -- lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+  -- version = "*", -- Pin Neorg to the latest stable release
+  -- config = function()
+  --   require("neorg").setup({
+  --     load = {
+  --       ["core.defaults"] = {}, -- Loads default behaviour
+  --       ["core.concealer"] = {}, -- Adds pretty icons to your documents
+  --       ["core.dirman"] = { -- Manages Neorg workspaces
+  --         config = {
+  --           workspaces = {
+  --             notes = "~/notes",
+  --             works = "~/works",
+  --           },
+  --           default_workspace = "notes",
+  --         },
+  --       },
+  --       ["core.clipboard.code-blocks"] = {},
+  --       ["core.journal"] = { config = { strategy = "flat", workspace = "notes" } }, -- Enables support for the journal module
+  --       ["core.export"] = {},
+  --       ["core.esupports.metagen"] = { config = { type = "auto", update_date = true } },
+  --       ["core.presenter"] = { config = { zen_mode = "zen-mode" } },
+  --       ["core.summary"] = {},
+  --     },
+  --   })
+  -- end,
+}
