@@ -3,10 +3,6 @@
 -- Add any additional keymaps here
 
 -- Basic
-vim.keymap.set("n", ":", ";")
-vim.keymap.set("n", ";", ":")
-vim.keymap.set("v", ":", ";")
-vim.keymap.set("v", ";", ":")
 vim.keymap.set("n", "q;", "q:")
 vim.keymap.set("n", "gl", "2g;")
 
@@ -29,3 +25,5 @@ vim.keymap.set("n", "]<Space>", function()
   local line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_buf_set_lines(0, line, line, true, repeated)
 end, { desc = "Insert blank line below" })
+
+Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ"):map("<leader>z")
