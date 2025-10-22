@@ -159,3 +159,69 @@ hatch() {
     echo "Aborted, please enter y to confirm."
   fi
 }
+
+# Select wanted file and copy them to current dir.
+update_from_template() {
+  local templates_dir="$HOME/templates"
+  local selected_file source_file target_file
+
+  # Check if templates directory exists
+  if [[ ! -d "$templates_dir" ]]; then
+      echo "Error: Templates directory $templates_dir does not exist" >&2
+      return 1
+  fi
+
+  # Check if fzf is installed
+  if ! command -v fzf &>/dev/null; then
+      echo "Error: fzf is required but not installed" >&2
+      return 1
+  fi
+
+  # Select template using fzf
+  selected_file=$(
+      find "$templates_dir" -maxdepth 1 -type f -printf "%f\n" \
+      | fzf --height=40% --reverse --border --prompt="Select template: "
+  )
+
+  # Exit if no selection
+  [[ -z "$selected_file" ]] && return 0
+
+  source_file="$templates_dir/$selected_file"
+  target_file="./$selected_file"
+
+  # Handle existing target file
+  if [[ -e "$target_file" ]]; then
+      # Load zsh/stat module for mtime comparison
+      zmodload zsh/stat || {
+          echo "Error: zsh/stat module required for modification time check" >&2
+          return 1
+      }
+
+      # Get modification times (epoch seconds)
+      local tpl_mtime target_mtime
+      echo "$source_file, $target_file"
+      zstat -A tpl_stat +mtime "$source_file"
+      tpl_mtime=${tpl_stat}
+      zstat -A target_stat +mtime "$target_file"
+      target_mtime=${target_stat}
+
+      echo "template mtime: '$tpl_mtime', target mtime: '$target_mtime'"
+
+      # Compare modification times
+      if (( tpl_mtime > target_mtime )); then
+          read -q "REPLY?Target file '$target_file' exists. Template is newer. Overwrite? [y/N] "
+          echo  # Move to new line after read -q
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+              cp -v "$source_file" "$target_file"
+          else
+              echo "WARNING! Skipping overwrite, Template is older."
+          fi
+      else
+          echo "Target file '$target_file' is up to date or newer. Not overwriting"
+      fi
+  else
+      # Copy new file
+      cp -v "$source_file" "$target_file"
+  fi
+}
+
