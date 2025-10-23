@@ -2,13 +2,11 @@
 
 let
 my-python-packages = ps: with ps; [
+    ipython
     pandas
     numpy
-    requests
     virtualenv
-    psutil
     pyarrow
-    packaging
   ];
 in
 {
@@ -39,27 +37,42 @@ in
     difftastic
     tokei
     tealdeer
-    xsv
+    xan
     fzf
+    cloc
     du-dust
     hexyl
     hyperfine
     git
     delta
     ripgrep
+    ast-grep
     just
     lnav
     lcov
     gdu
     bottom
+    # python
+    poetry
+    uv
+    watchman
+
+    mise
+    ruff
 
     # Overview
+    tcping-go
     htop
+    iotop
     glances
-    neofetch
+    fastfetch
+    broot
+    go
+
+    httpie
 
     # Development
-    direnv
+    # direnv
     neovim
     tree-sitter
     tmux
@@ -71,10 +84,9 @@ in
     rlwrap
     vim
     helix
-    gitui
     rr
     lz4
-    # ninja
+    ninja
     cmake
     zlib
     nasm
@@ -85,24 +97,37 @@ in
     ctop
     valgrind
     k9s
+    kubectx
+    kubectl
+    nushell
+
+    pueue
+    age
+
+    git-cliff
 
     # Files
     zstd
     restic
     neofetch
     nexttrace
+    snzip
+    yazi
+
+    # GitHub
+    act
 
     # Develop environment
     include-what-you-use
     fnm
     sqlite
     mold
-    lld_16
+    lldb
     # 
-    gcc12
-    clang-tools_16
-    # clang_16
-    llvmPackages.libcxxClang
+    gcc13
+    # lld_18
+    # clang-tools
+    # llvmPackages_16.libcxxClang
     (python311.withPackages my-python-packages)
     sccache
     ccache
