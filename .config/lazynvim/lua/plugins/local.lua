@@ -105,12 +105,10 @@ return {
   {
     "olimorris/codecompanion.nvim",
     keys = {
-      { "<leader>at", "<cmd>CodeCompanionChat Toggle<CR>", desc = "CodeCompanion: toggle side panel" },
-      { "<leader>ac", "<cmd>CodeCompanionChat<CR>", desc = "CodeCompanion: new chat" },
-      { "<leader>aa", "<cmd>CodeCompanionActions<CR>", desc = "CodeCompanion: action palette" },
-      { "<leader>ai", ":CodeCompanion ", desc = "CodeCompanion: inline prompt", mode = { "n", "v" } },
-      { "<leader>ar", "<cmd>CodeCompanionCmd<CR>", desc = "CodeCompanion: run command" },
-      { "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v" },
+      { "<leader>Ac", "<cmd>CodeCompanionChat<CR>", desc = "CodeCompanion: new chat" },
+      { "<leader>Aa", "<cmd>CodeCompanionActions<CR>", desc = "CodeCompanion: action palette" },
+      { "<leader>Ai", ":CodeCompanion ", desc = "CodeCompanion: inline prompt", mode = { "n", "v" } },
+      { "<leader>Ar", "<cmd>CodeCompanionCmd<CR>", desc = "CodeCompanion: run command" },
     },
     opts = {
       language = "Chinese",
