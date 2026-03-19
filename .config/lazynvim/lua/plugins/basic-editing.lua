@@ -107,4 +107,15 @@ return {
       },
     },
   },
+  {
+    "esmuellert/codediff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "CodeDiff",
+  },
+  {
+    "DamianVCechov/hexview.nvim",
+    config = function()
+      require("hexview").setup()
+    end,
+  },
 }

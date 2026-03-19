@@ -2,9 +2,14 @@ return {
   {
     "folke/sidekick.nvim",
     opts = {
+      nes = {
+        enabled = false,
+      },
       cli = {
         tools = {
-          -- claude = { cmd = { "ccr", "code" } },
+          coco = {
+            cmd = { "coco" },
+          },
         },
         mux = {
           enabled = true,
