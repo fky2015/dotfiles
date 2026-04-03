@@ -82,13 +82,6 @@ set undofile
 set undodir     =$XDG_CACHE_HOME/vim/files/undo
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 
-nnoremap ; :
-xnoremap ; :
-
-" For motion: `f`
-nnoremap : ;
-xnoremap : ;
-
 " Quicker way to open command window
 nnoremap q; q:
 
@@ -107,8 +100,8 @@ vnoremap <C-C> "+y
 " zoom
 function! Zoom ()
     " check if is the zoomed state (tabnumber > 1 && window == 1)
-    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
         let l:cur_winview = winsaveview()
+        if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
         let l:cur_bufname = bufname('')
         tabclose
 
