@@ -8,4 +8,4 @@ vim.opt.wrap = true
 
 vim.g.lazyvim_picker = "snacks"
 
-vim.lsp.set_log_level("ERROR")
+vim.lsp.log.set_level(vim.log.levels.OFF)
