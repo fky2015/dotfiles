@@ -36,9 +36,6 @@ return {
     },
   },
   {
-    "sindrets/diffview.nvim",
-  },
-  {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
     event = "VeryLazy",
@@ -108,14 +105,14 @@ return {
     },
   },
   {
-    "esmuellert/codediff.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    cmd = "CodeDiff",
-  },
-  {
     "DamianVCechov/hexview.nvim",
     config = function()
       require("hexview").setup()
     end,
+  },
+  {
+    "XXiaoA/atone.nvim",
+    cmd = "Atone",
+    opts = {}, -- your configuration here
   },
 }

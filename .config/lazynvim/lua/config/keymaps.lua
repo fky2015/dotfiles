@@ -27,3 +27,45 @@ vim.keymap.set("n", "]<Space>", function()
 end, { desc = "Insert blank line below" })
 
 Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ"):map("<leader>z")
+
+-- Send line/selection to terminal
+local function get_terminal_chan()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buftype == "terminal" then
+      local chan = vim.b[buf].terminal_job_id
+      if chan then
+        return chan
+      end
+    end
+  end
+  return nil
+end
+
+vim.keymap.set("n", "<leader>t", function()
+  local chan = get_terminal_chan()
+  if not chan then
+    Snacks.terminal.toggle()
+    vim.defer_fn(function() end, 100)
+    chan = get_terminal_chan()
+  end
+  if chan then
+    local line = vim.api.nvim_get_current_line()
+    vim.api.nvim_chan_send(chan, line .. "\n")
+  end
+end, { desc = "Send line to terminal" })
+
+vim.keymap.set("v", "<leader>t", function()
+  local chan = get_terminal_chan()
+  if not chan then
+    Snacks.terminal.toggle()
+    vim.defer_fn(function() end, 100)
+    chan = get_terminal_chan()
+  end
+  if chan then
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos = vim.fn.getpos("'>")
+    local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
+    local text = table.concat(lines, "\n")
+    vim.api.nvim_chan_send(chan, text .. "\n")
+  end
+end, { desc = "Send selection to terminal" })
