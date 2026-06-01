@@ -1,9 +1,12 @@
 return {
   {
+    "zbirenbaum/copilot.lua",
+  },
+  {
     "folke/sidekick.nvim",
     opts = {
       nes = {
-        enabled = false,
+        enabled = true,
       },
       cli = {
         tools = {
@@ -30,6 +33,28 @@ return {
             },
           },
           claude = {
+            keys = {
+              submit = {
+                "<c-s>",
+                function(t)
+                  t:send("\n")
+                end,
+              },
+            },
+          },
+          ["aiden codex"] = {
+            cmd = { "aiden", "x", "codex" },
+            keys = {
+              submit = {
+                "<c-s>",
+                function(t)
+                  t:send("\n")
+                end,
+              },
+            },
+          },
+          ["aiden claude"] = {
+            cmd = { "aiden", "x", "claude" },
             keys = {
               submit = {
                 "<c-s>",
