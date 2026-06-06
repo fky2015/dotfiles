@@ -72,7 +72,7 @@ alias oned='onedrive --synchronize --confdir="~/.config/onedriveEdu" --upload-on
 alias cdg="cd ~/Documents/gdrive"
 alias p="pwd" # shorter
 # alias tmux="tmux -2" # fix the problem with vim
-alias ta="tmux a"
+alias ta="tmux a -t 0"
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
