@@ -72,7 +72,12 @@ alias oned='onedrive --synchronize --confdir="~/.config/onedriveEdu" --upload-on
 alias cdg="cd ~/Documents/gdrive"
 alias p="pwd" # shorter
 # alias tmux="tmux -2" # fix the problem with vim
-alias ta="tmux a -t 0"
+if [[ -n "$REMOTE_SERVER" ]]; then
+  alias t="tmux -f ~/.config/tmux/tmux.remote.conf"
+else
+  alias t="tmux -f ~/.config/tmux/tmux.local.conf"
+fi
+alias ta="tmux a"
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -183,3 +188,5 @@ alias 'wts'='copilot_what-the-shell';
 alias sg=ast-grep
 
 alias k9='k9s --kubeconfig $(find ~/.kube -maxdepth 1 -not -type d | fzf)'
+
+alias chezmoi-work="chezmoi -S  ~/.local/share/chezmoi/work"

@@ -6,6 +6,8 @@
 	st = status
 	rb = rebase
 	p = cherry-pick
+  rbc = rebase --continue
+  cpc = cherry-pick --continue
 [commit]
 	gpgsign = true
 [gpg]
@@ -18,6 +20,7 @@
 	defaultBranch = main
 [core]
   pager = delta
+	excludesFile = ~/.gitignore
 
 [interactive]
   diffFilter = delta --color-only
@@ -30,7 +33,7 @@
 
 # difftastic
 [diff]
-  tool = difftastic
+	tool = codediff
   colorMoved = default
   external = difft
 
@@ -48,7 +51,7 @@
   cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 # set "nvim" as tool for merging
 [merge]
-  tool = nvim
+	tool = codediff
 # automatically launch merge tool without displaying a prompt
 [mergetool]
   prompt = false
@@ -58,3 +61,11 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[push]
+	autoSetupRemote = true
+[mergetool "vscode-diff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff merge \\\"$MERGED\\\"\"
+[mergetool "codediff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff merge \\\"$MERGED\\\"\"
+[difftool "codediff"]
+	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff file $LOCAL $REMOTE\"
