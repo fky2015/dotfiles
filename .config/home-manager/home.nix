@@ -2,11 +2,15 @@
 
 let
 my-python-packages = ps: with ps; [
-    ipython
+    # ipython
     pandas
     numpy
     virtualenv
+    torch
+    matplotlib
+    fire
     pyarrow
+    # pyarrow
   ];
 in
 {
@@ -22,7 +26,7 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -37,10 +41,9 @@ in
     difftastic
     tokei
     tealdeer
-    xan
     fzf
     cloc
-    du-dust
+    dust
     hexyl
     hyperfine
     git
@@ -56,18 +59,21 @@ in
     poetry
     uv
     watchman
+    gitui
 
-    mise
-    ruff
+    protobuf
+
+    # mise
+    # ruff
 
     # Overview
-    tcping-go
+    # tcping-go
     htop
     iotop
     glances
     fastfetch
     broot
-    go
+    # go
 
     httpie
 
@@ -77,16 +83,17 @@ in
     tree-sitter
     tmux
     jq
-    yq-go
+    # yq-go
     nnn
     git-crypt
     yadm
+    chezmoi
     rlwrap
     vim
     helix
     rr
     lz4
-    ninja
+    # ninja
     cmake
     zlib
     nasm
@@ -100,16 +107,14 @@ in
     kubectx
     kubectl
     nushell
+    zellij
 
     pueue
     age
 
-    git-cliff
-
     # Files
     zstd
     restic
-    neofetch
     nexttrace
     snzip
     yazi
@@ -118,17 +123,13 @@ in
     act
 
     # Develop environment
-    include-what-you-use
     fnm
     sqlite
     mold
-    lldb
-    # 
-    gcc13
-    # lld_18
-    # clang-tools
-    # llvmPackages_16.libcxxClang
-    (python311.withPackages my-python-packages)
+    lldb_19
+    # gcc13
+    (python313.withPackages my-python-packages)
+    # llvmPackages_20.clangUseLLVM
     sccache
     ccache
     rr
