@@ -107,7 +107,7 @@ Specifics:
       {
         "<C-\\>",
         function()
-          require("sidekick.cli").toggle({ name = "ccr" })
+          require("sidekick.cli").toggle({ name = "traex" })
         end,
         desc = "Sidekick cli toggle",
       },
