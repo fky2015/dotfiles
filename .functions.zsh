@@ -160,8 +160,8 @@ hatch() {
   fi
 }
 
-# Select wanted file and copy them to current dir.
-update_from_template() {
+# Select wanted template and symlink it to current dir.
+link_from_template() {
   local templates_dir="$HOME/templates"
   local selected_file source_file target_file
 
@@ -179,7 +179,7 @@ update_from_template() {
 
   # Select template using fzf
   selected_file=$(
-      find "$templates_dir" -maxdepth 1 -type f -printf "%f\n" \
+      find "$templates_dir" -maxdepth 1 -type f ! -name "*.sh" -printf "%f\n" \
       | fzf --height=40% --reverse --border --prompt="Select template: "
   )
 
@@ -189,39 +189,72 @@ update_from_template() {
   source_file="$templates_dir/$selected_file"
   target_file="./$selected_file"
 
-  # Handle existing target file
-  if [[ -e "$target_file" ]]; then
-      # Load zsh/stat module for mtime comparison
-      zmodload zsh/stat || {
-          echo "Error: zsh/stat module required for modification time check" >&2
-          return 1
-      }
-
-      # Get modification times (epoch seconds)
-      local tpl_mtime target_mtime
-      echo "$source_file, $target_file"
-      zstat -A tpl_stat +mtime "$source_file"
-      tpl_mtime=${tpl_stat}
-      zstat -A target_stat +mtime "$target_file"
-      target_mtime=${target_stat}
-
-      echo "template mtime: '$tpl_mtime', target mtime: '$target_mtime'"
-
-      # Compare modification times
-      if (( tpl_mtime > target_mtime )); then
-          read -q "REPLY?Target file '$target_file' exists. Template is newer. Overwrite? [y/N] "
-          echo  # Move to new line after read -q
-          if [[ $REPLY =~ ^[Yy]$ ]]; then
-              cp -v "$source_file" "$target_file"
-          else
-              echo "WARNING! Skipping overwrite, Template is older."
-          fi
-      else
-          echo "Target file '$target_file' is up to date or newer. Not overwriting"
+  # Handle existing target path. For symlinks, [[ -e ]] is false if the link is broken,
+  # so use [[ -L ]] as well to avoid blindly overwriting existing symlink paths.
+  if [[ -e "$target_file" || -L "$target_file" ]]; then
+      if [[ -L "$target_file" && "$(readlink "$target_file")" == "$source_file" ]]; then
+          echo "Target file '$target_file' is already linked to '$source_file'."
+          return 0
       fi
-  else
-      # Copy new file
-      cp -v "$source_file" "$target_file"
+
+      read -q "REPLY?Target path '$target_file' already exists. Replace it with a symlink? [y/N] "
+      echo  # Move to new line after read -q
+      if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+          echo "Skipped."
+          return 0
+      fi
+
+      rm -rf -- "$target_file" || return 1
   fi
+
+  ln -s -- "$source_file" "$target_file"
+  echo "Linked '$target_file' -> '$source_file'"
 }
 
+# Select template updater script, run it, and update the paired template with stdout.
+update_template_from_remote() {
+  local templates_dir="$HOME/templates"
+  local selected_script script_file target_file tmp_file status
+
+  # Check if templates directory exists
+  if [[ ! -d "$templates_dir" ]]; then
+      echo "Error: Templates directory $templates_dir does not exist" >&2
+      return 1
+  fi
+
+  # Check if fzf is installed
+  if ! command -v fzf &>/dev/null; then
+      echo "Error: fzf is required but not installed" >&2
+      return 1
+  fi
+
+  # Select updater script using fzf. A template like mise.toml is updated by mise.toml.sh.
+  selected_script=$(
+      find "$templates_dir" -maxdepth 1 -type f -name "*.sh" -printf "%f\n" \
+      | fzf --height=40% --reverse --border --prompt="Select updater script: "
+  )
+
+  # Exit if no selection
+  [[ -z "$selected_script" ]] && return 0
+
+  script_file="$templates_dir/$selected_script"
+  target_file="$templates_dir/${selected_script%.sh}"
+  tmp_file=$(mktemp) || return 1
+
+  if [[ ! -x "$script_file" ]]; then
+      zsh "$script_file" > "$tmp_file"
+      status=$?
+  else
+      "$script_file" > "$tmp_file"
+      status=$?
+  fi
+
+  if (( status != 0 )); then
+      rm -f -- "$tmp_file"
+      echo "Error: Updater '$script_file' failed with status $status. Template not updated." >&2
+      return $status
+  fi
+
+  mv -- "$tmp_file" "$target_file"
+  echo "Updated '$target_file' from '$script_file'."
+}
