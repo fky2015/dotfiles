@@ -1,0 +1,10 @@
+# Work configuration belongs to the separate chezmoi-work repository.
+/work/
+/templates/mise.toml
+
+# Local work settings must not enter the public repository.
+/dot_local.zsh
+
+# These work files are managed by chezmoi-work.
+/dot_devutils.sh
+/code/AGENTS.md

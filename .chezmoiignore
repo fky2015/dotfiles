@@ -1,0 +1,13 @@
+# The nested work source directory is managed by chezmoi-work.
+work
+work/**
+
+# This template is managed only by chezmoi-work.
+templates/mise.toml
+
+# Local work settings are managed outside chezmoi.
+.local.zsh
+
+# These work files are managed only by chezmoi-work.
+.devutils.sh
+code/AGENTS.md
