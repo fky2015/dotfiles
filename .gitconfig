@@ -21,6 +21,7 @@
 [core]
   pager = delta
 	excludesFile = ~/.gitignore
+	editor = nvim
 
 [interactive]
   diffFilter = delta --color-only
@@ -69,3 +70,5 @@
 	cmd = nvim \"$MERGED\" -c \"CodeDiff merge \\\"$MERGED\\\"\"
 [difftool "codediff"]
 	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff file $LOCAL $REMOTE\"
+[include]
+	path = ~/.gitconfig.local

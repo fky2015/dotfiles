@@ -111,7 +111,9 @@ alias xb64="xsel -ob 2>/dev/null | base64"
 
 alias windows="mount.ntfs /dev/sda3 /mnt/"
 
-alias glc="gl origin $(git branch --show-current)"
+glc() {
+  gl origin "$(git branch --show-current)"
+}
 
 alias qemu="qemu-system-x86_64"
 alias mine="cd ~/code/git/mine"

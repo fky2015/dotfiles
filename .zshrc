@@ -1,6 +1,8 @@
 # ZSH Profiling
 #zmodload zsh/zprof
 
+export GPG_TTY=$(tty)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -10,7 +12,7 @@ fi
 
 # More history,
 # See: https://github.com/bamos/zsh-history-analysis/blob/master/README.md#increasing-the-history-file-size
-export HISTSIZE=1000000000
+export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 # Preventing command with leading space being store in history,
@@ -92,3 +94,5 @@ _zsh_autosuggest_strategy_atuin_search() {
 #zprof
 
 # eval "$(atuin init zsh)"
+
+export GIT_EDITOR=nvim

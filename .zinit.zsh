@@ -83,7 +83,6 @@ zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zinit snippet OMZ::plugins/aws/aws.plugin.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit wait lucid for \
   OMZP::extract \
@@ -109,9 +108,6 @@ zinit wait lucid for \
     OMZP::colored-man-pages \
   as"completion" \
     OMZP::kubectl
-
-# zinit ice as"completion"
-# zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # nnn cd on quit
 # see: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
