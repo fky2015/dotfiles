@@ -91,7 +91,7 @@ zinit wait lucid for \
   OMZP::eza \
   OMZP::docker/docker.plugin.zsh
 
-# zinit pack"default+keys" for fzf
+zinit pack"keys" for fzf
 
 # == forgit
 forgit_add=gai
@@ -120,7 +120,7 @@ zinit load jarun/nnn
 
 # kubectl-aliasis
 # see: https://github.com/ahmetb/kubectl-aliases
-zinit ice pick".kubectl_aliases"
+zinit ice wait'0' lucid pick".kubectl_aliases"
 zinit load ahmetb/kubectl-aliases
 
 ## Git extension
