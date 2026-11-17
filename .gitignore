@@ -8,3 +8,7 @@
 # These work files are managed by chezmoi-work.
 /dot_devutils.sh
 /code/AGENTS.md
+
+# Claude configuration is managed locally on each machine.
+/dot_claude/
+/private_dot_claude/

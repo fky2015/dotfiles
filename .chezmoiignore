@@ -11,3 +11,7 @@ templates/mise.toml
 # These work files are managed only by chezmoi-work.
 .devutils.sh
 code/AGENTS.md
+
+# Claude configuration is managed locally on each machine.
+.claude
+.claude/**
