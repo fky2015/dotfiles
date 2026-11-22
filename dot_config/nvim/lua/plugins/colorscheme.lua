@@ -15,7 +15,7 @@ return {
       -- catppuccin
       -- catppuccin-frappe
       -- nightfox
-      colorscheme = "nightfox",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }

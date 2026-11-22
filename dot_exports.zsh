@@ -13,7 +13,10 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # FZF
-export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500'"
+# Show previews only on demand with Ctrl-/.
+export FZF_DEFAULT_OPTS="--height 70% --layout=reverse --preview '(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500' --preview-window=right:50%:hidden --bind=ctrl-/:toggle-preview"
+# History preview is hidden by default; Ctrl-/ toggles a small command preview.
+export FZF_CTRL_R_OPTS="--preview 'printf \"%s\n\" {2..}' --preview-window=down:3:wrap:hidden --bind=ctrl-/:toggle-preview"
 export FZF_DEFAULT_COMMAND='rg --files'
 
 # miniconda

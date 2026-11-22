@@ -1,0 +1,59 @@
+plugins:
+  spawn-shell:
+    shortCut: Ctrl-O
+    description: Open shell in new tmux pane
+    scopes:
+      - pod
+    help: Split tmux window and open shell in current context
+    command: tmux
+    args:
+      - split-window
+      - -h
+      - bash -c "KUBECONFIG=$KUBECONFIG kubectl exec $COL-NAME -it --namespace $NAMESPACE -- bash"
+  spawn-shell-virtically:
+    shortCut: Ctrl-V
+    description: Open shell in new tmux pane
+    scopes:
+      - pod
+    help: Split tmux window and open shell in current context
+    command: tmux
+    args:
+      - split-window
+      - -v
+      - bash -c "KUBECONFIG=$KUBECONFIG kubectl exec $COL-NAME -it --namespace $NAMESPACE -- bash"
+  spawn-shell-in-containers:
+    shortCut: Ctrl-O
+    description: Open shell in new tmux pane
+    scopes:
+      - containers
+    help: Split tmux window and open shell in current context
+    command: tmux
+    args:
+      - split-window
+      - -h
+      - bash -c "KUBECONFIG=$KUBECONFIG kubectl exec $POD -it --namespace $NAMESPACE -- bash"
+  spawn-shell-vertically-in-containers:
+    shortCut: Ctrl-V
+    description: Open shell in new tmux pane
+    scopes:
+      - containers
+    help: Split tmux window and open shell in current context
+    command: tmux
+    args:
+      - split-window
+      - -v
+      - bash -c "KUBECONFIG=$KUBECONFIG kubectl exec $POD -it --namespace $NAMESPACE -- bash"
+  copy-exec-cmd:
+    shortCut: Shift-E
+    description: "Copy kubectl exec command with kubeconfig"
+    scopes:
+      - pod
+    # background: true
+    command: bash
+    args:
+      - -c
+      - |
+        # 1. 拼接完整的 exec 命令字符串
+        CMD="kubectl exec -it $NAME -n $NAMESPACE --kubeconfig=$KUBECONFIG -- bash"
+
+        echo $CMD | base64 -w 0 | awk '{ printf "\033]52;c;%s\a", $0 }'

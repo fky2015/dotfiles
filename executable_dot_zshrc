@@ -1,6 +1,8 @@
 # ZSH Profiling
 #zmodload zsh/zprof
 
+export GPG_TTY=$(tty)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -8,14 +10,28 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# More history,
-# See: https://github.com/bamos/zsh-history-analysis/blob/master/README.md#increasing-the-history-file-size
-export HISTSIZE=1000000000
-export SAVEHIST=$HISTSIZE
-setopt EXTENDED_HISTORY
-# Preventing command with leading space being store in history,
-# used for sensitive command.
-setopt HIST_IGNORE_SPACE
+# Keep a bounded history file separate from legacy shells still using ~/.zsh_history.
+export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
+export HISTSIZE=100000
+export SAVEHIST=50000
+setopt EXTENDED_HISTORY HIST_IGNORE_SPACE HIST_IGNORE_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST HIST_SAVE_NO_DUPS HIST_FIND_NO_DUPS
+setopt HIST_SAVE_BY_COPY HIST_FCNTL_LOCK SHARE_HISTORY
+unsetopt INC_APPEND_HISTORY INC_APPEND_HISTORY_TIME
+
+# Seed history once on hosts that still use the legacy location.
+if [[ ! -f "$HISTFILE" ]]; then
+  (
+    umask 077
+    mkdir -p -- "${HISTFILE:h}"
+    if [[ -r "$HOME/.zsh_history" ]]; then
+      cp -- "$HOME/.zsh_history" "$HISTFILE"
+    else
+      : > "$HISTFILE"
+    fi
+    chmod 600 "$HISTFILE"
+  )
+fi
 
 setopt auto_cd
 
@@ -102,3 +118,5 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+export GIT_EDITOR=nvim
