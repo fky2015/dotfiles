@@ -61,12 +61,15 @@ zinit wait lucid for \
   OMZP::docker-compose \
   OMZP::docker/docker.plugin.zsh
 
-zinit pack"default+keys" for fzf
+# Load shell integration from the installed fzf.
+if (( $+commands[fzf] )); then
+  eval "$(fzf --zsh)"
 
-# Keep history search on fzf after OMZ key bindings are loaded.
-bindkey -M emacs '^R' fzf-history-widget
-bindkey -M viins '^R' fzf-history-widget
-bindkey -M vicmd '^R' fzf-history-widget
+  # Keep history search on fzf after OMZ key bindings are loaded.
+  bindkey -M emacs '^R' fzf-history-widget
+  bindkey -M viins '^R' fzf-history-widget
+  bindkey -M vicmd '^R' fzf-history-widget
+fi
 
 # == forgit
 forgit_add=gai
