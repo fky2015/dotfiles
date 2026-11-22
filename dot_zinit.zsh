@@ -52,15 +52,11 @@ zinit pick"misc/quitcd/quitcd.zsh" sbin make light-mode for jarun/nnn
 zinit ice lucid wait='1' depth='1'
 zinit light skywind3000/z.lua
 
-# Plugin history-search-multi-word loaded with investigating.
-zinit ice depth='1'
-zinit load zdharma-continuum/history-search-multi-word
-
-# 语法高亮
-zinit ice lucid wait='0' atinit='zpcompinit'
+# Load highlighting after other wait=0 plugins, initializing completions once.
+zinit ice lucid wait='0c' atinit='zicompinit; zicdreplay'
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-zinit ice depth='1'
+zinit ice lucid depth='1' wait='0'
 zinit load MichaelAquilina/zsh-you-should-use
 
 # 自动建议
@@ -69,7 +65,6 @@ zinit light zsh-users/zsh-autosuggestions
 
 # 补全
 zi for \
-    atload"zicompinit; zicdreplay" \
     blockf \
     lucid \
     wait \
@@ -83,7 +78,6 @@ zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zinit snippet OMZ::plugins/aws/aws.plugin.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit wait lucid for \
   OMZP::extract \
@@ -91,7 +85,12 @@ zinit wait lucid for \
   OMZP::eza \
   OMZP::docker/docker.plugin.zsh
 
-# zinit pack"default+keys" for fzf
+zinit pack"default+keys" for fzf
+
+# Keep history search on fzf after OMZ key bindings are loaded.
+bindkey -M emacs '^R' fzf-history-widget
+bindkey -M viins '^R' fzf-history-widget
+bindkey -M vicmd '^R' fzf-history-widget
 
 # == forgit
 forgit_add=gai
@@ -103,11 +102,10 @@ zinit wait="0" lucid light-mode for \
     hlissner/zsh-autopair \
     wfxr/forgit 
 
-zinit ice lucid wait='1'
-zinit wait lucid for \
-  atinit"zicompinit; zicdreplay"  \
+zinit wait'1' lucid for \
+  atload'zicdreplay' \
     OMZP::colored-man-pages \
-  as"completion" \
+  as"completion" atload'zicdreplay' \
     OMZP::kubectl
 
 # zinit ice as"completion"
@@ -120,7 +118,7 @@ zinit load jarun/nnn
 
 # kubectl-aliasis
 # see: https://github.com/ahmetb/kubectl-aliases
-zinit ice pick".kubectl_aliases" wait"0b" lucid
+zinit ice wait'0' lucid pick".kubectl_aliases"
 zinit load ahmetb/kubectl-aliases
 
 ## Git extension

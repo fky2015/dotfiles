@@ -12,7 +12,13 @@ return {
       { "smart-splits-nvim/backend-tmux", main = "smart-splits-backend-tmux" },
     },
     opts = {
-      mux = { backend = "smart-splits-backend-tmux" },
+      mux = {
+        backend = function()
+          if vim.env.TMUX then
+            return "smart-splits-backend-tmux"
+          end
+        end,
+      },
     },
     keys = {
       {
