@@ -26,28 +26,6 @@ zi_program() {
 	zi0a as'program' "$@"
 }
 
-# 安装二进制软件
-
-# See ~/.local.zsh for more.
-if [[ "$ZINIT_DOWNLOAD_BIN" == "foo" ]] 
-then
-  # direnv
-  zinit from"gh-r" as"program" mv"direnv* -> direnv" \
-      atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-      pick"direnv" src="zhook.zsh" for \
-          direnv/direnv
-
-  # fzf, fd, bat, exa using the for-syntax and also z-a-bin-gem-node annex
-  zinit wait"1" lucid from"gh-r" as"null" for \
-       sbin"**/fd"        @sharkdp/fd \
-       sbin"**/bat"       @sharkdp/bat \
-       sbin"exa* -> exa"  ogham/exa
-  
-fi
-
-# jarun/nnn, a file browser, using the for-syntax
-zinit pick"misc/quitcd/quitcd.zsh" sbin make light-mode for jarun/nnn
-
 # 快速目录跳转
 zinit ice lucid wait='1' depth='1'
 zinit light skywind3000/z.lua
@@ -60,7 +38,7 @@ zinit ice lucid depth='1' wait='0'
 zinit load MichaelAquilina/zsh-you-should-use
 
 # 自动建议
-zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
+zinit ice lucid wait="0"
 zinit light zsh-users/zsh-autosuggestions
 
 # 补全
@@ -76,13 +54,11 @@ zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit wait lucid for \
   OMZP::extract \
   OMZP::docker-compose \
-  OMZP::eza \
   OMZP::docker/docker.plugin.zsh
 
 zinit pack"default+keys" for fzf
@@ -119,7 +95,7 @@ zinit load jarun/nnn
 # kubectl-aliasis
 # see: https://github.com/ahmetb/kubectl-aliases
 zinit ice wait'0' lucid pick".kubectl_aliases"
-zinit load ahmetb/kubectl-aliases
+zinit light ahmetb/kubectl-aliases
 
 ## Git extension
 
@@ -141,9 +117,7 @@ zinit as"null" wait"1" lucid for \
    sbin"git-url;git-guclone" make"GITURL_NO_CGITURL=1" \
             zdharma-continuum/git-url
 
-zinit ice as"program" cp"wd.sh -> wd" mv"_wd.sh -> _wd" \
-    atpull'!git reset --hard' pick"wd"
-zinit light mfaerevaag/wd
-
 # 加载 pure 主题
-zplugin ice depth=1; zinit light romkatv/powerlevel10k
+# zinit light romkatv/powerlevel10k
+
+zinit light spaceship-prompt/spaceship-prompt
