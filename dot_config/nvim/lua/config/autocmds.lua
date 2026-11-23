@@ -8,6 +8,8 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 --
 
+require("config.rex-terminal").setup()
+
 -- Autoformat setting
 -- Disable autoformat for lua files
 vim.api.nvim_create_autocmd({ "FileType" }, {
