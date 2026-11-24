@@ -4,6 +4,10 @@ return {
   },
   {
     "folke/sidekick.nvim",
+    config = function(_, opts)
+      require("sidekick").setup(opts)
+      require("config.sidekick-zellij").setup()
+    end,
     opts = {
       nes = {
         enabled = true,
@@ -42,32 +46,10 @@ return {
               },
             },
           },
-          ["aiden codex"] = {
-            cmd = { "aiden", "x", "codex" },
-            keys = {
-              submit = {
-                "<c-s>",
-                function(t)
-                  t:send("\n")
-                end,
-              },
-            },
-          },
-          ["aiden claude"] = {
-            cmd = { "aiden", "x", "claude" },
-            keys = {
-              submit = {
-                "<c-s>",
-                function(t)
-                  t:send("\n")
-                end,
-              },
-            },
-          },
         },
         mux = {
           enabled = true,
-          backend = "tmux",
+          backend = "zellij",
         },
         prompts = {
           ["git commit message"] = [[Forget previous tasks.
