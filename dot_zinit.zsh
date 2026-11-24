@@ -1,8 +1,11 @@
 ### Added by Zplugin's installer
-if [[ -f "$HOME/.zinit/bin/zinit.zsh"  ]]; then
+if [[ -r "$HOME/.zinit/bin/zinit.zsh" ]]; then
   source "$HOME/.zinit/bin/zinit.zsh"
+elif [[ -r "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
+  source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 else
-  source "$HOME/.local/share/zinit/zinit.git/zinit.zsh" 
+  print -u2 'Zinit not installed; skipping Zsh plugins.'
+  return 0
 fi
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit

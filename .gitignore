@@ -2,8 +2,10 @@
 /work/
 /templates/mise.toml
 
-# Local work settings must not enter the public repository.
+# Local settings and logs must stay out of the repository.
 /dot_local.zsh
+/dot_gitconfig
+/nvim.log
 
 # These work files are managed by chezmoi-work.
 /dot_devutils.sh

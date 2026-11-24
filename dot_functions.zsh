@@ -179,8 +179,9 @@ link_from_template() {
 
   # Select template using fzf
   selected_file=$(
-      find "$templates_dir" -maxdepth 1 -type f ! -name "*.sh" -printf "%f\n" \
-      | fzf --height=40% --reverse --border --prompt="Select template: "
+      for source_file in "$templates_dir"/*(ND.); do
+          [[ $source_file == *.sh ]] || print -r -- "${source_file:t}"
+      done | fzf --height=40% --reverse --border --prompt="Select template: "
   )
 
   # Exit if no selection
@@ -214,7 +215,7 @@ link_from_template() {
 # Select template updater script, run it, and update the paired template with stdout.
 update_template_from_remote() {
   local templates_dir="$HOME/templates"
-  local selected_script script_file target_file tmp_file status
+  local selected_script script_file target_file tmp_file rc
 
   # Check if templates directory exists
   if [[ ! -d "$templates_dir" ]]; then
@@ -230,8 +231,9 @@ update_template_from_remote() {
 
   # Select updater script using fzf. A template like mise.toml is updated by mise.toml.sh.
   selected_script=$(
-      find "$templates_dir" -maxdepth 1 -type f -name "*.sh" -printf "%f\n" \
-      | fzf --height=40% --reverse --border --prompt="Select updater script: "
+      for script_file in "$templates_dir"/*.sh(ND.); do
+          print -r -- "${script_file:t}"
+      done | fzf --height=40% --reverse --border --prompt="Select updater script: "
   )
 
   # Exit if no selection
@@ -243,16 +245,16 @@ update_template_from_remote() {
 
   if [[ ! -x "$script_file" ]]; then
       zsh "$script_file" > "$tmp_file"
-      status=$?
+      rc=$?
   else
       "$script_file" > "$tmp_file"
-      status=$?
+      rc=$?
   fi
 
-  if (( status != 0 )); then
+  if (( rc != 0 )); then
       rm -f -- "$tmp_file"
-      echo "Error: Updater '$script_file' failed with status $status. Template not updated." >&2
-      return $status
+      echo "Error: Updater '$script_file' failed with status $rc. Template not updated." >&2
+      return $rc
   fi
 
   mv -- "$tmp_file" "$target_file"

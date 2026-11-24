@@ -5,8 +5,10 @@ work/**
 # This template is managed only by chezmoi-work.
 templates/mise.toml
 
-# Local work settings are managed outside chezmoi.
+# Local settings and logs are managed outside chezmoi.
 .local.zsh
+.gitconfig
+nvim.log
 
 # These work files are managed only by chezmoi-work.
 .devutils.sh

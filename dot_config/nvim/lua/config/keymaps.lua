@@ -28,47 +28,46 @@ end, { desc = "Insert blank line below" })
 
 Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ"):map("<leader>z")
 
--- Send line/selection to terminal
-local function get_terminal_chan()
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.bo[buf].buftype == "terminal" then
-      local chan = vim.b[buf].terminal_job_id
-      if chan then
-        return chan
-      end
-    end
+-- Run line/selection in a dedicated shell.
+local shell
+local function run_in_shell(text)
+  if text == "" then
+    return
   end
-  return nil
+  local ok, err = pcall(function()
+    local chan = shell and shell:buf_valid() and vim.bo[shell.buf].channel or 0
+    if chan == 0 or vim.fn.jobwait({ chan }, 0)[1] ~= -1 then
+      if shell and shell:buf_valid() then
+        shell:close()
+      end
+      shell = Snacks.terminal.open(nil, {
+        count = 0, -- Keep this separate from ordinary Snacks terminals.
+        start_insert = false,
+        win = { enter = false, wo = { winbar = "Command shell" } },
+      })
+      chan = vim.bo[shell.buf].channel
+      assert(chan > 0, "could not start the shell")
+    else
+      if shell:valid() and not shell:on_current_tab() then
+        shell:hide()
+      end
+      shell:show()
+    end
+    vim.api.nvim_chan_send(chan, text .. "\n")
+  end)
+  if not ok then
+    vim.notify("Command shell: " .. err, vim.log.levels.WARN)
+  end
 end
 
 vim.keymap.set("n", "<leader>t", function()
-  local chan = get_terminal_chan()
-  if not chan then
-    Snacks.terminal.toggle()
-    vim.defer_fn(function() end, 100)
-    chan = get_terminal_chan()
-  end
-  if chan then
-    local line = vim.api.nvim_get_current_line()
-    vim.api.nvim_chan_send(chan, line .. "\n")
-  end
-end, { desc = "Send line to terminal" })
+  run_in_shell(vim.api.nvim_get_current_line())
+end, { desc = "Run line in shell" })
 
-vim.keymap.set("v", "<leader>t", function()
-  local chan = get_terminal_chan()
-  if not chan then
-    Snacks.terminal.toggle()
-    vim.defer_fn(function() end, 100)
-    chan = get_terminal_chan()
-  end
-  if chan then
-    local start_pos = vim.fn.getpos("'<")
-    local end_pos = vim.fn.getpos("'>")
-    local lines = vim.api.nvim_buf_get_lines(0, start_pos[2] - 1, end_pos[2], false)
-    local text = table.concat(lines, "\n")
-    vim.api.nvim_chan_send(chan, text .. "\n")
-  end
-end, { desc = "Send selection to terminal" })
+vim.keymap.set("x", "<leader>t", function()
+  local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
+  run_in_shell(table.concat(lines, "\n"))
+end, { desc = "Run selection in shell" })
 
 -- Add keymap for copy current file name
 vim.keymap.set("n", "yp", function()
