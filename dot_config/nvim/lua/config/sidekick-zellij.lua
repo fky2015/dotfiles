@@ -1,5 +1,19 @@
 local M = {}
 
+function M.toggle(name)
+  name = name or "traex"
+  local State = require("sidekick.cli.state")
+  if #State.get({ name = name, cwd = true, attached = true }) > 0 then
+    require("sidekick.cli").toggle({ name = name, filter = { cwd = true } })
+    return
+  end
+
+  -- Zellij's stable session name is derived from the tool and cwd.
+  -- attach --create handles both reusing and creating that session.
+  require("sidekick.cli.session").setup()
+  State.attach({ tool = require("sidekick.config").get_tool(name) }, { show = true })
+end
+
 function M.setup()
   local backend = require("sidekick.cli.session.zellij")
   if backend.sidekick_configured then

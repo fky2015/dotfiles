@@ -92,9 +92,9 @@ Do the task right now.]],
       {
         "<C-\\>",
         function()
-          require("sidekick.cli").toggle({ name = "traex" })
+          require("config.sidekick-zellij").toggle("traex")
         end,
-        desc = "Sidekick cli toggle",
+        desc = "Sidekick cli toggle (current directory)",
       },
     },
   },
