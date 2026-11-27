@@ -1,3 +1,18 @@
+local function navigate_on_host(ctx, args)
+  -- The invoking server cannot open a socket on the pane's host.
+  local host = rex.server(ctx.server)
+  if not host.call("session.attach", { session_id = ctx.session_id }) then return false end
+  local reply = host.call("client.action", {
+    action = "navigate_window", origin = "api", args = args,
+    session_id = ctx.session_id, block_id = ctx.block_id,
+  })
+  if not reply then return false end
+  for _, action in ipairs(reply.client_actions or {}) do
+    rex.client.queue(action.action, action.args)
+  end
+  return true
+end
+
 -- Switch Neovim windows first, then Rex panes at the edge.
 rex.action{
   name = "navigate_window",
@@ -17,9 +32,12 @@ rex.action{
     name = name:match("([^/]+)$") or name
 
     if name == "nvim" or name == "nvimdiff" then
+      local remote = ctx.server and ctx.server ~= ""
+      if remote and navigate_on_host(ctx, args) then return end
+
       local pid = foreground.pid
       local uid = foreground.user_id
-      local path = pid and uid and ("/tmp/rex-nvim-" .. uid .. "/" .. pid)
+      local path = not remote and pid and uid and ("/tmp/rex-nvim-" .. uid .. "/" .. pid)
       local file = path and io.open(path, "r")
       local socket
       local rpc_pid = pid

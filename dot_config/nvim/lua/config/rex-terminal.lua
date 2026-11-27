@@ -263,7 +263,7 @@ end
 function M.setup(opts)
   M.stop()
   opts = opts or {}
-  local in_rex = vim.env.REX_SESSION and vim.env.REX_SESSION ~= ""
+  local in_rex = vim.env.REX_BLOCK and vim.env.REX_BLOCK ~= ""
   if opts.enabled == false or (opts.enabled == nil and not in_rex) or not vim.api.nvim_ui_send then
     return false
   end

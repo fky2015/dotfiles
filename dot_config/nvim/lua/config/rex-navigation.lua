@@ -24,7 +24,8 @@ end
 
 function M.setup(opts)
   opts = opts or {}
-  if not (opts.block_id or vim.env.REX_BLOCK) or not (opts.session_id or vim.env.REX_SESSION) then
+  local block_id = opts.block_id or vim.env.REX_BLOCK
+  if not block_id or block_id == "" then
     return
   end
   local runtime = "/tmp/rex-nvim-" .. vim.uv.getuid()
